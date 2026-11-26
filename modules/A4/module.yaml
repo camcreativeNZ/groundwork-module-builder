@@ -1,0 +1,189 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team, accounts and people in this module are fictional.
+# Before each release, recheck that projects and skills can be shared with a team
+# (checked against Claude's help pages on 27 November 2026: sharing is on team plans).
+# The module says "somewhere the whole team uses", so it doesn't depend on a plan.
+
+id: A4
+title: Building team workflows
+level: Advanced
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: map, label: Map }
+  - { id: share, label: Share }
+  - { id: own, label: Own }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Diego
+    story: |
+      Diego leads six customer success staff. They all use Claude to prepare for contract renewals, but each person does it differently.
+
+      Some renewal summaries are excellent, some miss key details, and one person still copies everything by hand.
+    image:
+      file: assets/diego-team.svg
+      alt: Three people working together around one shared screen
+    reflection:
+      question: How could Diego's team get the excellent version every time?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Turn the best approach into a shared workflow.** *Map* the steps, *share* the instructions, templates and skills so everyone starts from the same place, and make someone *own* it so it keeps improving.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a team workflow
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: map, back: "write down the steps, and mark which ones Claude helps with and which ones a person must decide." }
+      - { part: share, back: "put the instructions, templates and good examples somewhere the whole team uses, such as a shared project or skill." }
+      - { part: own, back: "name one person to keep it working, collect feedback, and update it when things change." }
+    tip: "**Tip:** start from the best version someone on the team already uses."
+
+  # ---------- 3 to 5. Diego builds the renewal workflow ----------
+  - template: step-builder
+    prompt_label: Diego's workflow so far
+    reply_label: The result
+    steps:
+      - part: map
+        menu_title: Map
+        title: "Map: steps and decisions"
+        content:
+          - Diego asks his best performer how she does it, and maps the steps.
+          - tip: "**Tip:** mark the decisions. They stay with people."
+        adds: "1. Gather the account history. 2. Summarise usage. 3. List open issues. 4. Draft the renewal summary. 5. Decide the offer."
+        reply: |
+          - **Claude helps:** steps 1 to 4
+          - **A person decides:** step 5, the offer
+        note: The offer is always a person's call.
+
+      - part: share
+        menu_title: Share
+        title: "Share: one place to start"
+        content:
+          - Diego packages the workflow so the whole team can use it.
+          - tip: "**Tip:** two strong examples show what \"good\" looks like better than a long description."
+        adds: "A shared project called Renewals, with instructions, the renewal summary template and two strong examples (P2). The drafting steps become a skill (P8)."
+        reply: |
+          Diego shares the project with the team. Everyone now starts from the same instructions, template and examples.
+        note: The new starter uses it on her first day.
+
+      - part: own
+        menu_title: Own
+        title: "Own: keep it working"
+        content:
+          - Diego names Aisha as the owner.
+          - tip: "**Tip:** a workflow with no owner slowly goes out of date."
+        adds: "Aisha asks the team once a month what's not working, and updates the instructions. When the pricing rules change, she updates the project the same day."
+        reply: |
+          A team member suggests a better way to list open issues. Aisha tests it, and adds it to the shared workflow.
+        note: Improvements go into the shared workflow, so everyone benefits.
+        success: Every renewal summary now has the same shape and quality, and new staff use it from day one.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan a team workflow
+    menu_title: Try it
+    intro: Pick a task your team repeats, or use ours.
+    task: "**Our task:** onboarding a new client."
+    fields:
+      - part: map
+        label: "Map: list the steps, and mark where Claude helps and where a person decides"
+        placeholder: "1. Gather the client's details (Claude). 2. Draft the welcome pack (Claude). 3. Agree the first goals (person). 4. Book the kick-off meeting (Claude drafts, person sends)."
+        rows: 3
+      - part: share
+        label: "Share: what instructions, templates and examples will the team share?"
+        placeholder: A shared Onboarding project with our welcome pack template and two good examples.
+        rows: 2
+      - part: own
+        label: "Own: who owns it, and how will you collect feedback?"
+        placeholder: Sam owns it, and asks the team for feedback after each new client.
+        rows: 2
+    result_label: Your workflow plan
+    copy_label: Copy plan
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I mapped the steps.
+        - A person makes the key decisions.
+        - The team has one shared place to start.
+        - One person owns it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your team workflow card.
+    questions:
+      - question: Where's the best place to start a team workflow?
+        options:
+          a: A blank page
+          b: The best version someone on the team already uses
+          c: A template from the internet
+        answer: b
+        feedback: Start from what already works, then make it shared.
+
+      - question: Which step in a renewal workflow should stay with a person?
+        options:
+          a: Summarising usage data
+          b: Drafting the summary
+          c: Deciding the renewal offer
+        answer: c
+        feedback: Claude helps with the work. People make the decisions that matter.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [Map, Share, Own]
+        lines:
+          - { text: "List the five steps and mark the decisions.", answer: Map }
+          - { text: "Put the template and examples in a shared project.", answer: Share }
+          - { text: "Aisha updates it when the pricing rules change.", answer: Own }
+        feedback: Map the steps, share one place to start, and give it an owner.
+
+      - question: Why does a shared workflow need an owner?
+        options:
+          a: To check everyone uses it
+          b: So someone keeps it up to date and acts on feedback
+          c: It doesn't
+        answer: b
+        feedback: Workflows go stale. An owner keeps them working.
+
+      - question: A team member finds a better way to do one step. What should happen?
+        options:
+          a: They use it quietly
+          b: They tell the owner, who tests it and updates the shared workflow
+          c: Everyone starts their own version
+        answer: b
+        feedback: Improvements go into the shared workflow, so everyone benefits.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your team workflow card
+    menu_title: Take away
+    intro: You can now turn a team task into a shared workflow. Download the card and keep it beside you.
+    table:
+      caption: "Team workflow card: Map, Share and Own"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: map
+          cells: ["What are the steps, and who decides?", "Five renewal steps; the offer is a person's call."]
+        - part: share
+          cells: ["Where does everyone start?", "A shared Renewals project, with a template, examples and a skill."]
+        - part: own
+          cells: ["Who keeps it working?", "Aisha reviews it monthly and updates it when rules change."]
+    job_aid:
+      title: Team workflow card
+      intro: To turn a team task into a shared workflow, use three parts.
+      footer: "**Start from your team's best version,** keep decisions with people, and give it an owner."
+    next: "**Next module:** A5 Quality and risk at scale, where you'll check AI work when there's a lot of it."

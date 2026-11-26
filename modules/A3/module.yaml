@@ -1,0 +1,194 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The news, team and tasks in this module are fictional.
+# Before each release, recheck that scheduled tasks exist and roughly how they're set up
+# (checked against Claude's help pages on 27 November 2026: on paid plans, run in the cloud).
+# The module says "on some plans" and doesn't name menus.
+
+id: A3
+title: Automating routine work
+level: Advanced
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: pick, label: Pick }
+  - { id: setup, label: Set up }
+  - { id: watch, label: Watch }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Hana
+    story: |
+      Hana is a communications lead. Every Monday at 8 am she spends 40 minutes doing the same thing: skimming industry news, checking her team's shared task list, and writing a short briefing for her manager.
+
+      She does it the same way every week.
+    image:
+      file: assets/hana-briefing.svg
+      alt: A person with a coffee looking at a finished report on a laptop, next to a calendar
+    reflection:
+      question: What part of this could run without Hana?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **On some plans, Claude can run a task on a schedule**, such as every Monday at 7 am, and have the result waiting for you. *Pick* the right routine, *set it up* clearly, and *watch* it until you trust it.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of automating
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: pick, back: "a task you do often, the same way, where a draft for you to check is useful." }
+      - { part: setup, back: "clear instructions, when it runs, what it can use, and where the result goes." }
+      - { part: watch, back: "check the first few runs closely, then spot-check. Pause it if anything changes." }
+    tip: "**Tip:** start with tasks that read and summarise, not tasks that send or change things."
+
+  # ---------- 3 to 5. Hana automates her Monday ----------
+  - template: step-builder
+    prompt_label: Hana's work so far
+    reply_label: The result
+    steps:
+      - part: pick
+        menu_title: Pick
+        title: "Pick: what's the same every week?"
+        content:
+          - Hana lists what she does each Monday.
+          - tip: "**Tip:** automate the gathering, keep the judgement."
+        adds: "Same every week: gathering industry news and checking the task list. Not the same: deciding what matters to my manager."
+        reply: |
+          Hana decides to automate the gathering, and keep the judgement for herself.
+        note: The routine part is the part to automate.
+
+      - part: setup
+        menu_title: Set up
+        title: "Set up: what, when and where"
+        content:
+          - Hana sets up a scheduled task.
+          - tip: "**Tip:** a scheduled task runs without you, so the instructions must be complete."
+        adds: "Every Monday at 7 am: search for last week's news about our industry from reputable sources, with links. Check our team's shared task list for anything overdue. Write a one-page draft briefing: top three news items, overdue tasks, and questions for me. Don't send it to anyone."
+        reply: |
+          **Draft briefing, Monday 7 am**
+
+          1. Top three news items, with links
+          2. Overdue tasks: 2
+          3. Questions for Hana: 1
+        note: The draft is waiting when Hana arrives. Nothing has been sent.
+
+      - part: watch
+        menu_title: Watch
+        title: "Watch: check it until you trust it"
+        content:
+          - For the first three Mondays, Hana checks every link and task.
+          - tip: "**Tip:** when a run goes wrong, fix the instructions, not just the result."
+        adds: Only include news from the last seven days.
+        reply: |
+          One week, a news item was from the month before. Hana adds the line above to the instructions. After that, she spot-checks.
+        note: Small fixes in the first few weeks make the task reliable.
+        success: 40 minutes became 10, and Hana still decides what goes to her manager.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Set up a routine task
+    menu_title: Try it
+    intro: Pick a routine from your week, or use ours. If scheduled tasks aren't available to you, write the instructions for later.
+    task: "**Our task:** a Friday afternoon summary of what your team finished this week."
+    fields:
+      - part: pick
+        label: "Pick: what's the routine, and what part stays with you? (Not part of the instructions.)"
+        placeholder: Gathering what we finished is the same each week. Choosing what to celebrate stays with me.
+        rows: 2
+        in_prompt: false
+      - part: setup
+        label: "Set up: what should Claude do, when, and where should the result go?"
+        placeholder: "Every Friday at 3 pm: check our team's shared task list for everything marked done this week. Write a short draft summary, grouped by project. Don't send it to anyone."
+        rows: 3
+      - part: watch
+        label: "Watch: what will you check in the first few runs? (Not part of the instructions.)"
+        placeholder: That every finished task is listed, and nothing is from last week.
+        rows: 2
+        in_prompt: false
+    result_label: Your scheduled task instructions
+    copy_label: Copy instructions
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your task
+      items:
+        - I picked a routine that's the same each time.
+        - My instructions say what, when and where.
+        - The task drafts, it doesn't send.
+        - I'll check the first few runs closely.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your automation card.
+    questions:
+      - question: Which task is the best first candidate for a schedule?
+        options:
+          a: A weekly summary of your team's shared task list
+          b: Replying to customer complaints automatically
+          c: Approving expense claims
+        answer: a
+        feedback: Start with tasks that read and summarise, where you check the result.
+
+      - question: What should a scheduled task's instructions include?
+        options:
+          a: Just the topic
+          b: What to do, when, what to use, and where the result goes
+          c: A long description of your organisation
+        answer: b
+        feedback: A scheduled task runs without you, so the instructions must be complete.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [Pick, Set up, Watch]
+        lines:
+          - { text: "Gathering news is the same every week.", answer: Pick }
+          - { text: "\"Every Monday at 7 am, draft a one-page briefing.\"", answer: Set up }
+          - { text: "Check every link for the first three weeks.", answer: Watch }
+        feedback: Pick the routine, set it up clearly, and watch it until you trust it.
+
+      - question: A scheduled task's summary includes an old news story. What do you do?
+        options:
+          a: Delete the task
+          b: "Tighten the instructions, such as \"only from the last seven days\""
+          c: Ignore it
+        answer: b
+        feedback: Improve the instructions, then keep watching.
+
+      - question: Your team changes its task list tool. What should happen to the scheduled task?
+        options:
+          a: Nothing, because it will adapt
+          b: Pause it, update the instructions, and check the next run
+          c: Let it fail
+        answer: b
+        feedback: When something it relies on changes, pause and update it.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your automation card
+    menu_title: Take away
+    intro: You can now set up routine work to run on a schedule. Download the card and keep it beside you.
+    table:
+      caption: "Automation card: Pick, Set up and Watch"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: pick
+          cells: ["Is it the same each time, and is a draft useful?", "Weekly news and task summary"]
+        - part: setup
+          cells: ["What, when, using what, and where does it go?", "\"Every Monday at 7 am, draft a one-page briefing. Don't send it.\""]
+        - part: watch
+          cells: ["Is it still right?", "Check the first three runs closely, then spot-check."]
+    job_aid:
+      title: Automation card
+      intro: To hand routine work to Claude on a schedule, use three parts.
+      footer: "**Automate the gathering, keep the judgement.** Start with tasks that draft, not send."
+    next: "**Next module:** A4 Building team workflows, where you'll turn a team task into a shared workflow."

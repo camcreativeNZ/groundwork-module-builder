@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <rect x="140" y="24" width="160" height="132" rx="6" class="ill-screen"/>
+  <rect x="126" y="170" width="188" height="6" rx="3" class="ill-desk"/>
+  <path d="M158 48 H174 L178 54 H200 V78 H158 Z" class="ill-p1"/>
+  <path d="M240 48 H256 L260 54 H282 V78 H240 Z" class="ill-p2"/>
+  <path d="M158 104 H174 L178 110 H200 V134 H158 Z" class="ill-p3"/>
+  <path d="M240 104 H256 L260 110 H282 V134 H240 Z" class="ill-p4"/>
+  <path d="M206 64 Q220 56 234 64 M206 120 Q220 112 234 120 M180 84 V98" class="ill-axis"/>
+  <circle cx="80" cy="84" r="24" fill="#9c6644"/>
+  <path d="M54 90 Q50 54 80 54 Q110 54 106 90 Q100 66 80 64 Q60 66 54 90 Z" class="ill-ink"/>
+  <path d="M100 70 Q116 84 108 112 Q104 92 100 70 Z" class="ill-ink"/>
+  <path d="M40 176 Q45 120 80 116 Q115 120 120 176 Z" class="ill-shirt"/>
+  <circle cx="72" cy="86" r="2.5" class="ill-ink"/><circle cx="88" cy="86" r="2.5" class="ill-ink"/>
+  <path d="M74 98 Q80 100 86 98" class="ill-stroke"/>
+</svg>
