@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <rect x="130" y="20" width="170" height="130" rx="6" class="ill-screen"/>
+  <path d="M170 150 L160 176 M260 150 L270 176" class="ill-axis"/>
+  <circle cx="250" cy="85" r="40" class="ill-p1"/><circle cx="250" cy="85" r="27" class="ill-screen"/><circle cx="250" cy="85" r="13" class="ill-p1"/>
+  <path d="M150 45 L236 80 M150 85 L236 85 M150 125 L236 90" class="ill-axis"/>
+  <circle cx="150" cy="45" r="6" class="ill-p2"/><circle cx="150" cy="85" r="6" class="ill-p3"/><circle cx="150" cy="125" r="6" class="ill-p2"/>
+  <circle cx="74" cy="84" r="24" fill="#9c6644"/>
+  <path d="M50 96 Q44 54 74 52 Q104 54 98 96 Q96 70 74 66 Q52 70 50 96 Z" class="ill-ink"/>
+  <path d="M34 176 Q39 120 74 116 Q109 120 114 176 Z" class="ill-shirt"/>
+  <circle cx="66" cy="86" r="2.5" class="ill-ink"/><circle cx="82" cy="86" r="2.5" class="ill-ink"/>
+  <path d="M67 97 Q74 101 81 97" class="ill-stroke"/>
+</svg>

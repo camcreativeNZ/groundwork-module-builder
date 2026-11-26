@@ -1,0 +1,195 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The firm and figures in this module are fictional. The module uses no currency amounts, only hours and ratios,
+# so it works in any country. No product features or prices to recheck.
+
+id: L4
+title: Return on investment
+level: Leader
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: costs, label: Costs }
+  - { id: benefits, label: Benefits }
+  - { id: decide, label: Decide }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Kenji
+    story: |
+      Kenji is finance director of a 300-person professional services firm. A 30-person pilot of Claude has just finished.
+
+      The proposal to roll it out to everyone is built on a vendor's claim, and counts only the licence cost:
+    image:
+      file: assets/kenji-scales.svg
+      alt: Scales balancing coins against a clock and a tick
+    reply:
+      label: The proposal (shortened)
+      text: |
+        Rolling out to all 300 staff will deliver ==up to 40% productivity gains==, for the cost of the licences alone…
+      note: The board asks Kenji if the numbers stand up.
+    reflection:
+      question: What's wrong with this business case?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **A business case built on someone else's best case, and only part of the cost, won't hold up.** Count all the *costs*, measure *benefits* from your own evidence, and *decide* clearly what to do next.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a business case
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: costs, back: "licences, plus training, staff time to learn, champions, oversight and checking. Count them all." }
+      - { part: benefits, back: "use your own pilot data: time saved, quality, and risk reduced. Note benefits that are real but hard to count." }
+      - { part: decide, back: "compare costs and benefits, then choose: scale, adjust or stop. Say what would change your mind." }
+    tip: "**Tip:** \"up to\" figures are someone's best case. Use them to ask questions, not as your forecast."
+
+  # ---------- 3 to 5. Kenji rebuilds the case ----------
+  - template: step-builder
+    prompt_label: Kenji's business case so far
+    reply_label: The result
+    steps:
+      - part: costs
+        menu_title: Costs
+        title: "Costs: count everything"
+        content:
+          - Kenji lists every cost of rolling out to 300 people for a year.
+          - tip: "**Tip:** the hidden costs are often as big as the licences."
+        adds: "Licences. Four hours of training each. A champion in each team, with two hours a week. Managers' time to review work. The governance owner's time (L2)."
+        reply: |
+          **Full cost:** about twice the licence cost alone.
+        note: Now the board can see the real cost.
+
+      - part: benefits
+        menu_title: Benefits
+        title: "Benefits: your own evidence"
+        content:
+          - Kenji uses the pilot's own measures (M4), not the vendor's claim.
+          - tip: "**Tip:** ask Claude to check your sums and list your assumptions, then check them yourself."
+        adds: "Pilot result: 2.5 hours saved per person per week on reports and drafting, with no rise in review corrections. Uptake was 80%, so count savings for 80% of staff, not all of them."
+        reply: |
+          - **Measured:** 2.5 hours a week, for the 80% who use it
+          - **Quality:** no change in review corrections
+          - **Hard to count:** faster client responses, better-written proposals
+        note: Every figure comes from the firm's own pilot.
+
+      - part: decide
+        menu_title: Decide
+        title: "Decide: scale, adjust or stop"
+        content:
+          - Kenji compares the two, and makes a clear recommendation.
+          - tip: "**Tip:** say what would change the decision, so everyone knows when to review it."
+        adds: "Roll out in two stages, starting with the teams where the pilot worked best. Review after six months. Stop or adjust if uptake falls below 60%, or quality drops."
+        reply: |
+          **The measured time saved is worth about three times the full cost.**
+
+          Stage one: the five teams where the pilot worked best. Stage two: the rest, after the six-month review.
+        note: A smaller claim than "up to 40%", but one the board can trust.
+        success: The board approves a case it trusts, with a clear review point.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Sketch your business case
+    menu_title: Try it
+    intro: Sketch a business case for your organisation, or use ours.
+    task: "**Our case:** extending Claude from a 20-person pilot to a 120-person team."
+    fields:
+      - part: costs
+        label: "Costs: what costs, beyond licences, will you count?"
+        placeholder: Licences, three hours of training each, two champions with an hour a week each, and managers' review time.
+        rows: 2
+      - part: benefits
+        label: "Benefits: what evidence will you use, and what's hard to count?"
+        placeholder: "Pilot: 2 hours saved per person per week, 75% uptake, same quality. Hard to count: faster turnaround for clients."
+        rows: 3
+      - part: decide
+        label: "Decide: what will you recommend, and what would change your mind?"
+        placeholder: Roll out to the whole team, review after six months, and adjust if uptake falls below 60% or quality drops.
+        rows: 2
+    result_label: Your business case outline
+    copy_label: Copy outline
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your case
+      items:
+        - I counted all the costs, not just licences.
+        - My benefits come from our own evidence.
+        - I adjusted for real uptake.
+        - I said what would change the decision.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your business case card.
+    questions:
+      - question: Which costs belong in an AI business case?
+        options:
+          a: Licences only
+          b: Licences, training, time to learn, champions, oversight and checking
+          c: Only costs over a set amount
+        answer: b
+        feedback: The hidden costs are often as big as the licences.
+
+      - question: "A vendor claims \"up to 40% productivity gains\". How should you use it?"
+        options:
+          a: As your forecast
+          b: As a question to test with your own pilot data
+          c: Ignore all vendor information
+        answer: b
+        feedback: "\"Up to\" is a best case. Your own evidence is stronger."
+
+      - type: match
+        question: Match each item to its part.
+        choice_word: part
+        choices: [Costs, Benefits, Decide]
+        lines:
+          - { text: "Four hours of training for each person", answer: Costs }
+          - { text: "2.5 hours saved per person per week in the pilot", answer: Benefits }
+          - { text: "Roll out in two stages, and review after six months", answer: Decide }
+        feedback: Count every cost, measure your own benefits, then decide clearly.
+
+      - question: Your pilot had 80% uptake. How should that affect your forecast?
+        options:
+          a: Assume 100% uptake
+          b: Base the savings on realistic uptake, not everyone
+          c: Ignore uptake
+        answer: b
+        feedback: Savings only come from people who actually use it.
+
+      - question: Why say what would change your decision?
+        options:
+          a: To look uncertain
+          b: So everyone knows when to review, adjust or stop
+          c: It's a legal requirement
+        answer: b
+        feedback: Clear review points make a decision easier to trust, and to change.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your business case card
+    menu_title: Take away
+    intro: You can now build an honest business case for AI, and judge the results. Download the card and keep it beside you.
+    table:
+      caption: "Business case card: Costs, Benefits and Decide"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: costs
+          cells: ["Have I counted everything, not just licences?", "Licences, training, champions, oversight: about twice the licences alone."]
+        - part: benefits
+          cells: ["Is it our own evidence, adjusted for real uptake?", "2.5 hours a week per person, for the 80% who use it."]
+        - part: decide
+          cells: ["Scale, adjust or stop, and what would change our mind?", "Two stages, review at six months, stop if quality drops."]
+    job_aid:
+      title: Business case card
+      intro: To build an honest business case for AI, use three parts.
+      footer: "**Your own evidence beats someone else's best case.** Count every cost, and set a review point."
+    next: "**You've finished the Groundwork course.** Thank you for learning with us. Keep your cards handy, and keep checking what Claude gives you."

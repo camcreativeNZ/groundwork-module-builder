@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <circle cx="70" cy="80" r="24" fill="#c58f6a"/>
+  <path d="M46 92 Q42 52 70 50 Q98 52 94 92 Q92 68 70 64 Q48 68 46 92 Z" class="ill-ink"/>
+  <path d="M30 176 Q35 116 70 112 Q105 116 110 176 Z" class="ill-shirt"/>
+  <circle cx="62" cy="82" r="2.5" class="ill-ink"/><circle cx="78" cy="82" r="2.5" class="ill-ink"/>
+  <path d="M63 93 Q70 97 77 93" class="ill-stroke"/>
+  <path d="M110 30 H170 Q178 30 178 38 V60 Q178 68 170 68 H128 L116 78 L118 68 H110 Q102 68 102 60 V38 Q102 30 110 30 Z" class="ill-p1"/>
+  <path d="M210 40 H270 Q278 40 278 48 V70 Q278 78 270 78 H262 L264 88 L252 78 H210 Q202 78 202 70 V48 Q202 40 210 40 Z" class="ill-p3"/>
+  <circle cx="190" cy="132" r="16" fill="#8d5a3b"/>
+  <path d="M174 128 Q176 112 190 112 Q204 112 206 128 Q198 120 190 120 Q182 120 174 128 Z" class="ill-ink"/>
+  <path d="M166 176 Q170 150 190 148 Q210 150 214 176 Z" class="ill-p2"/>
+  <circle cx="250" cy="132" r="16" fill="#e0b48f"/>
+  <path d="M234 136 Q232 112 250 112 Q268 112 266 136 Q262 122 250 120 Q238 122 234 136 Z" class="ill-ink"/>
+  <path d="M226 176 Q230 150 250 148 Q270 150 274 176 Z" class="ill-p4"/>
+</svg>
