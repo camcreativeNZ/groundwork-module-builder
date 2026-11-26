@@ -1,0 +1,189 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The organisation and job ads in this module are fictional.
+# Before each release, recheck how skills are created and turned on, and which plans have them
+# (checked against Claude's help pages on 27 November 2026).
+
+id: P8
+title: Reusable prompts and skills
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: spot, label: Spot }
+  - { id: template, label: Template }
+  - { id: skill, label: Skill }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Marcus
+    story: |
+      Marcus is a recruitment coordinator. He writes three job ads a week.
+
+      Each time, he scrolls back through old chats to find the prompt that worked, copies it, and fixes the details. Sometimes he grabs an old version, and the ad comes out wrong.
+    image:
+      file: assets/marcus-stamp.svg
+      alt: A person using a stamp to make matching cards
+    reflection:
+      question: What could Marcus do once, to save time every week?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **When you repeat a task, make it reusable.** A *template* is a prompt with blanks to fill in. A *skill* goes further: it's a saved set of instructions that Claude uses by itself whenever the task comes up.
+
+        In this module you'll make both.
+
+  # ---------- 2. Template, project or skill ----------
+  - template: flip-cards
+    title: Template, project or skill?
+    menu_title: Three ways to reuse
+    intro: There are three ways to reuse what works. Select each card.
+    cards:
+      - { front: Template, back: "a prompt with [placeholders] that you copy, fill in and paste. Simple, and works anywhere." }
+      - { front: Project, back: "background for ongoing work, used in every chat in that project (P2)." }
+      - { front: Skill, back: "steps for one kind of task, which Claude uses in any chat when your request matches." }
+    tip: "**Tip:** start with a template. When it works well every time, turn it into a skill."
+
+  # ---------- 3 to 5. Marcus makes it reusable ----------
+  - template: step-builder
+    prompt_label: Marcus's work so far
+    reply_label: The result
+    steps:
+      - part: spot
+        menu_title: Spot
+        title: "Spot: what stays the same?"
+        content:
+          - Marcus looks back at his last five job ads.
+          - tip: "**Tip:** a task you've done three times the same way is worth making reusable."
+        adds: "Every ad has the same five sections, the same tone and the same closing line about flexible work. Only the role, team and duties change."
+        reply: |
+          Marcus now knows what to keep fixed (sections, tone, closing line) and what to leave blank (role, team, duties).
+        note: The pattern is the template.
+
+      - part: template
+        menu_title: Template
+        title: "Template: a prompt with blanks"
+        content:
+          - "Marcus writes the prompt once, with placeholders for what changes."
+          - tip: "**Tip:** square brackets make the blanks easy to spot."
+        adds: "Write a job ad for [role] in our [team] team. Duties: [duties]. Sections: About us, The role, About you, What we offer, How to apply. Plain and welcoming, under 300 words. End with our flexible work line."
+        reply: |
+          Marcus saves the template in a note. Each week, he fills in the blanks and pastes it into a new chat. Every ad now has the same shape.
+        note: Faster, and no more old versions. But he still copies and pastes it each time.
+
+      - part: skill
+        menu_title: Skill
+        title: "Skill: Claude uses it by itself"
+        content:
+          - "Marcus asks Claude to turn the template into a skill."
+          - tip: "**Tip:** read a skill before you turn it on, just as you'd read any instructions."
+        adds: Turn this template into a skill called Job ad writer. Use it whenever I ask for a job ad.
+        reply: |
+          Claude drafts the skill. Marcus reads it, fixes one line, and adds it to his skills.
+
+          Now he just types: **"Job ad for a warehouse supervisor, from these notes."**
+        note: Claude spots that it's a job ad, and follows the skill's steps.
+        success: Three ads in ten minutes, all in the same shape.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Make a task reusable
+    menu_title: Try it
+    intro: Pick a task you've done with Claude three times or more.
+    fields:
+      - part: spot
+        label: "Spot: what stays the same each time? (Not part of the template.)"
+        placeholder: Same four headings, same tone, always under one page
+        rows: 1
+        in_prompt: false
+      - part: template
+        label: "Template: write the prompt, with [placeholders] for what changes"
+        placeholder: "Write a monthly update for [team] covering [topics]. Headings: Wins, Issues, Next month, Help needed. Under one page."
+        rows: 3
+      - part: skill
+        label: "Skill: when should Claude use it?"
+        placeholder: Turn this into a skill called Monthly update. Use it whenever I ask for a monthly update.
+        rows: 2
+    result_label: Your template
+    copy_label: Copy template
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I picked a task I repeat.
+        - My template has placeholders for what changes.
+        - I tested it once.
+        - If I made a skill, I read it before turning it on.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your reuse card.
+    questions:
+      - question: Which task is most worth making reusable?
+        options:
+          a: A one-off speech for a retirement
+          b: A weekly report that follows the same structure
+          c: A quick question about a word's meaning
+        answer: b
+        feedback: Reuse pays off on tasks you repeat with the same shape.
+
+      - question: What's a placeholder in a template?
+        options:
+          a: A marked blank, like [role], that you fill in each time
+          b: A file you attach
+          c: A word Claude must avoid
+        answer: a
+        feedback: Placeholders mark what changes; the rest stays the same.
+
+      - type: match
+        question: Match each need to the best way to reuse it.
+        choice_word: option
+        choices: [Project, Skill, Template]
+        lines:
+          - { text: "Background for all my chats about one client", answer: Project }
+          - { text: "Steps Claude follows whenever I ask for a job ad", answer: Skill }
+          - { text: "A prompt I copy and fill in", answer: Template }
+        feedback: Projects hold background, skills hold steps for a task, and templates are prompts you fill in.
+
+      - question: A colleague shares a skill they found online. What should you do before turning it on?
+        options:
+          a: Turn it on, because it's shared
+          b: Read what it does, and check your organisation's policy
+          c: Rename it
+        answer: b
+        feedback: Shared skills aren't checked for you. Read it first, as you would any instructions.
+
+      - question: Your skill keeps producing ads that are too long. What next?
+        options:
+          a: Stop using skills
+          b: Edit the skill's instructions, then test it again
+          c: Ignore it
+        answer: b
+        feedback: A skill is saved instructions. Improve them as you would any prompt.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your reuse card
+    menu_title: Take away
+    intro: You can now turn repeat tasks into templates and skills. Download the card and keep it beside you.
+    table:
+      caption: "Reuse card: Spot, Template and Skill"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: spot
+          cells: ["Do I do this often, the same way?", "Three job ads a week, same five sections"]
+        - part: template
+          cells: ["What changes each time?", "\"Write a job ad for [role] in our [team] team…\""]
+        - part: skill
+          cells: ["Should Claude use this by itself?", "\"Turn this template into a skill called Job ad writer.\""]
+    job_aid:
+      title: Reuse card
+      intro: When you repeat a task, make it reusable.
+      footer: "**Read any skill before you turn it on,** and test it once before you rely on it."
+    next: "**Next module:** P9 Meetings and planning, where you'll use Claude for agendas, summaries and actions."
