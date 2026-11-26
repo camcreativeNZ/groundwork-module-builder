@@ -1,0 +1,231 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The newsletter and its content are fictional.
+# Before each release, recheck the names "project instructions" and "project knowledge" against Claude itself
+# (checked against Claude's help pages on 27 November 2026).
+
+id: P2
+title: Working in Projects
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: instructions, label: Instructions }
+  - { id: files, label: Files }
+  - { id: chats, label: Chats }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Fatima
+    story: |
+      Fatima is a marketing coordinator. Every month she writes the staff newsletter with Claude.
+
+      Every month she starts a new chat, pastes the style guide and last month's issue, and explains the audience all over again. It takes 15 minutes before she even starts.
+    image:
+      file: assets/fatima-copies.svg
+      alt: A person at a laptop with the same stack of papers copied several times
+    reflection:
+      question: What's slowing Fatima down?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Fatima repeats the same background every month.** A *project* keeps it in one place: instructions and files that every chat in the project can use. She sets it up once.
+
+        In this module you'll set up a project of your own.
+
+  # ---------- 2. What's in a project ----------
+  - template: flip-cards
+    title: What's in a project
+    menu_title: What's in a project
+    intro: A project has three parts. Select each card.
+    cards:
+      - { part: instructions, back: "how Claude should work in every chat in this project: who it's for, the tone, and what to always do." }
+      - { part: files, back: "documents Claude can use in every chat, such as a style guide, templates or past examples. Claude calls these project knowledge." }
+      - { part: chats, back: "each new chat in the project starts with the instructions and files. Chats don't see each other, so add anything they all need to the files." }
+    tip: "**Tip:** use a project for work you come back to: a newsletter, a regular report, a client, or a course you're building."
+
+  # ---------- 3. Before and after ----------
+  - template: before-and-after
+    title: Fatima's first message, before and after
+    menu_title: Before and after
+    intro: Here's how Fatima starts each month's newsletter, without a project and with one.
+    before:
+      label: Before (a new chat every month)
+      text: |
+        I'm writing our monthly staff newsletter. Readers are staff across all our sites, from the warehouse to head office. Keep it warm and plain, under 500 words. Use four sections: News, People, Dates and Reminders. Here's our style guide: [pasted]. Here's last month's issue so you can match it: [pasted]. Now draft this month's newsletter from these notes: [notes]
+    after:
+      label: After (inside her project)
+      text: |
+        Draft the March newsletter from these notes: [notes]
+    changes:
+      items:
+        - The audience, tone and sections are now in the project instructions.
+        - The style guide and last issue are now project files.
+        - Each month, Fatima only gives what's new.
+
+  # ---------- 4 to 6. Fatima sets up her project ----------
+  - template: step-builder
+    prompt_label: Fatima's project so far
+    reply_label: Claude's draft (opening)
+    steps:
+      - part: instructions
+        menu_title: Instructions
+        title: "Instructions: how Claude should work"
+        content:
+          - Fatima creates a project called "Staff newsletter" and adds instructions.
+          - tip: "**Tip:** write instructions as you'd brief a new colleague who'll do this job every month."
+        adds: "This project is for our monthly staff newsletter. Readers are staff across all our sites. Keep it warm and plain, under 500 words, with four sections: News, People, Dates and Reminders."
+        reply: |
+          **News**
+
+          Big news this month: the new staff room at the Riverside site opens on Monday 3rd March. Thanks to everyone who helped choose the furniture!
+        note: The right tone and sections. But the dates and headings don't match the house style.
+
+      - part: files
+        menu_title: Files
+        title: "Files: give Claude what it needs every time"
+        content:
+          - Fatima adds the style guide and two past issues to the project files.
+          - tip: "**Tip:** only add files your organisation's AI policy allows (F6)."
+        adds: "Files: Newsletter style guide. February issue. January issue."
+        reply: |
+          **What's new**
+
+          The new staff room at Riverside opens on 3 March. Thank you to everyone who helped choose the furniture.
+        note: Now it follows the style guide (headings, dates, no exclamation marks) and sounds like past issues.
+
+      - part: chats
+        menu_title: Chats
+        title: "Chats: one new chat for each issue"
+        content:
+          - Each month, Fatima starts a new chat inside the project and gives only the new notes.
+          - tip: "**Tip:** a new chat for each task keeps answers focused, just like in F2."
+        adds: "New chat in the project: \"Draft the March newsletter from these notes: [notes]\""
+        reply: |
+          **What's new**
+
+          The new staff room at Riverside opens on 3 March. Thank you to everyone who helped choose the furniture.
+
+          **People**
+
+          Welcome to Sione and Mia, who join the warehouse team this month…
+        note: The whole draft follows the style, from a one-line request.
+        success: The March draft takes two minutes to start, and it already sounds like the newsletter.
+
+  # ---------- 7. Good habits ----------
+  - template: flip-cards
+    title: Good habits for projects
+    menu_title: Good habits
+    intro: Select each card for a habit that keeps projects useful.
+    cards:
+      - { front: Check your policy, back: "only add files your organisation's AI policy allows, just as in a chat (F6)." }
+      - { front: Keep it current, back: "when the style guide or the audience changes, update the instructions and files." }
+      - { front: "One project, one purpose", back: "a project for \"everything\" muddles Claude, just like one long chat." }
+
+  # ---------- 8. Practice ----------
+  - template: try-it
+    title: Write your project instructions
+    menu_title: Try it
+    intro: Choose ongoing work you do with Claude, or use ours.
+    task: "**Our task:** you prepare a monthly report for your manager."
+    fields:
+      - part: instructions
+        label: What's the project for?
+        placeholder: This project is for my monthly operations report to my manager.
+        rows: 2
+      - part: instructions
+        label: Who reads the work, and how should it sound?
+        placeholder: My manager reads it before the leadership meeting. Keep it brief and factual.
+        rows: 2
+      - part: instructions
+        label: What should Claude always do?
+        placeholder: Start with a three-line summary. Flag anything that's behind schedule. Use NZ English.
+        rows: 2
+      - part: files
+        label: Which files will you add? (Not part of the instructions.)
+        placeholder: Last month's report, and the report template
+        rows: 1
+        in_prompt: false
+    result_label: Your project instructions
+    copy_label: Copy instructions
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/projects" }
+    checklist:
+      title: Create a project, paste your instructions, then check
+      items:
+        - I said what the project is for.
+        - I named the audience and tone.
+        - I listed what Claude should always do.
+        - The files I'll add are allowed by my policy.
+
+  # ---------- 9. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your project setup card.
+    questions:
+      - question: When does a project help most?
+        options:
+          a: For a one-off question
+          b: For work you come back to, with the same background each time
+          c: Only for team work
+        answer: b
+        feedback: Projects save you repeating the same background.
+
+      - question: "Where should \"Readers are staff across all our sites. Keep it warm and plain\" go?"
+        options:
+          a: The project instructions
+          b: The project name
+          c: A file called "notes"
+        answer: a
+        feedback: Instructions tell Claude how to work in every chat in the project.
+
+      - type: match
+        question: Match each item to where it belongs.
+        choice_word: place
+        choices: [Instructions, Files, Chats]
+        lines:
+          - { text: "\"Always use NZ English spelling.\"", answer: Instructions }
+          - { text: "Last year's annual report", answer: Files }
+          - { text: "\"Draft the June update from these notes.\"", answer: Chats }
+        feedback: Instructions set how Claude works, files give it background, and each chat is one task.
+
+      - question: You had a great chat in your project last week. Can a new chat in the project see it?
+        options:
+          a: Yes, all chats in a project share everything
+          b: No. Add anything all chats need to the project files or instructions.
+          c: Only if you star it
+        answer: b
+        feedback: Chats in a project share the instructions and files, not each other.
+
+      - question: A colleague wants to add a spreadsheet of customer names to a project. What first?
+        options:
+          a: Add it, because projects are private
+          b: Check your organisation's AI policy, and remove details Claude doesn't need
+          c: Rename it so it looks less personal
+        answer: b
+        feedback: The same rules apply in projects as in chats (F6).
+
+  # ---------- 10. Take away ----------
+  - template: take-away
+    title: Your project setup card
+    menu_title: Take away
+    intro: You can now set up a project for ongoing work. Download the card and keep it beside you.
+    table:
+      caption: "Project setup card: Instructions, Files and Chats"
+      columns: [Part, Put in it, Example]
+      rows:
+        - part: instructions
+          cells: ["Purpose, audience, tone, and what to always do", "\"Readers are staff across all our sites. Keep it warm and plain, under 500 words.\""]
+        - part: files
+          cells: ["Guides, templates and good past examples, if your policy allows", "Style guide, two past issues"]
+        - part: chats
+          cells: ["One new chat per task, with only what's new", "\"Draft the March newsletter from these notes.\""]
+    job_aid:
+      title: Project setup card
+      intro: For work you come back to, set up a project once.
+      footer: "**One project, one purpose.** Keep the instructions and files up to date."
+    next: "**Next module:** P3 Research with Claude, where you'll compare sources and check citations."

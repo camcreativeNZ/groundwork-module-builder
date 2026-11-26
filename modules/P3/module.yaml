@@ -1,0 +1,203 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The trials, reports and figures in this module are fictional. No real organisations are named.
+# Before each release, recheck how web search and Research appear in Claude
+# (checked against Claude's help pages on 27 November 2026).
+
+id: P3
+title: Research with Claude
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: question, label: Question }
+  - { id: sources, label: Sources }
+  - { id: check, label: Check }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Wei
+    story: |
+      Wei is a policy officer. His manager asks: "What are other organisations doing about four-day work weeks?"
+
+      Wei asks Claude:
+    prompt:
+      label: Wei's prompt
+      text: Tell me about four-day work weeks.
+    image:
+      file: assets/wei-research.svg
+      alt: A person at a laptop surrounded by open web pages and sticky notes
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        The four-day work week has attracted growing interest worldwide. ==Several trials have reported positive results for wellbeing and productivity==, although critics argue it doesn't suit every industry…
+      note: A long, general overview, with no dates and no links. Wei can't tell what's current, which country it's from, or where any of it came from.
+    reflection:
+      question: What would make this answer useful to Wei's manager?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Good research with Claude has three parts:** a focused question, real sources that are compared, and a check that the sources say what Claude claims.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of research
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: question, back: "narrow it down: what exactly, where, how recent, and what it's for." }
+      - { part: sources, back: "ask Claude to search the web and cite its sources. Ask for official or original sources, and where they disagree." }
+      - { part: check, back: "open the key links. Make sure each one exists, is current, and says what Claude claims." }
+    tip: "**Tip:** when Claude searches the web, its answer includes citations you can select. Some plans also offer a deeper **Research** option that runs many searches for you. The same three checks apply."
+
+  # ---------- 3 to 5. Wei asks again ----------
+  - template: step-builder
+    prompt_label: Wei's prompt so far
+    reply_label: Claude's reply
+    steps:
+      - part: question
+        menu_title: Question
+        title: "Question: narrow it down"
+        content:
+          - Wei starts again, with a focused question.
+          - tip: "**Tip:** say what it's for. A one-page briefing needs different detail from a full report."
+        adds: Search the web for results from four-day work week trials in the last three years. Focus on office-based organisations. It's for a one-page briefing for my manager.
+        reply: |
+          Here are four recent trials of office-based organisations:
+
+          - A 2024 national trial of 60 companies reported lower staff turnover. [news article]
+          - A 2025 public sector pilot found no drop in service levels. [news article]
+          - Two further trials…
+        note: Shorter, recent and linked. But two of the sources are news articles about the research, not the research itself.
+
+      - part: sources
+        menu_title: Sources
+        title: "Sources: ask for the originals"
+        content:
+          - "Wei adds: **\"Use official reports or the original research where you can, not news summaries. Show where the results disagree.\"**"
+          - tip: "**Tip:** a news story can simplify, or get a figure wrong. Go to the original."
+        adds: Use official reports or the original research where you can, not news summaries. Show where the results disagree.
+        reply: |
+          - The national trial's final report (2024) found staff turnover fell by 18%. [report]
+          - The public sector pilot's evaluation (2025) found no drop in service levels. [report]
+
+          **Where results disagree:** two trials found no change in productivity, and one found a rise. They measured productivity in different ways.
+        note: Original reports, and an honest note about mixed results. Now to check them.
+
+      - part: check
+        menu_title: Check
+        title: "Check: make sure the sources say it"
+        content:
+          - "Wei adds: **\"For each key figure, quote the sentence from the source and give the link.\"**"
+          - tip: "**Tip:** quotes make your own check quick, just like page numbers (F5)."
+        adds: For each key figure, quote the sentence from the source and give the link.
+        reply: |
+          - Staff turnover fell by 18%: "Voluntary turnover fell by 18% compared with the previous year." [national trial report, 2024]
+          - Service levels: "No significant change in service levels was observed." [public sector pilot evaluation, 2025]
+        note: Wei opens the links. Three match. One figure is from 2023, not 2024, so he corrects it.
+        success: A one-page briefing with four checked sources, and an honest note about where the evidence is mixed.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Research a question
+    menu_title: Try it
+    intro: Pick a question from your work, or use ours.
+    task: "**Our task:** your team is thinking about moving to a shared online calendar tool. Find out what to consider when choosing one."
+    fields:
+      - part: question
+        label: "Question: what exactly, where, how recent, and what's it for?"
+        placeholder: Search the web for what small teams should consider when choosing a shared calendar tool, from the last two years. It's for a team discussion.
+        rows: 3
+      - part: sources
+        label: "Sources: what kinds of source do you want?"
+        placeholder: Use the tools' own help pages and independent reviews. Show where they disagree.
+        rows: 2
+      - part: check
+        label: "Check: how will you check the answer?"
+        placeholder: For each key point, quote the source and give the link.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - My question has a scope and a time frame.
+        - I asked for original or official sources.
+        - I opened at least two links.
+        - Each one said what Claude claimed.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your research card.
+    questions:
+      - question: Which question will get the most useful research?
+        options:
+          a: "\"Tell me about electric vans.\""
+          b: "\"Search for running-cost comparisons of electric and diesel delivery vans from the last two years, for a fleet budget.\""
+          c: "\"Are electric vans good?\""
+        answer: b
+        feedback: It says what, how recent, and what it's for.
+
+      - question: Claude cites a news article that reports a study. What's better?
+        options:
+          a: The news article is fine
+          b: Ask Claude to find the original study
+          c: Remove the figure
+        answer: b
+        feedback: Original sources are more reliable than a summary of them.
+
+      - type: match
+        question: Match each request to its part.
+        choice_word: part
+        choices: [Question, Sources, Check]
+        lines:
+          - { text: "\"Focus on studies from the last three years.\"", answer: Question }
+          - { text: "\"Use official reports, and show where they disagree.\"", answer: Sources }
+          - { text: "\"Quote the sentence and give the link for each figure.\"", answer: Check }
+        feedback: Narrow the question, choose good sources, then check them.
+
+      - question: Claude's answer has a citation link. What does that prove?
+        options:
+          a: The claim is true
+          b: "Nothing yet: open it and check it says what Claude claims"
+          c: The source is recent
+        answer: b
+        feedback: Links can be out of date, or say something slightly different. Check the key ones.
+
+      - question: Two sources disagree. What should your briefing do?
+        options:
+          a: Use the one that supports your view
+          b: Leave the topic out
+          c: Say the evidence is mixed, and why
+        answer: c
+        feedback: Showing the disagreement is more honest, and more useful.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your research card
+    menu_title: Take away
+    intro: You can now research with Claude and check the sources. Download the card and keep it beside you.
+    table:
+      caption: "Research card: Question, Sources and Check"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: question
+          cells: ["What exactly, where, how recent, and what for?", "\"Search for trial results from the last three years, for a one-page briefing.\""]
+        - part: sources
+          cells: ["Are they original, and do they agree?", "\"Use official reports. Show where they disagree.\""]
+        - part: check
+          cells: ["Does each source say what Claude claims?", "\"Quote the sentence and give the link for each figure.\""]
+    job_aid:
+      title: Research card
+      intro: When you research with Claude, use three parts.
+      footer: "**A citation is a starting point, not proof.** Open the key links yourself."
+    next: "**Next module:** P4 Data and spreadsheets, where you'll find patterns and build a chart."
