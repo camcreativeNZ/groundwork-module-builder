@@ -1,0 +1,201 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The festival and its details are fictional.
+# Before each release, recheck that Claude can create downloadable documents and slides, and that file creation
+# may need to be turned on (checked against Claude's help pages on 27 November 2026).
+
+id: P5
+title: Documents and pages
+level: Practitioner
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: ask, label: Ask }
+  - { id: revise, label: Revise }
+  - { id: finish, label: Finish }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Kofi
+    story: |
+      Kofi is an events coordinator. He needs a two-page guide for 40 volunteers at a weekend food festival.
+
+      He asks Claude for "some text for a volunteer guide", then spends an hour copying it into a document, fixing the layout, and retyping it each time someone asks for a change.
+    image:
+      file: assets/kofi-pages.svg
+      alt: A person at a laptop surrounded by pages, copying text from one to another
+    reflection:
+      question: Where did Kofi's hour go?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude can make the finished thing:** a document, a slide deck, a one-page handout or a web page, ready to download. Ask for the finished format, revise it part by part, then check it and make it yours.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a finished document
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: ask, back: "say what you want at the end: the format (document, slides, handout), the length, and the sections." }
+      - { part: revise, back: "point to the exact part to change: \"In the Parking section…\", \"On slide 3…\". Claude changes that part and keeps the rest." }
+      - { part: finish, back: "read it through, check the facts (F5), then download it in the format you need and make it yours." }
+    tip: "**Tip:** Claude can export many documents as Word, PDF or slides. If you don't see that option, your organisation may need to turn on file creation."
+
+  # ---------- 3 to 5. Kofi tries again ----------
+  - template: step-builder
+    prompt_label: Kofi's requests so far
+    reply_label: Claude's guide
+    steps:
+      - part: ask
+        menu_title: Ask
+        title: "Ask: say what you want at the end"
+        content:
+          - Kofi starts again, and asks for the finished guide.
+          - tip: "**Tip:** name the sections, and Claude builds the structure for you."
+        adds: "Make a two-page volunteer guide as a document I can download. Sections: Welcome, Where to go, Your shift, Safety, Who to call. Friendly and easy to scan."
+        reply: |
+          **Volunteer guide: Riverside Food Festival**
+
+          **Welcome:** thanks for joining us! This guide has everything you need for your shift.
+
+          **Where to go:** sign in at the volunteer tent near the main entrance…
+
+          **Safety:** if anyone is hurt, call the event manager. The first-aid tent is…
+        note: A real document, with headings and short sections, ready beside the chat.
+
+      - part: revise
+        menu_title: Revise
+        title: "Revise: point to the exact part"
+        content:
+          - "Kofi adds two changes, and says what to keep."
+          - tip: "**Tip:** \"Leave everything else as it is\" stops Claude rewriting the parts you liked."
+        adds: "In Where to go, add a numbered list of the three entrances. In Safety, move the first-aid tent to the top. Leave everything else as it is."
+        reply: |
+          **Where to go**
+
+          1. Main entrance, River Road
+          2. North gate, by the car park
+          3. Riverside path, for bikes
+
+          **Safety:** the first-aid tent is next to the main stage. If anyone is hurt, call the event manager…
+        note: Only those two sections changed. The rest stayed exactly as it was.
+
+      - part: finish
+        menu_title: Finish
+        title: "Finish: check it and make it yours"
+        content:
+          - "Kofi adds a check before he downloads it."
+          - tip: "**Tip:** polished isn't the same as correct. Check the details that people will act on."
+        adds: Check that every time and place matches my notes, and list anything you weren't sure of.
+        reply: |
+          Everything matches your notes, except one thing I wasn't sure of:
+
+          - The Sunday afternoon shift ends at 5 pm in the guide, but your notes don't give an end time. Please check.
+        note: Kofi corrects the shift time, adds the festival logo himself, and downloads the guide as a PDF.
+        success: A finished guide in 20 minutes, and every detail checked.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Your turn
+    menu_title: Try it
+    intro: Pick a document you need this month, or use ours.
+    task: "**Our task:** a one-page welcome sheet for a new team member."
+    fields:
+      - part: ask
+        label: "Ask: what format, how long, and which sections?"
+        placeholder: "Make a one-page welcome sheet I can download. Sections: Your first day, Who's who, Where things are, Who to ask."
+        rows: 3
+      - part: revise
+        label: "Revise: write one change that points to an exact part"
+        placeholder: In Who's who, add a short line about what each person does. Leave the rest as it is.
+        rows: 2
+      - part: finish
+        label: "Finish: what will you ask Claude to check?"
+        placeholder: Check every name and time against my notes, and list anything you weren't sure of.
+        rows: 2
+    result_label: Your requests
+    copy_label: Copy requests
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I named the format and sections.
+        - My change pointed to an exact part.
+        - I checked the facts.
+        - I downloaded it in the format I need.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your document card.
+    questions:
+      - question: You need slides for a team meeting. What's the best first request?
+        options:
+          a: "\"Write some text about our project.\""
+          b: "\"Make six slides on our project update: progress, risks, next steps. One idea per slide.\""
+          c: "\"Make it look nice.\""
+        answer: b
+        feedback: Name the format, the length and the sections.
+
+      - question: The document is nearly right, but the Costs section is too long. What do you say?
+        options:
+          a: "\"Make it shorter.\""
+          b: "\"In the Costs section, cut to three bullet points. Leave the rest as it is.\""
+          c: Start again with a new request
+        answer: b
+        feedback: Point to the exact part, and say what to keep.
+
+      - type: match
+        question: Match each request to its part.
+        choice_word: part
+        choices: [Ask, Revise, Finish]
+        lines:
+          - { text: "\"Make a one-page handout with three sections.\"", answer: Ask }
+          - { text: "\"On slide 2, swap the photo for a chart.\"", answer: Revise }
+          - { text: "\"Check every date against my notes.\"", answer: Finish }
+        feedback: Ask for the finished thing, revise it part by part, then check it.
+
+      - question: Claude's document looks polished. What should you do before you send it?
+        options:
+          a: Send it, because it looks finished
+          b: Read it through, and check names, dates and figures
+          c: Ask Claude if it's ready
+        answer: b
+        feedback: Polished isn't the same as correct (F5).
+
+      - question: Who is responsible for the final document?
+        options:
+          a: Claude
+          b: You
+          c: Whoever reads it
+        answer: b
+        feedback: Claude drafts; you check it, finish it and send it (F6).
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your document card
+    menu_title: Take away
+    intro: You can now get finished documents from Claude. Download the card and keep it beside you.
+    table:
+      caption: "Document card: Ask, Revise and Finish"
+      columns: [Part, Say, Example]
+      rows:
+        - part: ask
+          cells: ["The format, length and sections", "\"Make a two-page guide I can download. Sections: Welcome, Where to go, Safety.\""]
+        - part: revise
+          cells: ["The exact part, and what to keep", "\"In Safety, move the first-aid tent to the top. Leave the rest.\""]
+        - part: finish
+          cells: ["What to check before it goes out", "\"Check every time and place against my notes.\""]
+    job_aid:
+      title: Document card
+      intro: Ask for the finished thing, revise it part by part, then make it yours.
+      footer: "**Polished isn't the same as correct.** Check it, then make it yours."
+    next: "**Next module:** P6 Writing in your voice, where you'll get Claude to sound like you."

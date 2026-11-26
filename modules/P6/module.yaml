@@ -1,0 +1,214 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The charity and its emails are fictional.
+
+id: P6
+title: Writing in your voice
+level: Practitioner
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: show, label: Show }
+  - { id: describe, label: Describe }
+  - { id: keep, label: Keep }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Ana
+    story: |
+      Ana is a communications adviser at a small charity. Her supporters know the charity's voice: warm, direct and a bit cheeky.
+
+      She asks Claude for a fundraising email, and gets this:
+    image:
+      file: assets/ana-voice.svg
+      alt: A person looking at a speech bubble in a different style from their own
+    reply:
+      label: Claude's email (shortened)
+      text: |
+        ==We are thrilled to announce our exciting new initiative==, which will ==leverage community partnerships== to deliver ==impactful outcomes== across the region…
+    reflection:
+      question: Why doesn't this sound like Ana's charity?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude doesn't know your voice until you show it.** Show it some samples, describe the voice in words, and keep that description so you don't have to explain it every time.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of your voice
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: show, back: "paste two or three short pieces that sound right. Claude picks up the rhythm, words and tone." }
+      - { part: describe, back: "put the voice into words: \"Warm and direct. Short sentences. Talk to 'you'. Never 'thrilled' or 'leverage'.\"" }
+      - { part: keep, back: "ask Claude to write a short voice guide, then save it in your project instructions (P2), so every chat starts with it." }
+    tip: "**Tip:** say what to avoid as well as what to do. Banned words are some of the quickest fixes."
+
+  # ---------- 3. Before and after ----------
+  - template: before-and-after
+    title: Ana's email, before and after
+    menu_title: Before and after
+    intro: Here's the email Claude wrote first, and the version in the charity's voice.
+    before:
+      label: Before (generic)
+      text: |
+        We are thrilled to announce our exciting new initiative, which will leverage community partnerships to deliver impactful outcomes across the region.
+    after:
+      label: After (in the charity's voice)
+      text: |
+        You helped us plant 2,000 trees last year. This year, we want to double it, and we can't do it without you. $25 plants five trees. Will you chip in?
+    changes:
+      items:
+        - It talks to the reader as "you".
+        - Short sentences and a real number replace the jargon.
+        - It ends with one clear ask.
+
+  # ---------- 4 to 6. Ana teaches Claude her voice ----------
+  - template: step-builder
+    prompt_label: Ana's prompt so far
+    reply_label: Claude's email (opening)
+    steps:
+      - part: show
+        menu_title: Show
+        title: "Show: give Claude samples"
+        content:
+          - Ana goes back to the chat, and pastes two emails supporters loved.
+          - tip: "**Tip:** two or three short samples are enough. Choose ones that sound right."
+        adds: "Here are two emails our supporters loved: [email 1] [email 2]. Write the fundraising email in this voice."
+        reply: |
+          You've been amazing this year. Thanks to you, our exciting new tree-planting initiative is ready to grow…
+        note: Warmer and shorter. But "exciting new initiative" has slipped back in.
+
+      - part: describe
+        menu_title: Describe
+        title: "Describe: put the voice into words"
+        content:
+          - "Ana adds what the voice is, and what it isn't."
+          - tip: "**Tip:** \"Professional but friendly\" is too vague. Name habits and words."
+        adds: "Our voice: warm, direct, a bit cheeky. Short sentences. Talk to \"you\". Use real numbers. Never say \"thrilled\", \"exciting\", \"leverage\" or \"impactful\"."
+        reply: |
+          You helped us plant 2,000 trees last year. This year, we want to double it, and we can't do it without you. $25 plants five trees. Will you chip in?
+        note: Now it sounds like the charity.
+
+      - part: keep
+        menu_title: Keep
+        title: "Keep: save it for next time"
+        content:
+          - "Ana asks Claude to capture the voice, so she never has to explain it again."
+          - tip: "**Tip:** a short voice guide in your project instructions works in every chat in that project (P2)."
+        adds: Write a one-page voice guide from everything above, with three do's, three don'ts and a short example.
+        reply: |
+          **Our voice**
+
+          **Do:** talk to "you". Keep sentences short. Use real numbers.
+
+          **Don't:** say "thrilled" or "exciting". Use jargon. Make more than one ask.
+
+          **Example:** "$25 plants five trees. Will you chip in?"
+        note: Ana saves the guide in the instructions of her "Supporter emails" project.
+        success: Next week's email starts in the right voice, with no explaining.
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Capture a voice
+    menu_title: Try it
+    intro: Use your own voice, or your organisation's. Don't paste anything your policy doesn't allow.
+    fields:
+      - part: show
+        label: "Show: which two or three samples will you paste? (Not part of the prompt.)"
+        placeholder: Last month's newsletter intro, and the welcome email
+        rows: 1
+        in_prompt: false
+      - part: describe
+        label: "Describe: how does the voice sound, and what should Claude avoid?"
+        placeholder: "Our voice: plain and upbeat. Short sentences. Talk to \"you\". No exclamation marks. Never say \"synergy\"."
+        rows: 3
+      - part: keep
+        label: "Keep: ask Claude for a voice guide you can save"
+        placeholder: Write a one-page voice guide from my samples and description, with three do's, three don'ts and an example.
+        rows: 2
+    result_label: Your prompt (add your samples when you paste it)
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I gave samples.
+        - I described the voice in specific words.
+        - I listed words or habits to avoid.
+        - I saved the voice guide somewhere I'll reuse it.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your voice card.
+    questions:
+      - question: What's the quickest way to show Claude your voice?
+        options:
+          a: Say "write like me"
+          b: Paste two or three short pieces that sound right
+          c: Tell Claude your job title
+        answer: b
+        feedback: Samples show rhythm, words and tone better than a label.
+
+      - question: Which voice description will help Claude most?
+        options:
+          a: "\"Professional but friendly.\""
+          b: "\"Short sentences. Talk to 'you'. Use real numbers. Never say 'leverage'.\""
+          c: "\"Make it good.\""
+        answer: b
+        feedback: Specific habits and banned words are easy for Claude to follow.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Show, Describe, Keep]
+        lines:
+          - { text: "\"Here are two newsletters our readers loved.\"", answer: Show }
+          - { text: "\"Plain and upbeat. No exclamation marks.\"", answer: Describe }
+          - { text: "\"Write a voice guide I can save in my project.\"", answer: Keep }
+        feedback: Show it, describe it, then keep it for next time.
+
+      - question: Where's the best place to keep a voice guide you use every week?
+        options:
+          a: In a note on your desk
+          b: In your project instructions, so every chat starts with it
+          c: Nowhere; explain it each time
+        answer: b
+        feedback: Project instructions apply to every chat in the project (P2).
+
+      - question: Claude's draft is in the right voice, but one claim sounds too good to be true. What next?
+        options:
+          a: Keep it, because it sounds right
+          b: Check the facts before you send it
+          c: Ask for a cheekier version
+        answer: b
+        feedback: A great voice doesn't make a claim true (F5).
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your voice card
+    menu_title: Take away
+    intro: You can now get Claude to write in your voice. Download the card and keep it beside you.
+    table:
+      caption: "Voice card: Show, Describe and Keep"
+      columns: [Part, Do, Example]
+      rows:
+        - part: show
+          cells: ["Paste two or three samples", "\"Here are two emails our supporters loved.\""]
+        - part: describe
+          cells: ["Habits to use, and words to avoid", "\"Warm and direct. Short sentences. Never 'thrilled'.\""]
+        - part: keep
+          cells: ["Save a voice guide for every chat", "\"Write a one-page voice guide I can save in my project.\""]
+    job_aid:
+      title: Voice card
+      intro: To get Claude writing in your voice, use three parts.
+      footer: "**A great voice doesn't make a claim true.** Check the facts before you send."
+    next: "**Next module:** P7 Connecting your tools, where you'll use Claude with your email, calendar and files."

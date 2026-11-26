@@ -1,0 +1,192 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The people, emails and meetings in this module are fictional.
+# Before each release, recheck which tools connectors cover, and that Claude asks before it sends or changes
+# things by default (checked against Claude's help pages on 27 November 2026).
+
+id: P7
+title: Connecting your tools
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: connect, label: Connect }
+  - { id: ask, label: Ask }
+  - { id: approve, label: Approve }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Leilani
+    story: |
+      Leilani is an office manager. Every Monday she copies her calendar, a dozen emails and a shared document into Claude to plan her week.
+
+      It takes half an hour, and she always misses something.
+    image:
+      file: assets/leilani-tools.svg
+      alt: A person at a laptop linked to email, calendar and folder icons
+    reflection:
+      question: What would help Leilani?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Connectors let Claude look at your email, calendar and files directly**, if your organisation allows it. Connect only what you need, ask for something specific, and approve anything Claude sends or changes.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. What connectors can do ----------
+  - template: flip-cards
+    title: What connectors can do
+    menu_title: What connectors do
+    intro: Connectors link Claude to the tools you already use. Select each card.
+    cards:
+      - { front: Email, back: "find and read messages, summarise threads, and draft replies." }
+      - { front: Calendar, back: "check your schedule, find free times, and suggest or create meetings." }
+      - { front: Files, back: "search and read your documents and spreadsheets, and save new ones." }
+    tip: "**Tip:** connectors are set up one tool at a time, and your organisation may control which ones you can use. Check your AI policy first (F6)."
+
+  # ---------- 3 to 5. Leilani's Monday ----------
+  - template: step-builder
+    prompt_label: Leilani's steps so far
+    reply_label: What Claude does
+    steps:
+      - part: connect
+        menu_title: Connect
+        title: "Connect: only what you need"
+        content:
+          - Leilani connects only her work calendar and email, which her organisation allows. She leaves her personal accounts out.
+          - tip: "**Tip:** fewer connections means less for Claude to read, and less that can go wrong."
+        adds: "Connected: work calendar and work email."
+        reply: |
+          Claude can now see Leilani's work calendar and email, but it only looks when she asks it to.
+        note: Nothing happens yet. Connecting just opens the door.
+
+      - part: ask
+        menu_title: Ask
+        title: "Ask: say where to look"
+        content:
+          - "Leilani asks a specific question, and names where Claude should look."
+          - tip: "**Tip:** a time frame and a sender narrow the search, and the answer."
+        adds: Look at my calendar for this week and my unread emails from the leadership team. List what I need to prepare, in order of deadline.
+        reply: |
+          1. **Tuesday:** room booking for Thursday's board meeting (email from Sam)
+          2. **Wednesday:** catering numbers for the board meeting (email from Priya)
+          3. **Thursday:** printed agendas, 12 copies (calendar note)
+          4. **Friday:** updated fire warden list (email from the leadership team)
+        note: Four tasks, each with the meeting or email it came from, so Leilani can check them.
+
+      - part: approve
+        menu_title: Approve
+        title: "Approve: read it before it goes"
+        content:
+          - "Leilani asks for a draft, not a send."
+          - tip: "**Tip:** by default, Claude asks before it sends, changes or deletes anything. Keep that habit for anything that matters."
+        adds: "Draft a reply to Sam saying the room is booked for Thursday at 2 pm. Don't send it yet."
+        reply: |
+          **Draft reply to Sam**
+
+          Hi Sam, the boardroom is booked for Thursday at 2 pm. I'll have the agendas printed by then. Leilani
+        note: Leilani checks the time against her calendar, edits one line, and sends it herself.
+        success: The week planned in five minutes, and nothing went out that Leilani hadn't read.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your connected request
+    menu_title: Try it
+    intro: If your organisation allows connectors, try this with your own tools. If not, write the request for later.
+    fields:
+      - part: connect
+        label: "Connect: which tools do you need, and are they allowed? (Not part of the prompt.)"
+        placeholder: Work calendar only. Our AI policy allows it.
+        rows: 1
+        in_prompt: false
+      - part: ask
+        label: "Ask: what exactly should Claude look at, and what do you need back?"
+        placeholder: Look at my calendar for next week and list any meetings that clash, or have no agenda.
+        rows: 2
+      - part: approve
+        label: "Approve: what should Claude draft or suggest, rather than do?"
+        placeholder: Draft a short message to the organisers of any clashing meetings. Don't send anything.
+        rows: 2
+    result_label: Your request
+    copy_label: Copy request
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your request
+      items:
+        - I only connected tools my policy allows.
+        - I said where Claude should look.
+        - I asked for a draft, not a send.
+        - I read it before anything went out.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your connected tools card.
+    questions:
+      - question: Before you connect your work email to Claude, what should you check?
+        options:
+          a: Nothing, because it's your own email
+          b: That your organisation's AI policy allows it
+          c: That your inbox is empty
+        answer: b
+        feedback: Connectors reach real work information, so your policy applies (F6).
+
+      - question: Which request will get the most useful answer?
+        options:
+          a: "\"Check my stuff.\""
+          b: "\"Look at my calendar for Friday and list any meetings that clash.\""
+          c: "\"What's happening?\""
+        answer: b
+        feedback: It says where to look, and what you need back.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Connect, Ask, Approve]
+        lines:
+          - { text: "Only connect your work calendar.", answer: Connect }
+          - { text: "\"Find emails from the finance team this week about the budget.\"", answer: Ask }
+          - { text: "\"Draft the reply, but don't send it.\"", answer: Approve }
+        feedback: Connect only what you need, ask a specific question, and approve before anything goes.
+
+      - question: Claude offers to send an email for you. What's the safest habit?
+        options:
+          a: Let it send, because it wrote the draft
+          b: Read the draft and check the details before it goes
+          c: Turn off email for good
+        answer: b
+        feedback: By default, Claude asks before it sends. Keep that habit for anything that matters.
+
+      - question: You've finished a project and no longer need Claude to see a shared folder. What should you do?
+        options:
+          a: Leave it connected, just in case
+          b: Disconnect it, or remove access to that folder
+          c: Delete the folder
+        answer: b
+        feedback: Connect only what you need, for as long as you need it.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your connected tools card
+    menu_title: Take away
+    intro: You can now use Claude with your tools, safely. Download the card and keep it beside you.
+    table:
+      caption: "Connected tools card: Connect, Ask and Approve"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: connect
+          cells: ["Do I need it, and is it allowed?", "Work calendar and email only"]
+        - part: ask
+          cells: ["Where should Claude look, and what do I need back?", "\"Look at this week's calendar and list what I need to prepare.\""]
+        - part: approve
+          cells: ["Have I read it before it goes?", "\"Draft the reply, but don't send it.\""]
+    job_aid:
+      title: Connected tools card
+      intro: When Claude can reach your email, calendar and files, use three parts.
+      footer: "**Connect only what you need, and read everything before it's sent.**"
+    next: "**Next module:** P8 Reusable prompts and skills, where you'll turn repeat tasks into templates."
