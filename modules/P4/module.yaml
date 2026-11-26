@@ -1,0 +1,199 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The cafés and figures in this module are fictional.
+# Before each release, recheck that Claude can analyse spreadsheets and create charts, and how file creation is turned on
+# (checked against Claude's help pages on 27 November 2026).
+
+id: P4
+title: Data and spreadsheets
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: explain, label: Explain }
+  - { id: ask, label: Ask }
+  - { id: show, label: Show }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Rosa
+    story: |
+      Rosa is the operations manager for three cafés. She has a year of daily sales in a spreadsheet, and the owners want to know whether to cut opening hours in winter.
+
+      She uploads the file and types:
+    prompt:
+      label: Rosa's prompt
+      text: Analyse this.
+    image:
+      file: assets/rosa-chart.svg
+      alt: A person at a laptop with a spreadsheet and a bar chart
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        Here's an overview of your data. Average daily sales: $2,846. Highest single day: $6,120. Average covers: 212. Sales by day of week: Monday $2,410, Tuesday $2,388…
+      note: A long list of averages and totals for every column. None of it answers the owners' question.
+    reflection:
+      question: What did Claude need from Rosa?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude can analyse spreadsheets and make charts, but it needs three things:** what the data means, the question you're trying to answer, and how to show the answer.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a data question
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: explain, back: "say what each row is, and what unclear column names mean. \"Each row is one day at one café. 'Covers' means customers served.\"" }
+      - { part: ask, back: "ask the question behind the task: what you need to decide, and for whom." }
+      - { part: show, back: "ask for a chart, and the table of numbers behind it, so you can check them." }
+    tip: "**Tip:** remove names and personal details you don't need before you upload (F6). Your organisation may also need to turn on file creation before Claude can make charts and spreadsheets."
+
+  # ---------- 3 to 5. Rosa asks again ----------
+  - template: step-builder
+    prompt_label: Rosa's prompt so far
+    reply_label: Claude's reply
+    steps:
+      - part: explain
+        menu_title: Explain
+        title: "Explain: say what the data means"
+        content:
+          - Rosa starts again, and explains her spreadsheet first.
+          - tip: "**Tip:** one line about each unclear column saves Claude guessing."
+        adds: "Each row is one day's sales at one of our three cafés. \"Covers\" means customers served. Sales are in dollars, before tax."
+        reply: |
+          Thanks. Over the year, the Station café has the highest sales, the Park café has the most covers, and the Harbour café is the smallest. All three are busiest in December and quietest in July…
+        note: Correct now, but it still doesn't answer the owners' question.
+
+      - part: ask
+        menu_title: Ask
+        title: "Ask: the question behind the task"
+        content:
+          - "Rosa adds the question the owners actually asked."
+          - tip: "**Tip:** \"What should we decide?\" beats \"What's interesting?\""
+        adds: The owners want to know whether to close earlier in June, July and August. Which cafés and which hours are quietest then?
+        reply: |
+          In June, July and August, the Harbour café is quiet after 2 pm, with about a third of its lunchtime covers. The Station and Park cafés stay busy until closing.
+
+          So closing earlier in winter would make sense for Harbour, but not for the other two.
+        note: A direct answer to a real question. Now Rosa needs something to show the owners.
+
+      - part: show
+        menu_title: Show
+        title: "Show: a chart and the numbers behind it"
+        content:
+          - "Rosa adds how she wants the answer shown."
+          - tip: "**Tip:** always ask for the table behind a chart. That's what you check."
+        adds: Make a bar chart of average covers by time of day for each café in winter, and give me the table behind it.
+        reply: |
+          Here's the chart. The table of averages comes after it (not shown here).
+        image:
+          file: assets/winter-covers-chart.svg
+          alt: "Bar chart of average winter covers by time of day. Harbour falls from 38 at lunchtime to 12 between 2 and 4 pm. Station and Park stay between 26 and 42 all day."
+        note: Rosa checks two numbers in the table against her spreadsheet. Both match.
+        success: One clear chart for the owners, and a recommendation about one café, not all three.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Ask a question about your data
+    menu_title: Try it
+    intro: Use a spreadsheet from your work, if your policy allows, or a public data set.
+    fields:
+      - part: explain
+        label: "Explain: what is each row, and what do unclear columns mean?"
+        placeholder: Each row is one customer order. "Ret" means the order was returned.
+        rows: 2
+      - part: ask
+        label: "Ask: what do you need to decide, and for whom?"
+        placeholder: Which products are returned most, and in which months? It's for our quality review.
+        rows: 2
+      - part: show
+        label: "Show: what chart would help, and what table should come with it?"
+        placeholder: Make a bar chart of returns by product, and give me the table behind it.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Upload your file, paste your prompt, then check
+      items:
+        - I removed personal details I didn't need.
+        - I explained the rows and columns.
+        - I asked a question that leads to a decision.
+        - I checked at least two numbers against my file.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your data question card.
+    questions:
+      - question: "Your spreadsheet has a column called \"FTE_adj\". What should you do?"
+        options:
+          a: Nothing, because Claude will work it out
+          b: Explain what it means in your prompt
+          c: Delete the column
+        answer: b
+        feedback: Claude may guess wrongly. A one-line explanation avoids that.
+
+      - question: Which question will get the most useful analysis?
+        options:
+          a: "\"Analyse this.\""
+          b: "\"What's interesting here?\""
+          c: "\"Which three products lost the most sales this year, and in which regions? It's for our planning meeting.\""
+        answer: c
+        feedback: It asks the question behind the task, and says who it's for.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Explain, Ask, Show]
+        lines:
+          - { text: "\"Each row is one customer order.\"", answer: Explain }
+          - { text: "\"Which months had the most returns, for our quality review?\"", answer: Ask }
+          - { text: "\"Make a line chart by month, with the table behind it.\"", answer: Show }
+        feedback: Explain the data, ask the real question, then choose how to show the answer.
+
+      - question: Claude's chart shows a big jump in March. What should you do before you share it?
+        options:
+          a: Share it, because charts are calculated
+          b: Check the March numbers against your spreadsheet
+          c: Ask Claude for a different colour
+        answer: b
+        feedback: Claude can misread a column or a date format. Spot-check the numbers that matter.
+
+      - question: Your file has staff names and home addresses, but you only need sales by team. What's best?
+        options:
+          a: Upload it all, so Claude has everything
+          b: Remove the names and addresses first
+          c: Ask Claude not to look at those columns
+        answer: b
+        feedback: Leave out personal details you don't need (F6). You'll still get the analysis.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your data question card
+    menu_title: Take away
+    intro: You can now ask Claude useful questions about data. Download the card and keep it beside you.
+    table:
+      caption: "Data question card: Explain, Ask and Show"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: explain
+          cells: ["What does each row and column mean?", "\"Each row is one day at one café. 'Covers' means customers served.\""]
+        - part: ask
+          cells: ["What do I need to decide, and for whom?", "\"Should we close earlier in winter? Which cafés and hours are quietest?\""]
+        - part: show
+          cells: ["What chart would help, and how will I check it?", "\"Make a bar chart by time of day, and give me the table behind it.\""]
+    job_aid:
+      title: Data question card
+      intro: When you give Claude a spreadsheet, ask a question in three parts.
+      footer: "**Remove personal details you don't need, and spot-check the numbers before you share.**"
+    next: "**Next module:** P5 Documents and pages, where you'll produce and revise finished work."

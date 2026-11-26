@@ -37,8 +37,8 @@ function cardHtml(m, s, theme, parts) {
     '.num{font-family:H;font-weight:800;font-size:22pt;line-height:1}h2{font-family:H;font-size:15pt;margin:0 0 1.5mm}' +
     '.q{font-weight:700;margin:0 0 3mm}.lab{font-family:H;font-size:7pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0}.lab+p{margin:0 0 2mm}' +
     '.together{border:1px solid var(--line);border-radius:10px;padding:5mm 6mm;margin:2mm 0 5mm;break-inside:avoid}.together p{margin:0}.together .t{font-weight:700;margin-bottom:2mm}' +
-    '.foot{margin:0 0 4mm}.ver{position:fixed;bottom:0;font-size:7.5pt;color:var(--ink-soft)}' +
-    '</style></head><body>' +
+    '.foot{margin:0 0 4mm}.compact .card{padding:4.5mm 6mm 3.5mm;margin-bottom:3.5mm}.compact .intro{margin-bottom:5mm}.compact .q{margin-bottom:2mm}.ver{position:fixed;bottom:0;font-size:7.5pt;color:var(--ink-soft)}' +
+    '</style></head><body' + (s.table.rows.length >= 4 ? ' class="compact"' : '') + '>' +
     '<p class="kicker">' + esc(m.level) + ' · ' + esc(m.id) + ' ' + esc(m.title) + '</p>' +
     '<h1>' + esc(ja.title) + '</h1>' + (ja.intro ? '<p class="intro">' + inline(ja.intro) + '</p>' : '') + cards +
     (ja.all_together ? '<div class="together"><p class="t">All together:</p><p>' + inline(ja.all_together) + '</p></div>' : '') +

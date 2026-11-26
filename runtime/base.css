@@ -39,6 +39,9 @@ mark { background: var(--mark); color: inherit; padding: 0 .15em; border-radius:
 .ill-desk { fill: var(--ink-soft); } .ill-screen { fill: var(--surface); stroke: var(--ink-soft); stroke-width: 3; }
 .ill-lines rect { fill: var(--line); } .ill-skin { fill: #c98e63; } .ill-shirt { fill: var(--accent); }
 .ill-ink { fill: #1d1f24; } .ill-stroke { fill: none; stroke: #1d1f24; stroke-width: 2.5; stroke-linecap: round; }
+.ill-p1 { fill: var(--part-1); } .ill-p2 { fill: var(--part-2); } .ill-p3 { fill: var(--part-3); } .ill-p4 { fill: var(--part-4); }
+.ill-axis { fill: none; stroke: var(--ink-soft); stroke-width: 2; } .ill-label { font: 600 13px var(--font-body); fill: var(--ink-soft); }
+.reply-figure { margin: .25rem 0 1rem; } .reply-figure svg, .reply-figure img { display: block; width: 100%; max-width: 440px; height: auto; }
 .ill-q { font: 800 34px var(--font-head); fill: var(--part-1); }
 
 .prompt-bubble { background: var(--accent-soft); border-radius: var(--radius); padding: 1rem 1.15rem; font-weight: 700; font-size: 1.15rem; }

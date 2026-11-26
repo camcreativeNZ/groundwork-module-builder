@@ -29,3 +29,13 @@ for (const { id, file } of modules) {
     });
   });
 }
+
+test('a step-builder reply can show an accessible image', async function () {
+  const report = await build({ module: path.join(ROOT, 'tests', 'fixtures', 'sample', 'module.yaml'), out: path.join(ROOT, 'tests', 'output', 'sample-image') });
+  assert.ok(report.ok);
+  const html = fs.readFileSync(path.join(report.webDir, 'index.html'), 'utf8');
+  const fig = html.match(/<figure class="reply-figure">([\s\S]*?)<\/figure>/);
+  assert.ok(fig, 'reply figure is rendered');
+  assert.match(fig[1], /role="img" aria-labelledby="rimg\d+"/);
+  assert.match(fig[1], /<title id="rimg\d+">A small bar chart<\/title>/);
+});

@@ -29,7 +29,7 @@ screens:
   - template: step-builder
     steps:
       - { part: a, title: Step one, adds: First line., reply: First reply. }
-      - { part: b, title: Step two, adds: Second line., reply: Second reply. }
+      - { part: b, title: Step two, adds: Second line., reply: Second reply., image: { file: assets/chart.svg, alt: A small bar chart } }
   - template: try-it
     title: Try it
     fields:

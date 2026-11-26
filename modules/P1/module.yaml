@@ -1,0 +1,230 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The internet provider, help notes and answers in this module are fictional.
+
+id: P1
+title: Prompting with structure
+level: Practitioner
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: role, label: Role }
+  - { id: example, label: Example }
+  - { id: steps, label: Steps }
+  - { id: limits, label: Limits }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Grace
+    story: |
+      Grace is a customer support lead at an internet provider. She has 20 common customer questions, and wants Claude to write answers for the help page.
+
+      She pastes the questions and the help notes, and types:
+    prompt:
+      label: Grace's prompt
+      text: Write FAQ answers for these questions.
+    image:
+      file: assets/grace-cards.svg
+      alt: A person looking at a row of answer cards, all different sizes
+    reply:
+      label: Claude's answers (shortened)
+      text: |
+        **Why is my internet slow?** Slow speeds can be caused by a range of factors, including network congestion, Wi-Fi interference, DNS configuration and the capabilities of your router…
+
+        **My router isn't working.** Try restarting it. ==If that doesn't help, we'll send a technician to you free of charge.==
+      note: Every answer is a different length, some are full of technical words, and one promises a free technician visit the company doesn't offer.
+    reflection:
+      question: Grace gave Claude the questions and the facts. What else could she have told it?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Goal, context and format (F3) are enough for most tasks.** For bigger or repeated tasks, add structure: who Claude should be, an example to copy, the steps to follow, and the limits to stay within.
+
+        In this module you'll learn four parts of structure.
+
+  # ---------- 2. Four parts ----------
+  - template: flip-cards
+    title: Four parts of structure
+    menu_title: The four parts
+    intro: Select each card to see what it does.
+    cards:
+      - { part: role, back: "tell Claude who to be, and who it's writing for. \"You're a support writer for customers who aren't technical.\"" }
+      - { part: example, back: "show one good answer. Claude copies its length, tone and layout." }
+      - { part: steps, back: "list what to do, in order. Claude follows them for every item." }
+      - { part: limits, back: "say what to avoid, and what to do when it's unsure. \"If it's not in the notes, say so.\"" }
+    tip: "**Tip:** you don't need all four every time. Add the ones that fix the problem you're seeing."
+
+  # ---------- 3 to 6. Grace adds structure ----------
+  - template: step-builder
+    prompt_label: Grace's prompt so far
+    reply_label: Claude's answer to "My router isn't working"
+    steps:
+      - part: role
+        menu_title: Role
+        title: "Role: who Claude should be"
+        content:
+          - Grace starts again. She keeps her first line, then adds a role.
+          - tip: "**Tip:** a role sets the knowledge, the words and the audience in one line."
+        adds: "Write FAQ answers for these questions. You're an experienced support writer, and you write for customers who aren't technical."
+        reply: |
+          No worries, router problems are common and usually easy to fix. First, it's worth knowing a little about how your router works. It's the box that connects your home to the internet, and the lights on the front tell you what it's doing. If you see a red light, that usually means… If that doesn't help, we'll send a technician to you free of charge.
+        note: Plain words now, but it's long and rambling, and the free visit is still there.
+
+      - part: example
+        menu_title: Example
+        title: "Example: show what good looks like"
+        content:
+          - "Grace adds an answer her team already likes."
+          - tip: "**Tip:** one good example says more than a paragraph of description."
+        adds: "Here's an answer we like. Match its length and tone: \"Your router lights tell you what's happening. A steady green light means you're connected…\""
+        reply: |
+          Your router's lights tell you what's wrong. Turn it off at the wall, wait 30 seconds, and turn it back on. If that doesn't help, we'll send a technician to you free of charge.
+        note: Short and friendly, like the example. But the answers don't all follow the same shape.
+
+      - part: steps
+        menu_title: Steps
+        title: "Steps: set out the process"
+        content:
+          - "Grace adds the steps every answer should follow."
+          - tip: "**Tip:** number the steps, so Claude follows them in order."
+        adds: "For each question: 1. Answer in one sentence. 2. Give up to three steps. 3. End with where to get more help."
+        reply: |
+          Most router problems are fixed with a restart.
+
+          1. Turn the router off at the wall.
+          2. Wait 30 seconds.
+          3. Turn it back on and wait for a steady green light.
+
+          Still not working? We'll send a technician to you free of charge.
+        note: Every answer now has the same clear shape. But that free visit is still being promised.
+
+      - part: limits
+        menu_title: Limits
+        title: "Limits: say what not to do"
+        content:
+          - "Grace adds what Claude must stick to."
+          - tip: "**Tip:** tell Claude what to do instead of guessing."
+        adds: "Only use facts from the help notes. If the answer isn't there, write \"Check with the team\" instead. Keep each answer under 80 words."
+        reply: |
+          Most router problems are fixed with a restart.
+
+          1. Turn the router off at the wall.
+          2. Wait 30 seconds.
+          3. Turn it back on and wait for a steady green light.
+
+          Still not working? Call us on the number on your bill, and we'll help you find the problem.
+
+          *Note: two of your questions aren't covered by the help notes. I've marked them "Check with the team".*
+        note: The free visit is gone, and Claude flags what it can't answer.
+        success: Twenty consistent answers, and Grace knows exactly which two need her team's input.
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Your turn
+    menu_title: Try it
+    intro: Pick a task you do again and again, or use ours.
+    task: "**Our task:** you write a short weekly update for your team about what's changed in your area."
+    fields:
+      - part: role
+        label: "Role: who should Claude be, and who is it writing for?"
+        placeholder: You're a team leader writing for busy colleagues who want the facts quickly.
+        rows: 2
+      - part: example
+        label: "Example: paste or describe one good update"
+        placeholder: "Here's last week's update, which worked well: …"
+        rows: 2
+      - part: steps
+        label: "Steps: what should every update do, in order?"
+        placeholder: 1. Start with the biggest change. 2. List up to three other changes. 3. End with any deadlines.
+        rows: 2
+      - part: limits
+        label: "Limits: what should Claude avoid, and what should it do when it's unsure?"
+        placeholder: Only use my notes. Keep it under 150 words. If something's unclear, ask me.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I gave a role and an audience.
+        - I included an example.
+        - I listed the steps in order.
+        - I said what to do when Claude isn't sure.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your structure card.
+    questions:
+      - question: Claude's answers are accurate, but every one is a different length and layout. What's the quickest fix?
+        options:
+          a: Ask it to "be consistent"
+          b: Give it one example answer to match
+          c: Start a new chat
+        answer: b
+        feedback: An example shows Claude exactly what "consistent" looks like.
+
+      - question: "What's the main job of a role, such as \"You're a support writer for customers who aren't technical\"?"
+        options:
+          a: It makes Claude more polite
+          b: It sets the knowledge, words and audience Claude writes for
+          c: It's needed before Claude will answer
+        answer: b
+        feedback: A role tells Claude what kind of expert to be, and who's reading.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Role, Example, Steps, Limits]
+        lines:
+          - { text: "\"You're a recruiter writing for school leavers.\"", answer: Role }
+          - { text: "\"Here's a job ad we like.\"", answer: Example }
+          - { text: "\"First list the duties, then the skills, then how to apply.\"", answer: Steps }
+          - { text: "\"Don't mention pay. If you're unsure of a fact, ask me.\"", answer: Limits }
+        feedback: Each part does one job, and together they give Claude a clear brief.
+
+      - question: Claude keeps filling gaps with made-up details. Which part helps most?
+        options:
+          a: Role
+          b: Example
+          c: "Limits, such as \"If it's not in the notes, say so\""
+        answer: c
+        feedback: A limit tells Claude what to do instead of guessing.
+
+      - question: When should you add all four parts?
+        options:
+          a: For every prompt
+          b: For bigger or repeated tasks, where consistency matters
+          c: Never, because it confuses Claude
+        answer: b
+        feedback: A quick question needs a quick prompt. Structure pays off on bigger and repeated jobs.
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your structure card
+    menu_title: Take away
+    intro: You can now add structure to a prompt. Download the card and keep it beside you.
+    table:
+      caption: "Structure card: Role, Example, Steps and Limits"
+      columns: [Part, Use it when, Example]
+      rows:
+        - part: role
+          cells: ["The audience or expertise matters", "\"You're a support writer for customers who aren't technical.\""]
+        - part: example
+          cells: ["You want a consistent length, tone or layout", "\"Here's an answer we like. Match its length and tone.\""]
+        - part: steps
+          cells: ["Every item should follow the same process", "\"Answer in one sentence, then give up to three steps.\""]
+        - part: limits
+          cells: ["Claude might guess, or go off track", "\"Only use the notes. If it's not there, write 'Check with the team'.\""]
+    job_aid:
+      title: Structure card
+      intro: For bigger or repeated tasks, add structure to your prompt.
+      all_together: "You're a support writer for customers who aren't technical. Match the length and tone of this example. For each question, answer in one sentence, give up to three steps, then say where to get help. Only use the help notes."
+      footer: "**Add only the parts that fix the problem you're seeing.**"
+    next: "**Next module:** P2 Working in Projects, where you'll set up Claude for work you come back to."
