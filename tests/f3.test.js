@@ -15,7 +15,7 @@ const OUT = path.join(ROOT, 'tests', 'output', 'F3');
 let report, browser, url;
 
 test.before(async function () {
-  report = build({ module: path.join(ROOT, 'modules/F3/module.yaml'), out: OUT });
+  report = await build({ module: path.join(ROOT, 'modules/F3/module.yaml'), out: OUT });
   assert.ok(report.ok, JSON.stringify(report.problems, null, 2));
   url = 'file://' + path.join(report.webDir, 'index.html');
   browser = await chromium.launch();

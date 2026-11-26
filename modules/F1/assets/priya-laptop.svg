@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <rect x="140" y="108" width="120" height="68" rx="6" class="ill-screen"/>
+  <rect x="124" y="172" width="152" height="6" rx="3" class="ill-desk"/>
+  <g class="ill-lines"><rect x="152" y="122" width="80" height="6" rx="3"/><rect x="152" y="136" width="96" height="6" rx="3"/><rect x="152" y="150" width="64" height="6" rx="3"/></g>
+  <path d="M168 20 h120 a12 12 0 0 1 12 12 v40 a12 12 0 0 1 -12 12 h-84 l-16 14 v-14 h-20 a12 12 0 0 1 -12 -12 v-40 a12 12 0 0 1 12 -12 z" class="ill-screen"/>
+  <g class="ill-lines"><rect x="172" y="36" width="104" height="6" rx="3"/><rect x="172" y="50" width="88" height="6" rx="3"/><rect x="172" y="64" width="96" height="6" rx="3"/></g>
+  <circle cx="80" cy="84" r="24" fill="#8d5a3b"/>
+  <path d="M56 80 Q58 54 80 56 Q104 54 104 82 Q100 66 80 66 Q62 66 56 80 Z" class="ill-ink"/>
+  <path d="M40 176 Q45 120 80 116 Q115 120 120 176 Z" class="ill-shirt"/>
+  <circle cx="72" cy="84" r="2.5" class="ill-ink"/><circle cx="88" cy="84" r="2.5" class="ill-ink"/>
+  <path d="M73 96 Q80 93 87 96" class="ill-stroke"/>
+  <text x="112" y="62" class="ill-q">?</text>
+</svg>
