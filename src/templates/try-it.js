@@ -9,7 +9,7 @@ module.exports = {
   screens: 1,
   schema: {
     title: 'text', 'menu_title?': 'text', 'intro?': 'md', 'task?': 'md',
-    fields: list({ 'part?': 'part', label: 'text', 'placeholder?': 'text', 'rows?': 'int' }, { min: 1, max: 6 }),
+    fields: list({ 'part?': 'part', label: 'text', 'placeholder?': 'text', 'rows?': 'int', 'in_prompt?': 'bool' }, { min: 1, max: 6 }),
     'result_label?': 'text', 'empty_text?': 'text', 'copy_label?': 'text',
     'open_link?': { 'label?': 'text', 'url?': 'url' },
     'checklist?': { title: 'text', items: list('md', { min: 1 }) },
@@ -25,7 +25,7 @@ module.exports = {
     s.fields.forEach(function (f, i) {
       const id = 'try' + n + '_' + (i + 1);
       html += '    <div class="field">\n      <label for="' + id + '">' + S.partTag(f.part, ctx) + esc(f.label) + '</label>\n' +
-        '      <textarea id="' + id + '" data-try rows="' + (f.rows || 2) + '"' + (f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '') + '></textarea>\n    </div>\n';
+        '      <textarea id="' + id + '"' + (f.in_prompt === false ? '' : ' data-try') + ' rows="' + (f.rows || 2) + '"' + (f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '') + '></textarea>\n    </div>\n';
     });
     html += '  </div>\n  <div class="joined">\n    <span class="label" id="joinedLabel' + n + '">' + esc(s.result_label || 'Your prompt') + '</span>\n' +
       '    <pre class="joined-prompt" aria-labelledby="joinedLabel' + n + '" aria-live="polite" data-empty="' + esc(s.empty_text || 'Start typing above and your prompt will appear here.') + '"></pre>\n' +

@@ -1,0 +1,158 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# Before each release, recheck the app list and the Rename, Star and Search names against Claude itself.
+
+id: F2
+title: Getting set up
+level: Foundations
+version: 1
+minutes: 12
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: new, label: New chat }
+  - { id: name, label: Name it }
+  - { id: find, label: Find it }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Tomás
+    story: |
+      Tomás is a project officer. Last week he used Claude to draft a budget summary. Now his manager wants it.
+
+      Tomás scrolls through a long list of chats with names like "Help with email" and "Quick question". Then he realises something worse: he did the work in his personal account, not his work one.
+    image:
+      file: assets/tomas-list.svg
+      alt: A person looking at a long list of chats on a screen, trying to find one
+    reflection:
+      question: What would have saved Tomás time and trouble?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Three habits.** Use your work account for work, start a new chat for each task, and give chats you'll come back to a clear name.
+
+        This module shows you how.
+
+  # ---------- 2. Where you can use Claude ----------
+  - template: flip-cards
+    title: Where you can use Claude
+    menu_title: Where to use Claude
+    intro: Claude works in three places. Select each card.
+    cards:
+      - { front: In a web browser, back: "go to claude.ai and sign in. It works on any computer." }
+      - { front: On your computer, back: "desktop apps for Mac and Windows." }
+      - { front: On your phone, back: "apps for iPhone and Android." }
+    tip: "**Tip:** sign in with the same account everywhere, and your chats are there wherever you are. For work, use the account your organisation gives you, because it follows your organisation's privacy and security settings."
+
+  # ---------- 3. Three habits ----------
+  - template: flip-cards
+    title: Three habits that save time
+    menu_title: Three habits
+    intro: Select each card to see the habit.
+    cards:
+      - { part: new, back: "start a new chat for each new task. Claude keeps the whole chat in mind, so old topics can muddle new answers." }
+      - { part: name, back: "rename chats you'll come back to, like \"Q3 budget summary for finance\". Star the ones you use often so they're easy to reach." }
+      - { part: find, back: "use search to find a chat by a word in it, even weeks later." }
+    tip: "**Tip:** a good chat name says what it is and who it's for."
+
+  # ---------- 4. Practice ----------
+  - template: try-it
+    title: Set up your first real chat
+    menu_title: Try it
+    intro: Pick a task from your week, or use ours.
+    task: "**Our task:** you need to plan the agenda for next week's team meeting."
+    fields:
+      - part: new
+        label: "New chat: write the first message for your task"
+        placeholder: Help me plan a 45-minute agenda for next week's team meeting. We need to cover…
+        rows: 3
+      - part: name
+        label: "Name it: what will you call this chat?"
+        placeholder: Team meeting agenda, next week
+        rows: 1
+        in_prompt: false
+      - part: find
+        label: "Find it: what word will you search for later?"
+        placeholder: agenda
+        rows: 1
+        in_prompt: false
+    result_label: Your first message
+    copy_label: Copy message
+    checklist:
+      title: Do these in Claude, then tick them off
+      items:
+        - I'm signed in with my work account.
+        - I started a new chat and sent my message.
+        - I renamed the chat and starred it.
+        - I found it again with search.
+
+  # ---------- 5. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your habits card.
+    questions:
+      - question: You've finished a chat about a customer email. Now you want help with a training plan. What's best?
+        options:
+          a: Start a new chat
+          b: Carry on in the email chat
+          c: Delete all your old chats first
+        answer: a
+        feedback: A new task gets a new chat, so the email doesn't muddle Claude's answers about training.
+
+      - question: Lena used her personal Claude account to draft a client report. What's the problem?
+        options:
+          a: There isn't one
+          b: Work information belongs in the account her organisation provides, which follows its privacy and security settings
+          c: Personal accounts can't write reports
+        answer: b
+        feedback: Your organisation's account is set up to protect work information. Keep work there.
+
+      - question: You start a chat on your laptop, then open the Claude app on your phone. Where's the chat?
+        options:
+          a: In the same chat list, as long as you're signed in with the same account
+          b: It's lost, so you need to start again
+          c: You have to email it to yourself
+        answer: a
+        feedback: Your chats follow your account, not your device.
+
+      - type: match
+        question: Match each need to the action that helps.
+        choice_word: action
+        choices: [Search, Star, Rename]
+        lines:
+          - { text: "Find last week's budget chat.", answer: Search }
+          - { text: "Keep a chat you use every week easy to reach.", answer: Star }
+          - { text: "Turn \"Untitled\" into something you'll recognise.", answer: Rename }
+        feedback: Search finds chats, stars keep them handy, and names make them easy to recognise.
+
+      - question: Which is the most useful chat name?
+        options:
+          a: "\"Help\""
+          b: "\"Q3 budget summary for finance team\""
+          c: "\"Chat 27\""
+        answer: b
+        feedback: Say what it is and who it's for, so you can spot it in a list.
+
+  # ---------- 6. Take away ----------
+  - template: take-away
+    title: Your habits card
+    menu_title: Take away
+    intro: You're set up. Download the card to keep the three habits handy.
+    table:
+      caption: "Habits card: New chat, Name it and Find it"
+      columns: [Habit, When, How]
+      rows:
+        - part: new
+          cells: ["Every time you start a different task", "Select New chat before you type."]
+        - part: name
+          cells: ["For any chat you'll come back to", "Rename it: what it is and who it's for. Star the ones you use often."]
+        - part: find
+          cells: ["When you need earlier work", "Search for a word you remember from the chat."]
+    job_aid:
+      title: Habits card
+      intro: Three habits that keep your work easy to find.
+      footer: "**Use your work account for work.** It follows your organisation's privacy and security settings."
+    next: "**Next module:** F3 Your first prompts, where you'll learn to write a clear request."

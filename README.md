@@ -5,8 +5,7 @@ Turns one **module file** (plain text, YAML) into a finished learning module:
 - a **web version** (a folder you can host anywhere, or open on your Mac), and
 - a **SCORM 2004 zip** you can upload to any LMS.
 
-It's phase 1a of the Module Builder Spec. The F3 pilot, "Your first prompts", is rebuilt from
-[`modules/F3/module.yaml`](modules/F3/module.yaml) to prove it works.
+Modules built so far: F1 Meet Claude, F2 Getting set up, F3 Your first prompts, F4 Having a conversation.
 
 ## Set up on your Mac (once)
 
@@ -14,7 +13,9 @@ It's phase 1a of the Module Builder Spec. The F3 pilot, "Your first prompts", is
 2. Open Terminal, go to this folder, and run:
    ```
    npm install
+   npx playwright install chromium
    ```
+   The second line downloads the browser the builder uses to make PDFs and run QA.
 
 ## Build a module
 
@@ -30,6 +31,18 @@ You'll see something like:
   SCORM 2004:   modules/F3/build/F3-your-first-prompts-SCORM2004.zip
   Contrast:     54 of 54 colour checks pass (light and dark)
 ```
+
+## QA run (for the QA reviewer)
+
+```
+npm run qa -- modules/F1/module.yaml
+```
+
+This builds the module, then clicks through every screen in a real browser with a pretend LMS.
+It opens every reveal and card, fills in the Try it boxes, answers the questions wrongly and then
+correctly, checks what's sent to the LMS (bookmark, score, pass, completion, resume), runs automatic
+WCAG 2.2 AA checks in light and dark mode, checks phone layout, and takes screenshots. Open
+`modules/F1/build/qa/report.html` to see the results and every screenshot.
 
 To check a module without building it: `npm run check -- modules/F3/module.yaml`
 
@@ -61,6 +74,13 @@ one template:
 
 Run `node bin/groundwork.js templates` for the list with every field.
 
+**Job aid PDFs:** add `job_aid:` to the take-away screen (a title, and optional `intro`,
+`all_together` and `footer`) and the generator makes one-page A4 and US Letter PDFs from the
+table, in the house style, with download buttons. No hand-made PDFs needed.
+
+**Try it fields:** add `in_prompt: false` to a field that shouldn't be part of the copied prompt
+(for example, "what will you call this chat?").
+
 The generator refuses a module with missing alt text, a question without feedback or a correct
 answer, an unknown template, a misspelt field name, or a part that doesn't exist.
 
@@ -84,14 +104,12 @@ add `logo:`, and build with `--theme themes/their-name`. The module files don't 
 ## Tests
 
 ```
-npx playwright install chromium   # once
 npm test
 ```
 
-The tests rebuild F3 and click through it in a real browser with a pretend LMS: fail, retry, pass,
-resume, no-LMS mode, keyboard, focus, automatic WCAG 2.2 AA checks on every screen in light and
-dark mode, phone width, and no outside calls. They also feed in broken module files to check the
-error messages.
+The tests build every module in `modules/` and run the full QA on each. They also test F3 in
+detail (fail, retry, pass, resume, no-LMS mode, keyboard, focus) and feed in broken module files
+to check the error messages.
 
 ## For the Mac app (phase 2)
 
@@ -106,10 +124,10 @@ node bin/groundwork.js build modules/F3/module.yaml --json
 
 ```
 bin/groundwork.js      the command line
-src/                   the generator (checking, templates, manifest, zip)
+src/                   the generator (checking, templates, manifest, zip, job aids, QA)
 src/templates/         one file per screen template
 runtime/               the shared player every module uses (navigation, tracking, styles)
 themes/groundwork/     house theme and bundled fonts (SIL Open Font Licence)
-modules/F3/            the F3 pilot as a module file, plus its assets
+modules/               one folder per module: module.yaml plus its assets
 tests/                 automatic tests
 ```

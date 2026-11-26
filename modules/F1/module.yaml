@@ -1,0 +1,200 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+
+id: F1
+title: Meet Claude
+level: Foundations
+version: 1
+minutes: 15
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: great, label: Great fit }
+  - { id: check, label: Check carefully }
+  - { id: human, label: Keep it human }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Priya
+    story: |
+      Priya is a team leader. Someone in her team has asked about carer's leave, and Priya wants a quick answer.
+
+      She opens Claude and types:
+    prompt:
+      label: Priya's prompt
+      text: What's our leave policy for carers?
+    image:
+      file: assets/priya-laptop.svg
+      alt: A person at a laptop reading a confident answer, with a question mark beside them
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        Under your organisation's policy, carers can take up to ==10 days of paid carer's leave== each year. Leave can be taken ==in half-day blocks==, and you should ==give your manager two weeks' notice== where possible…
+      note: It sounds official. But Claude has never seen Priya's policy.
+    reflection:
+      question: What went wrong here?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude doesn't know your organisation unless you tell it.** It has never seen Priya's policy, so it wrote what a leave policy *usually* says. The highlighted details are made up, and they sound just as sure as real facts.
+
+        In this module you'll learn where Claude shines, and where you need to check.
+
+  # ---------- 2. How it works ----------
+  - template: flip-cards
+    title: How Claude works, in one minute
+    menu_title: How Claude works
+    intro: Select each card to turn it over.
+    cards:
+      - { front: It predicts words, back: "Claude writes by working out what text fits best, based on patterns learned from a huge amount of writing." }
+      - { front: "It knows a lot, but not everything", back: "its built-in knowledge stops at a cut-off date, and it doesn't know your workplace unless you tell it." }
+      - { front: It can be confidently wrong, back: "it can state made-up facts in a sure tone, so check anything that matters." }
+      - { front: You stay in charge, back: "Claude drafts and suggests. You decide what gets used." }
+
+  # ---------- 3. Three kinds of task ----------
+  - template: flip-cards
+    title: Three kinds of task
+    intro: Some tasks suit Claude well, some need checking, and some should stay with people. Select each card.
+    cards:
+      - { part: great, back: "drafting, rewriting, summarising, brainstorming, and explaining ideas in plain words." }
+      - { part: check, back: "facts, figures, dates, names, quotes, and anything legal, medical or financial." }
+      - { part: human, back: "decisions about people, final sign-off, and anything your policy says not to share." }
+    tip: "**Tip:** most tasks are a mix. Let Claude do the drafting, then check the facts yourself."
+
+  # ---------- 4 to 6. Priya tries again ----------
+  - template: step-builder
+    prompt_label: Priya's prompt so far
+    reply_label: Claude's reply
+    steps:
+      - label: Source
+        menu_title: Share the source
+        title: Share the source
+        content:
+          - Priya pastes in her organisation's real Carer's Leave Policy, and asks the same question.
+          - tip: "**Tip:** Claude can only use what it can see. Give it the document."
+        adds: "Here's our Carer's Leave Policy: [policy pasted here]. What does it say about leave for carers?"
+        reply: |
+          Your Carer's Leave Policy says that employees may take up to five days of paid carer's leave in each 12-month period to care for a family member who is ill or injured. Leave is taken as whole days. Employees should tell their manager as early as possible and complete the leave form. Where more leave is needed, employees may use annual leave or discuss unpaid leave with their manager…
+        note: Accurate now, because Claude has the real policy. But it's long, and Priya can't easily see where each point came from.
+
+      - label: Show me
+        menu_title: Ask it to show where
+        title: Ask it to show where
+        content:
+          - "Priya adds: **\"Quote the section your answer comes from.\"**"
+          - tip: "**Tip:** asking for the source makes checking quick."
+        adds: Quote the section your answer comes from.
+        reply: |
+          Employees can take up to five days of paid carer's leave a year, as whole days.
+
+          *"3.1 Employees may take up to five (5) days of paid carer's leave in each 12-month period."*
+
+          *"3.2 Carer's leave is taken in whole days."*
+        note: Now Priya can check the answer against the policy in seconds.
+
+      - label: Purpose
+        menu_title: Say what it's for
+        title: Say what it's for
+        content:
+          - "Priya adds: **\"I need to explain this to my team in three bullet points.\"**"
+        adds: I need to explain this to my team in three bullet points.
+        reply: |
+          - Up to five days of paid carer's leave a year.
+          - Take it as whole days.
+          - Tell your manager as early as you can, and fill in the leave form.
+
+          *Source: Carer's Leave Policy, sections 3.1, 3.2 and 4.1.*
+        note: Clear and ready to share. Priya still checks the quoted sections against the policy before she sends it.
+        success: Same question, the real source, and Priya has an answer she can trust and check.
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Test Claude on something you know
+    menu_title: Try it
+    intro: The best way to see Claude's strengths and slips is to ask about something you know well.
+    task: "**Ideas:** your hobby, your job, your sport, or the history of your town."
+    fields:
+      - label: "Ask Claude about a topic you know well"
+        placeholder: What are the main rules of netball, and how is it scored?
+        rows: 2
+      - label: "Then ask how sure it is"
+        placeholder: How sure are you about that, and what should I double-check?
+        rows: 2
+    result_label: Your prompt
+    checklist:
+      title: Check the result
+      items:
+        - I found something it got right.
+        - I spotted anything wrong, vague or out of date.
+        - I know what I'd check before using it.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your task card.
+    questions:
+      - question: Jonah asks Claude what his company's travel expenses limit is. Claude gives an exact figure. What should Jonah do?
+        options:
+          a: Use it, because Claude sounded sure
+          b: Check the company policy, because Claude doesn't know it unless he shares it
+          c: Ask again until Claude gives the same number twice
+        answer: b
+        feedback: Claude can't see your organisation's documents. A precise answer isn't the same as a correct one.
+
+      - question: Which task is the best fit for Claude?
+        options:
+          a: Deciding which job applicant to hire
+          b: Turning rough meeting notes into a tidy summary
+          c: Confirming today's exchange rate for an invoice
+        answer: b
+        feedback: Summarising is a strength. Hiring decisions stay with people, and live figures need a reliable source.
+
+      - question: Why can Claude give a wrong answer in a confident tone?
+        options:
+          a: It's trying to trick you
+          b: It writes what sounds likely, which isn't always what's true
+          c: It only happens on free accounts
+        answer: b
+        feedback: Claude predicts likely text. Usually that's right, but not always, and the tone doesn't change.
+
+      - type: match
+        question: Match each task to its kind.
+        choice_word: label
+        choices: [Great fit, Check carefully, Keep it human]
+        lines:
+          - { text: "\"Brainstorm names for the team newsletter.\"", answer: Great fit }
+          - { text: "\"Quote a figure from last year's annual report.\"", answer: Check carefully }
+          - { text: "\"Decide whose role is cut in a restructure.\"", answer: Keep it human }
+        feedback: Brainstorming suits Claude, figures need checking, and decisions about people stay with people.
+
+      - question: Mere asks Claude about a law change from last month. Claude answers without mentioning the change. Why might that be?
+        options:
+          a: Claude's built-in knowledge stops at a cut-off date, so it may not know recent changes
+          b: Claude ignores laws
+          c: Mere's question was too short
+        answer: a
+        feedback: Unless Claude is searching the web, recent changes may be missing. Check a current, official source.
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your task card
+    menu_title: Take away
+    intro: You now know where Claude shines and where to check. Download the card and keep it beside you.
+    table:
+      caption: "Task card: Great fit, Check carefully and Keep it human"
+      columns: [Kind, Examples, What to do]
+      rows:
+        - part: great
+          cells: ["Drafts, rewrites, summaries, ideas, explanations", "Use it, then read it through."]
+        - part: check
+          cells: ["Facts, figures, dates, names, quotes, legal or medical points", "Ask for the source, and check what matters."]
+        - part: human
+          cells: ["Decisions about people, final sign-off, private information", "Use Claude for drafts at most. You decide."]
+    job_aid:
+      title: Task card
+      intro: Before you hand a task to Claude, ask which kind it is.
+      footer: "**Remember:** Claude doesn't know your organisation unless you tell it, and it can sound sure when it's wrong."
+    next: "**Next module:** F2 Getting set up, where you'll sign in and find your way around."

@@ -1,0 +1,199 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+
+id: F4
+title: Having a conversation
+level: Foundations
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: keep, label: Keep }
+  - { id: change, label: Change }
+  - { id: because, label: Because }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Aroha
+    story: |
+      Aroha is a community programmes coordinator. She needs a short newsletter piece inviting families to a planting day.
+
+      She opens Claude and types:
+    prompt:
+      label: Aroha's prompt
+      text: Write a short newsletter piece inviting families to our community planting day on Saturday 14 June at Riverside Park, 10 am to 1 pm. Gloves and lunch provided.
+    image:
+      file: assets/aroha-conversation.svg
+      alt: A person at a laptop having a back-and-forth conversation
+    reply:
+      label: Claude's first draft (shortened)
+      text: |
+        **Got green fingers?** Then join us for our Community Planting Day! ==Riverside Park has been a treasured green space since 1952, when local residents planted its first native trees.== This year, we invite families to continue that proud tradition. ==Attendees are advised to wear sturdy footwear==…
+      note: …and it carries on for another 200 words. Aroha deletes it and starts again with a new prompt. Then again. Each time, she loses the bits she liked.
+    reflection:
+      question: What could Aroha do instead?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Keep the conversation going.** The draft was nearly right. Claude remembers everything earlier in the chat, so Aroha can tell it what to keep and what to change, and build on what's already good.
+
+        In this module you'll learn three parts of good feedback.
+
+  # ---------- 2. Key ideas ----------
+  - template: flip-cards
+    title: Three parts of good feedback
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: keep, back: "say what's working, so Claude doesn't throw it away." }
+      - { part: change, back: "say exactly what to fix: shorter, simpler, a different order." }
+      - { part: because, back: "say why, so Claude can make good choices in the parts you didn't mention." }
+    tip: "**Tip:** \"Make it better\" gives Claude nothing to go on. Be specific."
+
+  # ---------- 3 to 5. Aroha replies ----------
+  - template: step-builder
+    prompt_label: Aroha's reply so far
+    reply_label: Claude's next draft
+    steps:
+      - part: keep
+        menu_title: Keep
+        title: "Keep: say what's working"
+        content:
+          - Instead of starting again, Aroha replies in the same chat.
+          - tip: "**Tip:** if you don't say what to keep, Claude may change it."
+        adds: "Keep the opening question, \"Got green fingers?\", it's fun."
+        reply: |
+          **Got green fingers?** Then join us for our Community Planting Day! Riverside Park has been a treasured green space since 1952, when local residents planted its first native trees. This year, we invite families to continue that proud tradition. The event takes place on Saturday 14 June from 10 am to 1 pm. Attendees are advised to wear sturdy footwear. Gloves and lunch will be provided…
+        note: Claude kept the opening. But it doesn't know what else to change, so the rest is still long and formal.
+
+      - part: change
+        menu_title: Change
+        title: "Change: say exactly what to fix"
+        content:
+          - "Aroha adds: **\"Cut it to under 80 words and drop the history of the park.\"**"
+          - tip: "**Tip:** \"shorter\" is vague. \"Under 80 words\" is clear."
+        adds: Cut it to under 80 words and drop the history of the park.
+        reply: |
+          **Got green fingers?** Join us for our Community Planting Day at Riverside Park on Saturday 14 June, 10 am to 1 pm. Attendees are advised to wear sturdy footwear. Gloves and lunch will be provided. All families are welcome to attend.
+        note: Short now, and the history's gone. But it still reads like an official notice.
+
+      - part: because
+        menu_title: Because
+        title: "Because: say why"
+        content:
+          - "Aroha adds: **\"It's for busy parents reading on their phones, so keep it relaxed and make the date and time easy to spot.\"**"
+          - tip: "**Tip:** one reason can fix tone, length and layout all at once."
+        adds: It's for busy parents reading on their phones, so keep it relaxed and make the date and time easy to spot.
+        reply: |
+          **Got green fingers?**
+
+          Bring the whole family to plant native trees at Riverside Park.
+
+          **Saturday 14 June, 10 am to 1 pm**
+
+          We'll have gloves and lunch sorted. Just bring sturdy shoes and a smile!
+        note: Short, warm and easy to scan. The reason helped Claude choose the tone and layout too.
+        success: One reply, three short lines, and Aroha's piece is ready for the newsletter.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Your turn
+    menu_title: Try it
+    intro: Take a draft Claude has written for you this week, or use ours.
+    task: "**Our task:** Claude wrote you a 300-word reminder about a team meeting. You want something short for the team chat."
+    fields:
+      - part: keep
+        label: "Keep: what's working?"
+        placeholder: Keep the time and the room, they're right.
+        rows: 2
+      - part: change
+        label: "Change: what exactly should be different?"
+        placeholder: Cut it to two sentences and drop the background.
+        rows: 2
+      - part: because
+        label: "Because: who's it for, and where will they read it?"
+        placeholder: It's for the team chat, so it should be quick to read.
+        rows: 2
+    result_label: Your feedback
+    copy_label: Copy feedback
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Reply in the same chat as the draft, then check
+      items:
+        - I said what to keep.
+        - I was specific about the change.
+        - I gave a reason.
+        - The next draft was closer to what I need.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your feedback card.
+    questions:
+      - question: Claude's draft is nearly right, but too formal. What's the best next step?
+        options:
+          a: Start a new chat and retype the request
+          b: "Reply: \"Keep the structure, but make it more relaxed. It's for our team chat.\""
+          c: Use it as it is
+        answer: b
+        feedback: Replying keeps what's good and fixes the rest, with a reason Claude can use.
+
+      - question: Which feedback will help Claude most?
+        options:
+          a: "\"Make it better.\""
+          b: "\"Shorter.\""
+          c: "\"Cut it to three bullet points, and keep the deadline in the first line.\""
+        answer: c
+        feedback: Specific feedback says what to change and what to keep.
+
+      - question: Why add a "because" to your feedback?
+        options:
+          a: To be polite
+          b: The reason helps Claude make good choices in the parts you didn't mention
+          c: Claude won't reply without one
+        answer: b
+        feedback: "\"It's for new customers\" tells Claude a lot about words, tone and detail all at once."
+
+      - type: match
+        question: Match each line of feedback to its part.
+        choice_word: part
+        choices: [Keep, Change, Because]
+        lines:
+          - { text: "\"Keep the bit about free parking.\"", answer: Keep }
+          - { text: "\"Swap the jargon for everyday words.\"", answer: Change }
+          - { text: "\"It's for new customers who haven't used our app.\"", answer: Because }
+        feedback: Each line does one job, and together they steer the next draft.
+
+      - question: When is starting a new chat better than giving feedback?
+        options:
+          a: Whenever a reply has a mistake in it
+          b: When you're moving on to a different task, or the chat has gone badly off track
+          c: Never
+        answer: b
+        feedback: Feedback fixes a draft. A new task, or a muddled chat, deserves a fresh start.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your feedback card
+    menu_title: Take away
+    intro: You can now steer Claude with feedback. Download the card to keep beside you.
+    table:
+      caption: "Feedback card: Keep, Change and Because"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: keep
+          cells: ["What's already working?", "\"Keep the opening question, it's fun.\""]
+        - part: change
+          cells: ["What exactly should be different?", "\"Cut it to under 80 words and drop the history.\""]
+        - part: because
+          cells: ["Why, and who is it for?", "\"It's for busy parents reading on their phones.\""]
+    job_aid:
+      title: Feedback card
+      intro: When Claude's answer is nearly right, reply with three parts.
+      all_together: "Keep the opening question, \"Got green fingers?\", it's fun. Cut it to under 80 words and drop the history of the park. It's for busy parents reading on their phones, so keep it relaxed and make the date and time easy to spot."
+      footer: "**Start a new chat instead** when you move on to a different task, or the chat has gone off track."
+    next: "**Next module:** F5 Checking Claude's work, where you'll learn to spot errors and made-up facts."

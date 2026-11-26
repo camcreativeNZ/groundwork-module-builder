@@ -23,10 +23,12 @@ module.exports = {
   schema: {
     title: 'text', 'menu_title?': 'text', 'intro?': 'md',
     'table?': { 'caption?': 'text', columns: list('text', { min: 2, max: 5 }), rows: list(row, { min: 1 }) },
+    'job_aid?': { title: 'text', 'intro?': 'md', 'all_together?': 'md', 'footer?': 'md' },
     'downloads?': list(download, { max: 4 }),
     'next?': 'md'
   },
   check: function (s, p, ctx) {
+    if (s.job_aid && !s.table) ctx.error(p.concat('job_aid'), 'a job aid is made from the table, so this screen needs a "table:" as well.');
     if (s.table && Array.isArray(s.table.columns) && Array.isArray(s.table.rows)) {
       s.table.rows.forEach(function (r, i) {
         if (r && Array.isArray(r.cells) && r.cells.length !== s.table.columns.length - 1) {
@@ -49,9 +51,15 @@ module.exports = {
             r.cells.map(function (c) { return '<td>' + inline(c) + '</td>'; }).join('') + '</tr>';
         }).join('\n') + '\n      </tbody>\n    </table>\n  </div>\n';
     }
-    if (s.downloads && s.downloads.length) {
-      html += '  <div class="row">\n' + s.downloads.map(function (d, i) {
-        ctx.addAsset(d.file);
+    let downloads = (s.downloads || []).map(function (d) { ctx.addAsset(d.file); return d; });
+    if (s.job_aid) {
+      const names = require('../jobaid').fileNames(ctx.module, s);
+      ctx.jobAids.push({ screen: s, names });
+      downloads = [{ file: names.a4, label: 'Download ' + s.job_aid.title.toLowerCase() + ' (A4, PDF)' },
+        { file: names.letter, label: 'Download (US Letter, PDF)' }].concat(downloads);
+    }
+    if (downloads.length) {
+      html += '  <div class="row">\n' + downloads.map(function (d, i) {
         return '    <a class="btn' + (i ? ' secondary' : '') + '" href="' + esc(d.file) + '" download>' + esc(d.label) + '</a>';
       }).join('\n') + '\n  </div>\n';
     }

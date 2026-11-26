@@ -3,6 +3,7 @@
 // Command line for the Groundwork module builder.
 //   groundwork build modules/F3/module.yaml            build web + SCORM zip
 //   groundwork check modules/F3/module.yaml            check only, build nothing
+//   groundwork qa modules/F3/module.yaml               build, click through, screenshot, report
 //   groundwork templates                               list screen templates
 // Add --json to get a machine-readable report (used by the Mac app).
 // Add --theme themes/acme to build with a customer's theme, --out <folder> to choose where files go.
@@ -25,6 +26,7 @@ function usage() {
   console.log('Groundwork module builder\n\n' +
     '  groundwork build <module.yaml> [--theme <folder>] [--out <folder>] [--json]\n' +
     '  groundwork check <module.yaml> [--theme <folder>] [--json]\n' +
+    '  groundwork qa <module.yaml> [--theme <folder>] [--out <folder>] [--json]\n' +
     '  groundwork templates [--json]\n');
 }
 
@@ -35,7 +37,7 @@ if (cmd === 'templates') {
   process.exit(0);
 }
 
-if ((cmd !== 'build' && cmd !== 'check') || !file) { usage(); process.exit(cmd ? 2 : 0); }
+if ((cmd !== 'build' && cmd !== 'check' && cmd !== 'qa') || !file) { usage(); process.exit(cmd ? 2 : 0); }
 
 if (cmd === 'check') {
   const v = api.validateModule(path.resolve(file));
@@ -49,13 +51,23 @@ if (cmd === 'check') {
   process.exit(ok ? 0 : 1);
 }
 
+(async function () {
 let report;
 try {
-  report = api.build({ module: file, theme: opt('--theme'), out: opt('--out') });
+  report = await api.build({ module: file, theme: opt('--theme'), out: opt('--out') });
 } catch (e) {
   report = { ok: false, problems: [{ level: 'error', file, line: null, where: '', message: e.message }] };
 }
-if (json) { console.log(JSON.stringify(report, null, 2)); process.exit(report.ok ? 0 : 1); }
+if (cmd === 'qa' && report.ok) {
+  try {
+    const qa = await require('../src/qa').runQa(report);
+    report.qa = qa;
+  } catch (e) {
+    report.ok = false;
+    report.problems.push({ level: 'error', file, line: null, where: 'QA run', message: e.message });
+  }
+}
+if (json) { console.log(JSON.stringify(report, null, 2)); process.exit(report.ok && (!report.qa || report.qa.ok) ? 0 : 1); }
 if (!report.ok) {
   console.log('This module needs a few fixes before it can be built:');
   printProblems(report.problems);
@@ -66,3 +78,11 @@ printProblems(report.problems);
 console.log('  Web version:  ' + path.relative(cwd, report.webDir) + '/index.html');
 console.log('  SCORM 2004:   ' + path.relative(cwd, report.zipPath));
 console.log('  Contrast:     ' + report.contrast.filter(function (c) { return c.ok; }).length + ' of ' + report.contrast.length + ' colour checks pass (light and dark)');
+if (report.qa) {
+  const qa = report.qa;
+  console.log((qa.ok ? '✓' : '✗') + ' QA: ' + qa.passed + ' of ' + qa.total + ' checks passed');
+  qa.checks.filter(function (c) { return !c.ok; }).forEach(function (c) { console.log('  ✗ ' + c.name + (c.detail ? ' (' + c.detail + ')' : '')); });
+  console.log('  Report:       ' + path.relative(cwd, qa.reportPath));
+  if (!qa.ok) process.exit(1);
+}
+})();

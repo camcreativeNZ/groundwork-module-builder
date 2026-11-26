@@ -8,6 +8,7 @@ const templates = require('./templates');
 const { manifest } = require('./manifest');
 const { makeZip } = require('./zip');
 const { esc } = require('./text');
+const { makeJobAid } = require('./jobaid');
 
 const ROOT = path.resolve(__dirname, '..');
 const DEFAULT_THEME = path.join(ROOT, 'themes', 'groundwork');
@@ -37,7 +38,7 @@ function renderPage(m, screens, theme, ctx) {
 
 // options: { module: path to module.yaml, out: output folder, theme: theme folder }
 // Returns a report: { ok, problems, outDir, webDir, zipPath, files, screens, contrast }
-function build(options) {
+async function build(options) {
   const moduleFile = path.resolve(options.module);
   const themeDir = path.resolve(options.theme || DEFAULT_THEME);
   const v = validateModule(moduleFile);
@@ -49,7 +50,7 @@ function build(options) {
   const m = v.module;
   const moduleDir = path.dirname(moduleFile);
   const assets = new Set();
-  const ctx = { parts: v.parts, module: m, moduleDir, addAsset: function (f) { assets.add(path.posix.normalize(f)); } };
+  const ctx = { parts: v.parts, module: m, moduleDir, addAsset: function (f) { assets.add(path.posix.normalize(f)); }, jobAids: [] };
 
   // First pass: work out screen numbers (some templates make several screens).
   let count = 0, quizScreen = null;
@@ -90,6 +91,13 @@ function build(options) {
     if (f.startsWith('..') || path.isAbsolute(f)) throw new Error('Asset paths must stay inside the module folder: ' + f);
     files[f] = fs.readFileSync(path.join(moduleDir, f));
   });
+
+  for (const ja of ctx.jobAids) {
+    const pdf = await makeJobAid(m, ja.screen, theme, v.parts);
+    files[ja.names.a4] = pdf.a4;
+    files[ja.names.letter] = pdf.letter;
+    if (pdf.pages > 1) problems.push({ level: 'warning', file: moduleFile, line: null, where: 'job aid', message: 'the job aid runs to ' + pdf.pages + ' pages. Shorten the table text to fit one page.' });
+  }
 
   const scaled = quizTotal ? Math.round(m.pass_mark / quizTotal * 100) / 100 : null;
   const order = ['index.html', 'assets/styles.css', 'assets/theme.css', 'assets/scorm.js', 'assets/player.js'];
