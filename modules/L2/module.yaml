@@ -1,0 +1,189 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The company and audit in this module are fictional.
+# This module deliberately names no laws, regulators or countries, because these vary and change.
+# It tells learners to get legal or privacy advice. Recheck this approach if the course is tailored to one country.
+
+id: L2
+title: Governance, policy and risk
+level: Leader
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: policy, label: Policy }
+  - { id: risk, label: Risk }
+  - { id: oversight, label: Oversight }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Henrik
+    story: |
+      Henrik is chief operating officer of a 400-person logistics company. An audit finds that staff are using personal AI accounts with client contracts and staff records.
+
+      Nobody told them not to. There's no policy, no approved tools, and nobody knows who's responsible.
+    image:
+      file: assets/henrik-shield.svg
+      alt: A person holding a checklist beside a shield
+    reflection:
+      question: What would have prevented this?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Banning AI rarely works; people just use it out of sight.** Good governance gives clear rules and safe tools. Write a short *policy*, match controls to *risk*, and put *oversight* in place.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of AI governance
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: policy, back: "say which tools are approved, what information may and may not go in, and when a person must review the output." }
+      - { part: risk, back: "sort uses by risk. Low-risk uses need light rules; high-risk uses need more checks, or shouldn't use AI at all." }
+      - { part: oversight, back: "name an owner, make it easy to report problems, and review the policy regularly." }
+    tip: "**Tip:** laws on AI, privacy and data vary by country and change often. Check your policy with your legal or privacy adviser."
+
+  # ---------- 3 to 5. Henrik sets up governance ----------
+  - template: step-builder
+    prompt_label: Henrik's governance so far
+    reply_label: The result
+    steps:
+      - part: policy
+        menu_title: Policy
+        title: "Policy: short, clear rules"
+        content:
+          - Henrik's team chooses one approved tool, with business accounts. With the privacy adviser, they write a two-page policy.
+          - tip: "**Tip:** ask Claude to rewrite the policy in plain language, then have your adviser check it."
+        adds: "Use only approved tools. Never enter staff health or pay records. Client information only in approved tools, and only what's needed. A person reviews anything sent outside the company."
+        reply: |
+          Staff now know which tool to use, and what never goes in. The privacy adviser checks the plain-language version.
+        note: Safe tools and clear rules bring AI use into the open.
+
+      - part: risk
+        menu_title: Risk
+        title: "Risk: match controls to the stakes"
+        content:
+          - The team sorts common uses into three levels.
+          - tip: "**Tip:** anything that could seriously affect a person stays a human decision."
+        adds: "Low risk: light rules. Medium risk: a person's review. High risk: a documented human decision and sign-off."
+        reply: |
+          - **Low:** drafting internal emails, summarising public reports
+          - **Medium:** client correspondence, reviewed by a person
+          - **High:** decisions about staff or pricing, decided and signed off by a person
+        note: Light rules where the risk is low, so people aren't slowed down for no reason.
+
+      - part: oversight
+        menu_title: Oversight
+        title: "Oversight: an owner, and a way to learn"
+        content:
+          - Henrik makes sure someone is responsible, and that problems surface early.
+          - tip: "**Tip:** no-blame reporting means you hear about near misses before they become incidents."
+        adds: "Owner: the head of risk. A simple way to report a problem or near miss, with no blame for honest reports. Review every six months, or sooner if the law or the tools change."
+        reply: |
+          In the first month, staff report two near misses. Both lead to small changes in the policy.
+        note: Problems are found early, while they're still small.
+        success: Staff move to the approved tool, problems are reported early, and the next audit is clean.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Sketch your governance
+    menu_title: Try it
+    intro: Sketch governance for your own organisation, or use ours. Then check it with your legal or privacy adviser.
+    task: "**Our organisation:** a 150-person accounting firm."
+    fields:
+      - part: policy
+        label: "Policy: which tools, what information never goes in, and when must a person review?"
+        placeholder: Approved business accounts only. Never enter client tax records or staff records. A person reviews anything sent to a client.
+        rows: 3
+      - part: risk
+        label: "Risk: what are your low, medium and high-risk uses?"
+        placeholder: "Low: internal drafts. Medium: client letters, reviewed. High: tax advice and staff decisions, decided by a person."
+        rows: 2
+      - part: oversight
+        label: "Oversight: who owns it, how are problems reported, and when is it reviewed?"
+        placeholder: The practice manager owns it. Report problems to a shared inbox, no blame. Review every six months.
+        rows: 2
+    result_label: Your governance outline
+    copy_label: Copy outline
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your outline
+      items:
+        - Our policy is short and in plain language.
+        - Controls match the level of risk.
+        - There's an owner, and a way to report problems.
+        - Our legal or privacy adviser has checked it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your governance card.
+    questions:
+      - question: Staff are using personal AI accounts with client information. What's the best response?
+        options:
+          a: Ban AI completely
+          b: Provide approved tools, and a clear policy on what can go in
+          c: Ignore it
+        answer: b
+        feedback: Bans push use out of sight. Safe tools and clear rules bring it into the open.
+
+      - question: Which use needs the most control?
+        options:
+          a: Drafting an internal email
+          b: Summarising a public report
+          c: Recommending which staff to promote
+        answer: c
+        feedback: The more a decision affects people, the more human oversight it needs.
+
+      - type: match
+        question: Match each statement to its part.
+        choice_word: part
+        choices: [Policy, Risk, Oversight]
+        lines:
+          - { text: "\"Never enter staff health or pay records.\"", answer: Policy }
+          - { text: "\"Client letters need a person's review; staff decisions need sign-off.\"", answer: Risk }
+          - { text: "\"The head of risk reviews the policy every six months.\"", answer: Oversight }
+        feedback: Clear rules, controls matched to risk, and someone keeping watch.
+
+      - question: A team member reports that they pasted client data into the wrong tool. What should happen?
+        options:
+          a: A formal warning straight away
+          b: Follow your incident process, thank them for reporting it, and fix the gap that let it happen
+          c: Keep it quiet
+        answer: b
+        feedback: No-blame reporting means problems are found early. Follow your organisation's process for the incident itself.
+
+      - question: Who should check your AI policy against the law?
+        options:
+          a: Claude
+          b: Your legal or privacy adviser
+          c: Nobody; AI laws are the same everywhere
+        answer: b
+        feedback: Laws vary by country and change often. Get qualified advice.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your governance card
+    menu_title: Take away
+    intro: You can now set up clear, proportionate governance for AI. Download the card and keep it beside you.
+    table:
+      caption: "Governance card: Policy, Risk and Oversight"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: policy
+          cells: ["Which tools, what data, and when must a person review?", "Approved tools only. No health or pay records. People review anything external."]
+        - part: risk
+          cells: ["How much could go wrong?", "Low: internal drafts. Medium: client letters. High: decisions about people."]
+        - part: oversight
+          cells: ["Who owns it, and how do we learn?", "Head of risk owns it. No-blame reporting. Review every six months."]
+    job_aid:
+      title: Governance card
+      intro: To govern AI use in your organisation, use three parts.
+      footer: "**Safe tools and clear rules beat bans.** Check your policy with your legal or privacy adviser."
+    next: "**Next module:** L3 Leading the change, where you'll lead a rollout people actually adopt."

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <path d="M220 40 V170 M196 170 H244 M150 56 H290 M150 56 L134 100 M150 56 L166 100 M290 56 L274 96 M290 56 L306 96" class="ill-axis"/>
+  <circle cx="220" cy="40" r="6" class="ill-p1"/>
+  <path d="M128 100 H172 Q168 116 150 116 Q132 116 128 100 Z" class="ill-desk"/>
+  <path d="M268 96 H312 Q308 112 290 112 Q272 112 268 96 Z" class="ill-desk"/>
+  <ellipse cx="142" cy="96" rx="9" ry="4" class="ill-p1"/><ellipse cx="142" cy="91" rx="9" ry="4" class="ill-p1"/><ellipse cx="158" cy="96" rx="9" ry="4" class="ill-p1"/>
+  <circle cx="281" cy="84" r="10" class="ill-screen"/><path d="M281 78 V84 H286" class="ill-stroke"/>
+  <circle cx="300" cy="86" r="8" class="ill-p3"/><path d="M296 86 L299 89 L304 83" class="ill-stroke"/>
+  <circle cx="64" cy="84" r="24" fill="#e3b58e"/>
+  <path d="M42 80 Q44 56 64 56 Q84 56 86 80 Q78 66 64 66 Q50 66 42 80 Z" class="ill-ink"/>
+  <path d="M24 176 Q29 120 64 116 Q99 120 104 176 Z" class="ill-shirt"/>
+  <circle cx="56" cy="86" r="2.5" class="ill-ink"/><circle cx="72" cy="86" r="2.5" class="ill-ink"/>
+  <path d="M57 97 Q64 100 71 97" class="ill-stroke"/>
+</svg>

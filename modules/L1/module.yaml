@@ -1,0 +1,197 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The charity and its goals are fictional.
+# No product features to recheck.
+
+id: L1
+title: AI strategy
+level: Leader
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: anchor, label: Anchor }
+  - { id: choose, label: Choose }
+  - { id: commit, label: Commit }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Nadia
+    story: |
+      Nadia is chief executive of a 200-person charity. The board asks: "What's our AI strategy?"
+
+      Nadia looks around. Three teams have bought different AI tools. There are five pilots, none finished. Some staff use Claude every day; others have never tried it. Nobody can say what any of it is for.
+    image:
+      file: assets/nadia-target.svg
+      alt: A person at a whiteboard with three arrows pointing at one target
+    reflection:
+      question: What's missing?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **An AI strategy isn't a list of tools.** *Anchor* it to what the organisation is already trying to achieve, *choose* a few priorities, and *commit* the people, time and money to deliver them.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of an AI strategy
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: anchor, back: "start from the organisation's goals. Ask where AI could help achieve each one." }
+      - { part: choose, back: "pick two or three priorities. Weigh the value against the effort and the risk." }
+      - { part: commit, back: "give each priority an owner, a budget, time to learn, and a date to review it." }
+    tip: "**Tip:** a good AI strategy fits on one page. If it doesn't, it's probably a list of projects."
+
+  # ---------- 3 to 5. Nadia shapes a strategy ----------
+  - template: step-builder
+    prompt_label: Nadia's strategy so far
+    reply_label: The result
+    steps:
+      - part: anchor
+        menu_title: Anchor
+        title: "Anchor: start from your goals"
+        content:
+          - Nadia starts from the charity's three goals for the year, and asks Claude for ideas.
+          - tip: "**Tip:** ask where AI *shouldn't* be used, as well as where it could help."
+        adds: "Our goals this year: reach more families, cut admin costs, and improve funding applications. For each goal, list ways AI could help, and where it shouldn't be used."
+        reply: |
+          - **Reach more families:** draft plain-language information in several languages. *Not for:* deciding who gets support.
+          - **Cut admin costs:** draft internal reports and meeting summaries.
+          - **Better funding applications:** draft and tailor applications from past successful ones.
+        note: Decisions about families' support stay with people.
+
+      - part: choose
+        menu_title: Choose
+        title: "Choose: a few priorities"
+        content:
+          - With her leadership team, Nadia scores the ideas on value, effort and risk.
+          - tip: "**Tip:** pausing a pilot is a decision too. It frees people and money for the priorities."
+        adds: "Priorities: drafting funding applications, and cutting time on internal reports. Other pilots paused. Personal and family information out of scope for now."
+        reply: |
+          Two priorities, both high value, manageable effort and low risk. Five scattered pilots become two focused ones.
+        note: Staff can see what AI is for at the charity, and what it isn't.
+
+      - part: commit
+        menu_title: Commit
+        title: "Commit: owners and resources"
+        content:
+          - Each priority gets what it needs to succeed, and Nadia asks Claude to draft the one-page strategy.
+          - tip: "**Tip:** set success measures at the start, so you know what to review (M4)."
+        adds: "Each priority: an owner, a small budget, staff time to learn, success measures, and a review in six months."
+        reply: |
+          **Our AI strategy (one page)**
+
+          **Why:** to help us reach more families and spend less on admin.
+
+          **Priorities:** funding applications; internal reports.
+
+          **Not in scope:** decisions about families; personal information.
+
+          **Review:** in six months, against our success measures.
+        note: Nadia edits the draft with her team before it goes to the board.
+        success: The board gets a clear, one-page answer, and staff know what AI is for at the charity.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Sketch your strategy
+    menu_title: Try it
+    intro: Use your own organisation's goals, or ours.
+    task: "**Our organisation:** a regional council with three goals: faster service for residents, better use of data, and lower costs."
+    fields:
+      - part: anchor
+        label: "Anchor: what are your organisation's goals?"
+        placeholder: "Our goals: faster service for residents, better use of data, and lower costs. For each goal, list ways AI could help, and where it shouldn't be used."
+        rows: 3
+      - part: choose
+        label: "Choose: how should Claude help you weigh the options?"
+        placeholder: Score each idea from 1 to 3 on value, effort and risk, and suggest the best two or three to start with.
+        rows: 2
+      - part: commit
+        label: "Commit: what will each priority need? (Not part of the prompt.)"
+        placeholder: An owner, a budget, time to learn, success measures and a review date.
+        rows: 2
+        in_prompt: false
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your strategy
+      items:
+        - I started from our goals.
+        - I chose two or three priorities.
+        - I weighed value, effort and risk.
+        - Each priority has an owner, resources and a review date.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your strategy card.
+    questions:
+      - question: Where should an AI strategy start?
+        options:
+          a: With the latest AI tools
+          b: With the organisation's existing goals
+          c: With what competitors are doing
+        answer: b
+        feedback: Anchor AI to what you're already trying to achieve.
+
+      - question: Your organisation has ten AI ideas. What's the best next step?
+        options:
+          a: Start all ten
+          b: Choose two or three, weighing value against effort and risk
+          c: Wait until the technology settles
+        answer: b
+        feedback: A few well-resourced priorities beat many scattered pilots.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [Anchor, Choose, Commit]
+        lines:
+          - { text: "List ways AI could help each of our goals.", answer: Anchor }
+          - { text: "Score the ideas on value, effort and risk.", answer: Choose }
+          - { text: "Give each priority an owner, budget and review date.", answer: Commit }
+        feedback: Anchor to your goals, choose a few priorities, and commit the resources.
+
+      - question: What does a strategy need to turn into action?
+        options:
+          a: A long document
+          b: Owners, resources, time to learn, and a review date
+          c: A new job title
+        answer: b
+        feedback: Without owners and resources, a strategy stays on paper.
+
+      - question: Which work should stay with people, even in an AI strategy?
+        options:
+          a: Drafting reports
+          b: Decisions that significantly affect people, such as eligibility for support
+          c: Summarising research
+        answer: b
+        feedback: Use AI to help, and keep people accountable for decisions that matter.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your strategy card
+    menu_title: Take away
+    intro: You can now shape an AI strategy that starts from your goals. Download the card and keep it beside you.
+    table:
+      caption: "Strategy card: Anchor, Choose and Commit"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: anchor
+          cells: ["Which of our goals could AI help with?", "Better funding applications, less time on reports."]
+        - part: choose
+          cells: ["Which two or three are worth it?", "High value, manageable effort, low risk."]
+        - part: commit
+          cells: ["Who owns it, with what, and when do we review?", "An owner, a budget, time to learn, a review in six months."]
+    job_aid:
+      title: Strategy card
+      intro: To shape an AI strategy, use three parts.
+      footer: "**A good AI strategy fits on one page,** and starts from your goals, not the tools."
+    next: "**Next module:** L2 Governance, policy and risk, where you'll set clear, proportionate rules for AI."

@@ -1,0 +1,186 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The office and figures in this module are fictional.
+# No product features to recheck.
+
+id: L3
+title: Leading the change
+level: Leader
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: explain, label: Explain }
+  - { id: equip, label: Equip }
+  - { id: listen, label: Listen }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Olivia
+    story: |
+      Olivia is general manager of a 150-person insurance office. She sent one email announcing that everyone now has Claude.
+
+      Two months later, only one in five staff use it. A rumour says AI is the first step to job cuts. Some managers have told their teams not to bother.
+    image:
+      file: assets/olivia-talk.svg
+      alt: A leader talking with a small group, with speech bubbles going both ways
+    reflection:
+      question: Why didn't the rollout work?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Giving people a tool isn't the same as leading a change.** *Explain* why and what it means for them, *equip* people with skills and time, and *listen* to what they say.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of leading the change
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: explain, back: "say why you're using AI, what will change, and what won't. Answer questions about jobs honestly, including what you don't know yet." }
+      - { part: equip, back: "give people training, time to practise, and a champion in each team they can ask." }
+      - { part: listen, back: "ask what's working and what worries people. Act on it, and say what you changed." }
+    tip: "**Tip:** managers are the key. If they don't believe in it, their teams won't either. Bring them in first."
+
+  # ---------- 3 to 5. Olivia restarts the rollout ----------
+  - template: step-builder
+    prompt_label: Olivia's rollout plan so far
+    reply_label: What happens
+    steps:
+      - part: explain
+        menu_title: Explain
+        title: "Explain: why, and what it means"
+        content:
+          - Olivia briefs her managers first, then holds open sessions for all staff. Claude helps her draft the key messages, and she rewrites them in her own words.
+          - tip: "**Tip:** don't promise what you can't keep. Say what's decided, and what isn't yet."
+        adds: "\"We're using Claude to cut time on paperwork, so you can spend more time with customers. No roles are being cut because of it this year. If that changes, you'll hear it from me first.\""
+        reply: |
+          Managers ask their questions first, so they can answer their teams. At the staff sessions, the job question comes up, and Olivia answers it directly.
+        note: The rumour starts to fade once people hear it from the top.
+
+      - part: equip
+        menu_title: Equip
+        title: "Equip: skills, time and help"
+        content:
+          - Olivia makes sure people have what they need to learn.
+          - tip: "**Tip:** time to practise is the support people most often go without."
+        adds: "A champion in every team, with extra training and an hour a week to help others. All staff do the Foundations modules, with two hours of work time to practise. Managers share one task a week that Claude helped with."
+        reply: |
+          Uptake doubles in the first month. Champions answer most questions within the team.
+        note: People learn fastest from colleagues doing the same job.
+
+      - part: listen
+        menu_title: Listen
+        title: "Listen: and act on it"
+        content:
+          - Olivia sets up ways to hear what's working and what isn't.
+          - tip: "**Tip:** report back on what you changed. It shows people that speaking up is worth it."
+        adds: "A monthly 15-minute pulse survey and an open question channel. Each month, report back on what changed."
+        reply: |
+          Staff say the shared prompts don't fit claims work. Champions build a claims prompt library with them (A7), and Olivia reports the change at the next staff session.
+        note: Listening only counts if you act on it.
+        success: Three months later, four in five staff use Claude weekly, and the rumour has gone.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your rollout
+    menu_title: Try it
+    intro: Plan your own rollout, or use ours.
+    task: "**Our organisation:** a 300-person engineering firm introducing Claude to all staff."
+    fields:
+      - part: explain
+        label: "Explain: what are your key messages, including about jobs?"
+        placeholder: We're using Claude to cut time on reports and admin, so engineers spend more time on design. No roles are being cut because of it. We'll tell you first if plans change.
+        rows: 3
+      - part: equip
+        label: "Equip: what training, time and support will people get?"
+        placeholder: A champion in each team. Foundations modules for all, with two hours of work time to practise.
+        rows: 2
+      - part: listen
+        label: "Listen: how will you hear concerns, and show you've acted on them?"
+        placeholder: A monthly pulse survey and a question channel. A short report back each month on what we changed.
+        rows: 2
+    result_label: Your rollout plan
+    copy_label: Copy plan
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - My messages are honest about what will and won't change.
+        - Managers are briefed first.
+        - People have training and time to practise.
+        - There's a way to hear concerns, and to report back.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your change card.
+    questions:
+      - question: Why did one email announcing a new AI tool lead to low uptake?
+        options:
+          a: Email is the wrong channel
+          b: People weren't told why, given time to learn, or heard
+          c: The tool was wrong
+        answer: b
+        feedback: A tool isn't a change. People need reasons, skills and a voice.
+
+      - question: "Staff ask, \"Will AI cost us our jobs?\" What's the best response?"
+        options:
+          a: "\"Definitely not, ever.\""
+          b: An honest answer about current plans, including what isn't decided yet
+          c: Avoid the question
+        answer: b
+        feedback: Honesty builds trust. Don't promise what you can't keep.
+
+      - type: match
+        question: Match each action to its part.
+        choice_word: part
+        choices: [Explain, Equip, Listen]
+        lines:
+          - { text: "Tell staff why we're using Claude, and what won't change.", answer: Explain }
+          - { text: "Give every team a champion, and time to practise.", answer: Equip }
+          - { text: "Run a monthly pulse survey, and report back on changes.", answer: Listen }
+        feedback: Explain honestly, equip people to learn, and listen and act.
+
+      - question: Who should be briefed first in a rollout?
+        options:
+          a: Customers
+          b: Managers, so they can lead their teams
+          c: Nobody; brief everyone at once
+        answer: b
+        feedback: Teams take their lead from their managers.
+
+      - question: Feedback shows the shared prompts don't fit one team's work. What next?
+        options:
+          a: Tell them to use the prompts anyway
+          b: Work with that team to adapt them, and say what changed
+          c: Stop the rollout
+        answer: b
+        feedback: Listening only counts if you act on it.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your change card
+    menu_title: Take away
+    intro: You can now lead an AI rollout people actually adopt. Download the card and keep it beside you.
+    table:
+      caption: "Change card: Explain, Equip and Listen"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: explain
+          cells: ["Do people know why, and what it means for them?", "\"Less paperwork, more time with customers. No roles cut this year.\""]
+        - part: equip
+          cells: ["Do people have skills, time and help?", "A champion in every team, and two hours to practise."]
+        - part: listen
+          cells: ["Are we hearing concerns, and acting on them?", "A monthly pulse survey, and a report back on what changed."]
+    job_aid:
+      title: Change card
+      intro: To lead an AI rollout people adopt, use three parts.
+      footer: "**A tool isn't a change.** Be honest, bring managers in first, and act on what you hear."
+    next: "**Next module:** L4 Return on investment, the last module in the course."
