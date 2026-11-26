@@ -74,7 +74,7 @@
       var open = panel.hidden;
       panel.hidden = !open;
       btn.setAttribute('aria-expanded', String(open));
-      btn.textContent = open ? 'Hide the answer' : 'Show the answer';
+      btn.textContent = open ? (btn.dataset.hideLabel || 'Hide the answer') : (btn.dataset.showLabel || 'Show the answer');
     });
   });
 
