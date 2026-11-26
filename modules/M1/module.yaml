@@ -1,0 +1,196 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team and incidents in this module are fictional.
+# No product features to recheck. The module points to each organisation's own AI policy rather than stating rules.
+
+id: M1
+title: Leading a team that uses Claude
+level: Manager
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: agree, label: Agree }
+  - { id: protect, label: Protect }
+  - { id: check, label: Check }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Lena
+    story: |
+      Lena manages a marketing team of nine. In one month:
+
+      - one person pastes a full customer list into Claude to "tidy it up",
+      - another refuses to use it at all, and
+      - a client spots a made-up statistic in a report the team sent.
+
+      Nobody broke a rule, because there weren't any.
+    image:
+      file: assets/lena-agreement.svg
+      alt: A small team around a table, agreeing on one shared page
+    reflection:
+      question: What should Lena have done first?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **People use AI well when they know what's expected.** Sit down with your team and *agree* what Claude is for, *protect* the information that must never go in, and be clear about who *checks* the work before it goes out.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a team agreement
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: agree, back: "decide together which tasks Claude helps with, and which stay fully human, such as performance feedback." }
+      - { part: protect, back: "say what never goes into Claude, such as customer lists, health details or anything your policy rules out (F6)." }
+      - { part: check, back: "say who checks AI-assisted work before it goes out. The person who sends it is responsible for it." }
+    tip: "**Tip:** write the agreement with your team, not for them. People follow rules they helped make."
+
+  # ---------- 3 to 5. Lena writes a team agreement ----------
+  - template: step-builder
+    prompt_label: Lena's team agreement so far
+    reply_label: What happens
+    steps:
+      - part: agree
+        menu_title: Agree
+        title: "Agree: what Claude is for"
+        content:
+          - In a 30-minute team meeting, Lena asks each person how they use Claude now, and where it helps.
+          - tip: "**Tip:** start by asking, not telling. You'll learn what your team already does."
+        adds: "Use Claude for drafts, research starting points, summaries and ideas. Don't use it for performance feedback, or for anything sent to a client unchecked."
+        reply: |
+          The team agrees on the list together. Two people share prompts that already work well for them.
+        note: The team member who refused to use Claude says drafts sound like a safe place to start.
+
+      - part: protect
+        menu_title: Protect
+        title: "Protect: what never goes in"
+        content:
+          - Lena checks the organisation's AI policy, then adds a section.
+          - tip: "**Tip:** \"If you're not sure, ask\" turns a grey area into a quick question."
+        adds: "Never paste customer lists, personal contact details, health information or unreleased financial results. If you're not sure, ask before you paste."
+        reply: |
+          The person who pasted the customer list says they simply hadn't known. Now everyone does.
+        note: Lena follows the policy on what to do about the earlier paste.
+
+      - part: check
+        menu_title: Check
+        title: "Check: who checks, and who owns it"
+        content:
+          - Lena adds the last section, then asks Claude to turn the notes into one page.
+          - tip: "**Tip:** review the agreement every six months, or sooner if the tools or policy change."
+        adds: "Anything for a client gets a second pair of eyes. Every number and fact is checked against a source. If AI helped, you still own it."
+        reply: |
+          **Our team agreement for Claude**
+
+          **We use it for:** drafts, research starting points, summaries and ideas.
+
+          **We never paste:** customer lists, contact details, health information or unreleased results.
+
+          **Before it goes out:** a second pair of eyes for client work. Facts and numbers checked. You own what you send.
+        note: The team reviews the page, changes one line, and agrees it.
+        success: A one-page agreement the whole team helped write, and everyone knows what's expected.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Draft a team agreement
+    menu_title: Try it
+    intro: Draft an agreement for your own team, or use ours. Then talk it through with your team.
+    task: "**Our team:** a six-person HR advisory team."
+    fields:
+      - part: agree
+        label: "Agree: what will your team use Claude for, and what stays fully human?"
+        placeholder: Use Claude for drafting policies, summarising research and planning workshops. Not for decisions about individual staff.
+        rows: 3
+      - part: protect
+        label: "Protect: what must never go into Claude?"
+        placeholder: Never paste staff names with personal details, health or disciplinary information, or salary data.
+        rows: 2
+      - part: check
+        label: "Check: who checks what, before it goes out?"
+        placeholder: Anything sent to managers gets a second pair of eyes. If AI helped, you still own it.
+        rows: 2
+    result_label: Your team agreement
+    copy_label: Copy agreement
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your agreement
+      items:
+        - I'll write it with my team.
+        - It says what Claude is for, and what it isn't.
+        - It matches our AI policy.
+        - It says who checks, and who's accountable.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your team agreement card.
+    questions:
+      - question: What's the best way to set team expectations for Claude?
+        options:
+          a: Send a list of rules by email
+          b: Agree them with the team, and write them down
+          c: Let each person decide for themselves
+        answer: b
+        feedback: People follow rules they helped make.
+
+      - question: A team member pasted a customer list into Claude without knowing it wasn't allowed. What's the best first response?
+        options:
+          a: A formal warning
+          b: Explain the rule, follow your policy on what happens next, and make the rule clear to everyone
+          c: Ignore it
+        answer: b
+        feedback: An unclear rule is a leader's problem to fix. Follow your policy on what to do next (F6).
+
+      - type: match
+        question: Match each line of a team agreement to its part.
+        choice_word: part
+        choices: [Agree, Protect, Check]
+        lines:
+          - { text: "\"Use Claude for drafts and summaries.\"", answer: Agree }
+          - { text: "\"Never paste customer contact details.\"", answer: Protect }
+          - { text: "\"Anything for a client gets a second pair of eyes.\"", answer: Check }
+        feedback: Agree what it's for, protect what never goes in, and check before it goes out.
+
+      - question: A report with an AI error reaches a client. Who's responsible?
+        options:
+          a: Claude
+          b: The person who sent it, with support from the team's checking process
+          c: Nobody
+        answer: b
+        feedback: If AI helped, you still own it.
+
+      - question: One team member refuses to use Claude at all. What's a good response?
+        options:
+          a: Insist they use it every day
+          b: Ask about their concerns, and invite them to try it on a low-risk task
+          c: Leave them out of the team agreement
+        answer: b
+        feedback: Concerns are often fair. Listen, and start small.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your team agreement card
+    menu_title: Take away
+    intro: You can now set clear expectations for how your team uses Claude. Download the card and keep it beside you.
+    table:
+      caption: "Team agreement card: Agree, Protect and Check"
+      columns: [Part, Ask your team, Example]
+      rows:
+        - part: agree
+          cells: ["What's Claude for, and what stays human?", "Drafts, summaries and ideas. Not performance feedback."]
+        - part: protect
+          cells: ["What never goes in?", "No customer lists, health details or unreleased results."]
+        - part: check
+          cells: ["Who checks, and who owns it?", "A second pair of eyes for client work. If AI helped, you still own it."]
+    job_aid:
+      title: Team agreement card
+      intro: To set expectations with your team, agree three things.
+      footer: "**Write it with your team,** keep it to one page, and review it every six months."
+    next: "**Next module:** M2 Redesigning team work, where you'll find where Claude saves your team the most time."

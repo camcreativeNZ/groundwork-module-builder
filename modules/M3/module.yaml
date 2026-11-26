@@ -1,0 +1,188 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team and briefings in this module are fictional.
+# No product features to recheck.
+
+id: M3
+title: Coaching and reviewing
+level: Manager
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: show, label: Show }
+  - { id: ask, label: Ask }
+  - { id: support, label: Support }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Mei
+    story: |
+      Mei manages a policy team of seven. Two things happen in the same week:
+
+      - Ollie's briefing has a statistic that doesn't exist. When Mei asks, he admits he used Claude and didn't check it.
+      - Rosa writes excellent briefings, but hides that she uses Claude, because she's worried it looks like cheating.
+    image:
+      file: assets/mei-review.svg
+      alt: Two people reviewing a document together at a desk
+    reflection:
+      question: What's going wrong in Mei's team?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **People copy what they see and hide what they fear.** *Show* what good use looks like, *ask* how work was made and checked, and *support* people to learn without fear.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of coaching
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: show, back: "share good examples, including your own. Pair people up so they learn from each other." }
+      - { part: ask, back: "in reviews, ask \"How did you make this, and how did you check it?\" Judge the quality and the checking, not whether AI was used." }
+      - { part: support, back: "make it safe to say \"AI helped\". Give extra help to people who are anxious or falling behind." }
+    tip: "**Tip:** say openly how you use Claude yourself. It makes it easier for others to do the same."
+
+  # ---------- 3 to 5. Mei coaches her team ----------
+  - template: step-builder
+    prompt_label: Mei's coaching so far
+    reply_label: What happens
+    steps:
+      - part: show
+        menu_title: Show
+        title: "Show: good use, out in the open"
+        content:
+          - At the next team meeting, Mei shares one of her own prompts, and what she checked in the result.
+          - tip: "**Tip:** a real example from your own work is more convincing than any rule."
+        adds: "Mei shares her prompt and her checks. Rosa shows how she structures her briefings with Claude."
+        reply: |
+          Two team members ask Rosa to pair with them for a week.
+        note: Rosa's skill becomes the team's skill.
+
+      - part: ask
+        menu_title: Ask
+        title: "Ask: how was it made and checked?"
+        content:
+          - Mei changes her review questions for every briefing.
+          - tip: "**Tip:** ask the same questions of everyone, whether or not AI helped."
+        adds: "What sources did you use? How did you check the numbers? Did AI help, and with which parts?"
+        reply: |
+          Ollie's next briefing has every statistic linked to a source.
+        note: The questions make checking part of the job, not a test.
+
+      - part: support
+        menu_title: Support
+        title: "Support: safe to be open"
+        content:
+          - Mei makes the expectation clear, and offers help where it's needed.
+          - tip: "**Tip:** a short checklist often helps more than a long talk."
+        adds: "Using Claude is fine. Sending work you haven't checked isn't."
+        reply: |
+          - Ollie gets a short checklist for facts and numbers (F5).
+          - A team member who's nervous about Claude gets 20 minutes with Mei to try it on a low-risk task.
+        note: Nobody is in trouble for saying AI helped.
+        success: Rosa no longer hides her use, Ollie's work is checked, and the whole team's briefings improve.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your coaching
+    menu_title: Try it
+    intro: Plan how you'll coach your own team, or use ours.
+    task: "**Our team:** five project coordinators."
+    fields:
+      - part: show
+        label: "Show: what example will you share, and who could pair up?"
+        placeholder: My prompt for project status updates, and what I check. Sam could pair with Aroha, who's new.
+        rows: 2
+      - part: ask
+        label: "Ask: what will you ask in your next review?"
+        placeholder: What did you use to make this? How did you check the dates and figures? Did AI help, and where?
+        rows: 2
+      - part: support
+        label: "Support: who needs extra help, and what will you offer?"
+        placeholder: Jo is worried about using Claude. I'll book 20 minutes to try it together on meeting notes.
+        rows: 2
+    result_label: Your coaching plan
+    copy_label: Copy plan
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I'll share an example of my own.
+        - My review questions ask how work was made and checked.
+        - It's safe to say AI helped.
+        - I've planned support for someone who needs it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your coaching card.
+    questions:
+      - question: A team member says Claude helped with their report. How should that change your review?
+        options:
+          a: Mark it down
+          b: Review it on quality, and ask how they checked it
+          c: Mark it up
+        answer: b
+        feedback: Judge the work and the checking, not the tool.
+
+      - question: Which review question is most useful?
+        options:
+          a: "\"Did you use AI?\""
+          b: "\"How did you make this, and how did you check it?\""
+          c: "\"Why did this take so long?\""
+        answer: b
+        feedback: It opens a conversation about quality, not blame.
+
+      - type: match
+        question: Match each action to its part.
+        choice_word: part
+        choices: [Show, Ask, Support]
+        lines:
+          - { text: "Share one of your own prompts at a team meeting.", answer: Show }
+          - { text: "Ask what sources were used, and how numbers were checked.", answer: Ask }
+          - { text: "Book 20 minutes with someone nervous about trying Claude.", answer: Support }
+        feedback: Show good use, ask how work was checked, and support people to learn.
+
+      - question: A briefing includes a statistic that doesn't exist. What's the best response?
+        options:
+          a: Ban Claude for that person
+          b: Have it corrected, then coach them on checking facts and numbers
+          c: Say nothing
+        answer: b
+        feedback: Fix the work, then fix the habit (F5).
+
+      - question: Why might someone hide that they use Claude?
+        options:
+          a: Because AI use is always against policy
+          b: Because they fear it looks like cheating, or will be judged
+          c: Because it's faster
+        answer: b
+        feedback: Make it safe to be open. Hidden use can't be coached or checked.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your coaching card
+    menu_title: Take away
+    intro: You can now coach your team to use Claude well, and review their work fairly. Download the card and keep it beside you.
+    table:
+      caption: "Coaching card: Show, Ask and Support"
+      columns: [Part, Do, Example]
+      rows:
+        - part: show
+          cells: ["Share good examples, including yours", "\"Here's my prompt, and what I checked.\""]
+        - part: ask
+          cells: ["Ask how work was made and checked", "\"What sources did you use? How did you check the numbers?\""]
+        - part: support
+          cells: ["Make it safe, and help those who need it", "\"Using Claude is fine. Sending unchecked work isn't.\""]
+    job_aid:
+      title: Coaching card
+      intro: To coach your team and review their work fairly, use three parts.
+      footer: "**Judge the work and the checking,** not the tool."
+    next: "**Next module:** M4 Measuring the impact, where you'll show what Claude is doing for your team."
