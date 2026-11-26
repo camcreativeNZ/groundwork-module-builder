@@ -1,0 +1,212 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+
+id: F3
+title: Your first prompts
+level: Foundations
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4          # questions needed to pass (4 of 5 = 80%)
+
+# The parts this module teaches. Each gets its own colour and number tag.
+parts:
+  - { id: goal, label: Goal }
+  - { id: context, label: Context }
+  - { id: format, label: Format }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Sam
+    story: |
+      Sam is an operations coordinator. The team is moving to a new office next month, and Sam needs to tell 40 staff what's happening.
+
+      Sam opens Claude and types:
+    prompt:
+      label: Sam's prompt
+      text: Write an email about the office move.
+    image:
+      file: assets/sam-desk.svg
+      alt: A person at a desk reading a long email on screen, looking unsure
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        **Subject: Exciting news about our office move!**
+
+        Dear team, I'm delighted to share that we'll be relocating to our new premises on ==Monday 3 March==. This move reflects ==our continued growth and commitment to creating a modern, collaborative workspace==…
+      note: …and it carries on for another 250 words.
+    reflection:
+      question: Why didn't this work?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude only knows what you tell it.** Sam gave it a topic, but no goal, no facts and no idea what a good email looks like. So Claude guessed. The highlighted parts are made up: the date and the reasons for the move.
+
+        In this module you'll learn three parts that fix this.
+
+  # ---------- 2. Key ideas ----------
+  - template: flip-cards
+    title: The three parts of a clear request
+    menu_title: The three parts
+    intro: A clear request gives Claude three things. Select each card to see what it means.
+    cards:
+      - { part: goal, back: "what you want, and what it's for." }
+      - { part: context, back: "the facts and audience Claude can't know." }
+      - { part: format, back: "what the finished result should look like." }
+    tip: Over the next three screens, you'll help Sam add each part and watch Claude's answer improve.
+
+  # ---------- 3 to 5. Build it up ----------
+  - template: step-builder
+    prompt_label: Sam's prompt so far
+    reply_label: Claude's reply
+    steps:
+      - part: goal
+        menu_title: Goal
+        title: "Goal: say what you want and what it's for"
+        content:
+          - compare:
+              weak: Write an email about the office move.
+              better: Write an email telling staff about our office move, *so they know what to do before moving day.*
+          - tip: "**Tip:** the \"so that\" part tells Claude what matters most."
+        adds: Write an email telling staff about our office move, so they know what to do before moving day.
+        reply: |
+          **Subject: Our office move: what you need to do**
+
+          Hi everyone, we're moving to our new office on ==[date]==. Before moving day, please make sure you've packed your belongings and ==[any other steps]==. The new address is ==[address]==. If you have any questions, please contact ==[name]==…
+        note: "Better: it's focused on what staff must do. But Claude doesn't know the facts, so it leaves gaps."
+
+      - part: context
+        menu_title: Context
+        title: "Context: give the facts and the audience"
+        content:
+          - ticks:
+              - "The facts: moving on **Friday 12 March** to **10 Harbour St**."
+              - "What staff must do: pack their desk by Thursday afternoon."
+              - "Who to contact: **Jo in Facilities**."
+              - "The audience: 40 staff, mostly busy, many reading on their phones."
+          - tip: "**Tip:** if you'd need to explain it to a new colleague, explain it to Claude."
+        adds: We move on Friday 12 March to 10 Harbour St. Staff need to pack their desk by Thursday afternoon. Questions go to Jo in Facilities. It's for 40 busy staff, many reading on their phones.
+        reply: |
+          **Subject: Office relocation to 10 Harbour St on Friday 12 March**
+
+          Dear colleagues, I am writing to inform you that our office will be relocating to 10 Harbour St on Friday 12 March. In preparation for this move, all staff are kindly requested to ensure their desks are fully packed by Thursday afternoon. Should you have any questions or concerns regarding the relocation process, please do not hesitate to contact Jo in Facilities, who will be happy to assist…
+        note: The facts are right now. But it's long and formal, which is hard to read on a phone.
+
+      - part: format
+        menu_title: Format
+        title: "Format: describe the finished result"
+        content:
+          - "Sam adds: **\"Under 150 words, friendly tone, a short checklist of three actions, and a clear subject line.\"**"
+          - tip: "**Tip:** think about length, tone and layout."
+        adds: Under 150 words, friendly tone, a short checklist of three actions, and a clear subject line.
+        reply: |
+          **Subject: We're moving on Friday 12 March: 3 things to do**
+
+          Hi everyone,
+
+          Our new home is 10 Harbour St, and we move on Friday 12 March. Here's what to do:
+
+          1. Pack your desk by Thursday afternoon.
+          2. Label your boxes with your name.
+          3. Take valuables home with you.
+
+          Questions? Ask Jo in Facilities. See you at Harbour St!
+        note: Short, friendly and ready to send. Check that any extra details Claude adds (like step 2 and 3) are right before you send.
+        success: Same request, three short additions, and Sam now has an email ready to send.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Your turn
+    menu_title: Try it
+    intro: Pick a real task from your week, or use ours.
+    task: "**Our task:** your manager wants a short update on a project for a team meeting tomorrow."
+    fields:
+      - part: goal
+        label: "Goal: what do you want, and what is it for?"
+        placeholder: Write a short project update for tomorrow's team meeting, so the team knows…
+        rows: 2
+      - part: context
+        label: "Context: what facts and audience would Claude have to guess?"
+        placeholder: The project is… We've finished… The risk is… The audience is…
+        rows: 3
+      - part: format
+        label: "Format: how long, what tone, what layout?"
+        placeholder: Five bullet points, plain and upbeat…
+        rows: 2
+    result_label: Your prompt
+    checklist:
+      title: Check your result
+      items:
+        - I said what it's for.
+        - I gave the facts Claude needed.
+        - I said how long and in what tone.
+        - I'd send this with only small edits.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your prompt card.
+    questions:
+      - question: "Aroha asks Claude: \"Summarise this report.\" The summary is too long for what she needs. What's missing?"
+        options:
+          a: A goal
+          b: A format, for example "five bullet points for my manager"
+          c: Nothing. Claude just got it wrong.
+        answer: b
+        feedback: Claude didn't know how long the summary should be, or who it was for. Saying the format fixes it.
+
+      - question: Which prompt gives Claude the most useful context?
+        options:
+          a: "\"Write a welcome message.\""
+          b: "\"Write a friendly welcome message.\""
+          c: "\"Write a welcome message for Lena, our new graphic designer, who starts Monday and will sit with the marketing team.\""
+        answer: c
+        feedback: The third prompt gives names, roles and timing that Claude can't guess.
+
+      - question: Mateo gets an answer full of made-up details. What's the best next step?
+        options:
+          a: Add the real facts to the prompt and ask again
+          b: Ask Claude to try harder
+          c: Give up and write it himself
+        answer: a
+        feedback: When Claude has gaps to fill, it guesses. Give it the facts.
+
+      - type: match
+        question: Match each line of this prompt to its part.
+        choice_word: part
+        choices: [Goal, Context, Format]
+        lines:
+          - { text: "\"Draft a thank-you note to our volunteers so they feel valued.\"", answer: Goal }
+          - { text: "\"30 volunteers helped run our community day last Saturday.\"", answer: Context }
+          - { text: "\"Three short paragraphs, warm tone.\"", answer: Format }
+        feedback: The answer is Goal, Context, Format. Each line does one job, and together they give Claude everything it needs.
+
+      - question: "Kenji wants a meeting agenda. His prompt: \"Create an agenda for Thursday's team meeting, so we can agree the budget. Make it one page with times.\" Which part is missing?"
+        options:
+          a: Goal
+          b: "Context: who's coming, what topics, how long"
+          c: Format
+        answer: b
+        feedback: Kenji has a goal and a format, but Claude doesn't know the topics or how long the meeting is.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your prompt card
+    menu_title: Take away
+    intro: You've learned to write a clear request in three parts. Download the card and keep it beside you.
+    table:
+      caption: "Prompt card: Goal, Context and Format"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: goal
+          cells: ["What do I want, and what is it for?", "\"Write an email telling staff about the move, so they know what to do.\""]
+        - part: context
+          cells: ["What facts and audience would Claude have to guess?", "\"Moving Friday 12 March to 10 Harbour St. 40 staff, reading on phones.\""]
+        - part: format
+          cells: ["How long, what tone, what layout?", "\"Under 150 words, friendly, with a three-step checklist.\""]
+    downloads:
+      - { file: assets/prompt-card-A4.pdf, label: "Download prompt card (A4, PDF)" }
+      - { file: assets/prompt-card-Letter.pdf, label: "Download (US Letter, PDF)" }
+    next: "**Next module:** F4 Having a conversation, where you'll learn to improve a result by giving Claude feedback."

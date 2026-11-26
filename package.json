@@ -1,0 +1,26 @@
+{
+  "name": "groundwork-module-builder",
+  "version": "0.1.0",
+  "description": "Turns a Groundwork module file (YAML) into a web module and a SCORM 2004 package.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node bin/groundwork.js build",
+    "check": "node bin/groundwork.js check",
+    "build:f3": "node bin/groundwork.js build modules/F3/module.yaml",
+    "test": "node --test tests/*.test.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.3"
+  },
+  "private": true,
+  "bin": {
+    "groundwork": "bin/groundwork.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
