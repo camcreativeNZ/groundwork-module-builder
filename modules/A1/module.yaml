@@ -1,0 +1,215 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The suppliers and proposals in this module are fictional.
+# Before each release, recheck that Claude can work through longer tasks on its own and show a plan first
+# (checked against Claude's help pages on 27 November 2026). The module doesn't name modes, menus or plans.
+
+id: A1
+title: Delegating multi-step tasks
+level: Advanced
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: brief, label: Brief }
+  - { id: plan, label: Plan }
+  - { id: steer, label: Steer }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Elif
+    story: |
+      Elif is a procurement analyst. She has five supplier proposals and needs a recommendation memo by tomorrow.
+
+      She gives Claude the files, asks it to work on the task on its own, and types:
+    prompt:
+      label: Elif's prompt
+      text: Compare these proposals and write a recommendation.
+    image:
+      file: assets/elif-handover.svg
+      alt: A person handing a folder of documents to a laptop, with a checklist between them
+    reply:
+      label: Claude's memo, an hour later (shortened)
+      text: |
+        **Recommendation:** ==choose Supplier C, the lowest-cost option==, with savings of 18% over three years…
+      note: Polished and confident. But Supplier C has no local support team, and local support was the one thing Elif's manager said was essential.
+    reflection:
+      question: What went wrong, and when?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude did a lot of work in the wrong direction.** For bigger tasks, Claude can work through many steps on its own, but it needs what a colleague would need: a clear *brief*, a *plan* you check before it starts, and the chance for you to *steer* along the way.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of delegating
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: brief, back: "the outcome, the inputs, the criteria that matter, and what \"done\" looks like." }
+      - { part: plan, back: "ask Claude to show its plan first. Fixing a plan takes a minute; fixing finished work takes an hour." }
+      - { part: steer, back: "check in partway, correct the direction, and review the result before you use it." }
+    tip: "**Tip:** brief Claude the way you'd brief a new colleague who's smart but knows nothing about your situation."
+
+  # ---------- 3. A good brief ----------
+  - template: flip-cards
+    title: What goes in a brief
+    menu_title: A good brief
+    intro: A good brief has four parts. Select each card for Elif's version.
+    cards:
+      - { front: Outcome, back: "\"A one-page recommendation memo for my manager.\"" }
+      - { front: Inputs, back: "\"The five proposals attached, and our requirements list.\"" }
+      - { front: Criteria, back: "\"Local support is essential. Then price, then delivery time.\"" }
+      - { front: Done looks like, back: "\"A comparison table, a recommendation, and the main risk of choosing it.\"" }
+    tip: "**Tip:** put your criteria in order. It tells Claude what \"best\" means to you."
+
+  # ---------- 4 to 6. Elif tries again ----------
+  - template: step-builder
+    prompt_label: Elif's prompts so far
+    reply_label: Claude's reply
+    steps:
+      - part: brief
+        menu_title: Brief
+        title: "Brief: what a colleague would need"
+        content:
+          - Elif starts again, with a full brief.
+          - tip: "**Tip:** say what to do when information is missing, so Claude doesn't guess."
+        adds: "Write a one-page recommendation memo for my manager, using the five proposals and our requirements list attached. Local support is essential. Then price, then delivery time. Finish with a comparison table, a recommendation, and the main risk of choosing it. If a proposal doesn't say whether it has local support, flag it rather than guessing."
+        reply: |
+          Understood. I'll start by reading each proposal against your requirements list.
+        note: Claude now knows what "best" means to Elif.
+
+      - part: plan
+        menu_title: Plan
+        title: "Plan: check it before it starts"
+        content:
+          - Elif asks to see the plan first.
+          - tip: "**Tip:** read the plan the way you'd read a colleague's: is anything missing, or in the wrong order?"
+        adds: "Before you start, show me your plan."
+        reply: |
+          1. Read all five proposals
+          2. ==Score every requirement equally==
+          3. Rank the suppliers
+          4. Build the comparison table
+          5. Write the memo
+        note: "Step 2 is wrong. Elif replies: \"Change step 2. Rule out any supplier without local support first, then score the rest.\" Claude updates the plan."
+
+      - part: steer
+        menu_title: Steer
+        title: "Steer: check in along the way"
+        content:
+          - Partway through, Elif checks in.
+          - tip: "**Tip:** when the work is done, check the key facts against the source documents."
+        adds: "Ask me about any proposal that doesn't mention support. I'll check with the supplier."
+        reply: |
+          **Progress so far**
+
+          - Ruled out: Suppliers C and E (no local support)
+          - Flagged: Supplier B doesn't say whether it has local support. Over to you.
+          - Scoring the rest on price, then delivery time.
+        note: When the memo is done, Elif checks the comparison table against two of the proposals.
+        success: The right recommendation, in less time than doing it herself, and Elif knows exactly how it was reached.
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Delegate a bigger task
+    menu_title: Try it
+    intro: Pick a bigger task from your work, or use ours. Don't paste anything your policy doesn't allow.
+    task: "**Our task:** compare three quotes for new office furniture and recommend one."
+    fields:
+      - part: brief
+        label: "Brief: what's the outcome, the inputs, the criteria and what does \"done\" look like?"
+        placeholder: Write a one-page recommendation from the three furniture quotes attached. Comfort and a 5-year warranty matter most, then price. Finish with a comparison table and the main risk.
+        rows: 3
+      - part: plan
+        label: "Plan: ask to see the plan first"
+        placeholder: Before you start, show me your plan.
+        rows: 1
+      - part: steer
+        label: "Steer: when should Claude check in with you?"
+        placeholder: If a quote doesn't mention the warranty, stop and ask me.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - My brief names the outcome, inputs, criteria and finish line.
+        - I asked for the plan first.
+        - I fixed the plan before the work started.
+        - I checked the result before using it.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your delegation card.
+    questions:
+      - question: "What's the most important thing to add to \"Compare these proposals\"?"
+        options:
+          a: "\"Please be thorough.\""
+          b: The criteria that matter most, in order
+          c: A deadline for Claude
+        answer: b
+        feedback: "Criteria tell Claude what \"best\" means to you."
+
+      - question: Why ask Claude to show its plan first?
+        options:
+          a: It makes Claude work faster
+          b: It's quicker to fix a plan than to fix finished work
+          c: Claude won't start without one
+        answer: b
+        feedback: A minute on the plan can save an hour of work in the wrong direction.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Brief, Plan, Steer]
+        lines:
+          - { text: "\"The outcome is a one-page memo for my manager.\"", answer: Brief }
+          - { text: "\"Show me your steps before you start.\"", answer: Plan }
+          - { text: "\"Stop there. Ask me about the proposal with no support details.\"", answer: Steer }
+        feedback: Brief it well, check the plan, then steer along the way.
+
+      - question: Claude's plan scores every requirement equally, but one is essential. What do you do?
+        options:
+          a: Let it run, and fix the memo later
+          b: Correct the plan before it starts
+          c: Start a new task
+        answer: b
+        feedback: Fix the direction before the work, not after.
+
+      - question: The finished memo looks polished and confident. What next?
+        options:
+          a: Send it to your manager
+          b: Check the key facts against the source documents
+          c: Ask Claude if it's sure
+        answer: b
+        feedback: Confident isn't the same as correct (F5). Check what matters before you use it.
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your delegation card
+    menu_title: Take away
+    intro: You can now hand Claude a bigger task, and keep it on track. Download the card and keep it beside you.
+    table:
+      caption: "Delegation card: Brief, Plan and Steer"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: brief
+          cells: ["Would a new colleague know what to do?", "\"A one-page memo. Local support is essential. Then price, then delivery.\""]
+        - part: plan
+          cells: ["Is the approach right before it starts?", "\"Before you start, show me your plan.\""]
+        - part: steer
+          cells: ["Is it still on track, and is the result right?", "\"Ask me about any proposal that doesn't mention support.\""]
+    job_aid:
+      title: Delegation card
+      intro: To hand Claude a bigger task, use three parts.
+      footer: "**Fixing a plan takes a minute.** Fixing finished work takes an hour."
+    next: "**Next module:** A2 Agents in everyday work, where you'll let Claude act on files and apps, safely."
