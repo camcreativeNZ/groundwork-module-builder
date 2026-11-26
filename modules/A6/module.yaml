@@ -1,0 +1,202 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The contract, supplier and clauses in this module are fictional.
+# Before each release, recheck that Claude can read long PDFs and documents, and that very long documents may
+# need splitting (checked against Claude's help pages on 27 November 2026). The module doesn't name size limits.
+
+id: A6
+title: Long and complex documents
+level: Advanced
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: map, label: Map }
+  - { id: quote, label: Quote }
+  - { id: compare, label: Compare }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Kofi
+    story: |
+      Kofi is a contracts officer. A supplier has sent the new version of a 60-page contract.
+
+      Kofi uploads it and asks:
+    prompt:
+      label: Kofi's prompt
+      text: Is there anything I should worry about in this contract?
+    image:
+      file: assets/kofi-contracts.svg
+      alt: A person comparing two thick documents, with one page marked by a tab
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        The contract covers supply, pricing, delivery and support. ==The main terms look standard==, with prices fixed for 12 months…
+      note: "It doesn't mention the new clause on page 47: the contract now renews automatically for three years unless cancelled six months ahead."
+    reflection:
+      question: Why did Claude miss it, and how would Kofi know?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **A broad question about a long document gets a broad answer, with no way to check it.** Get the *map* of the document first, ask for answers that *quote* the exact section, and *compare* versions side by side.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of reading long documents
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: map, back: "ask for the document's structure first: its sections, what each covers, and where the key terms are." }
+      - { part: quote, back: "ask specific questions, and ask for the section number and the exact words for each answer." }
+      - { part: compare, back: "for two documents or versions, ask for a table of differences, then check the ones that matter." }
+    tip: "**Tip:** contracts and reports are often confidential. Check your AI policy before you upload them (F6)."
+
+  # ---------- 3 to 5. Kofi tries again ----------
+  - template: step-builder
+    prompt_label: Kofi's prompts so far
+    reply_label: Claude's reply
+    steps:
+      - part: map
+        menu_title: Map
+        title: "Map: the structure first"
+        content:
+          - Kofi starts a new chat, with both versions of the contract.
+          - tip: "**Tip:** the map shows you where to look, and what to ask next."
+        adds: List the sections of the new contract, with one line on what each covers.
+        reply: |
+          - **Sections 1 to 3:** definitions, supply of goods, pricing and payment
+          - **Sections 4 to 8:** delivery, support, warranties, data and insurance
+          - **Section 9: Term and renewal:** how long the contract runs, and how it renews
+          - **Sections 10 to 14:** liability, termination and general terms
+        note: "Kofi spots a section he doesn't remember: Section 9, Term and renewal."
+
+      - part: quote
+        menu_title: Quote
+        title: "Quote: exact words, with clause numbers"
+        content:
+          - Kofi asks a specific question about Section 9.
+          - tip: "**Tip:** a quote with a clause number takes seconds to check."
+        adds: What does Section 9 say about renewal and cancellation? Quote the exact words, with clause numbers.
+        reply: |
+          **Clause 9.2:** "This Agreement will renew automatically for a further term of three (3) years unless either party gives written notice of cancellation at least six (6) months before the end of the current term."
+        note: Kofi finds clause 9.2 on page 47. The quote matches.
+
+      - part: compare
+        menu_title: Compare
+        title: "Compare: a table of differences"
+        content:
+          - Kofi asks for every change that matters to him.
+          - tip: "**Tip:** name the topics you care about, and ask Claude to say if anything is unclear."
+        adds: "Compare the old and new contracts. Make a table of every change to price, term, renewal, liability and termination, with clause numbers. Say if anything is unclear."
+        reply: |
+          - **Price (3.1):** fixed for 12 months, was 24
+          - **Renewal (9.2):** automatic for three years, was a new agreement each time
+          - **Liability (11.4):** cap lowered
+          - **Termination (12.1):** notice period now six months, was three
+          - **Unclear:** clause 11.6 refers to a schedule that isn't attached
+        note: Kofi checks each quote against the contract.
+        success: Kofi finds the clause in ten minutes, and takes it to the legal team with the exact wording.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Work through a long document
+    menu_title: Try it
+    intro: Use a long document from your work that your policy allows, or use ours.
+    task: "**Our task:** compare last year's and this year's annual reports from a public organisation."
+    fields:
+      - part: map
+        label: "Map: ask for the structure first"
+        placeholder: List the sections of this year's report, with one line on what each covers.
+        rows: 2
+      - part: quote
+        label: "Quote: ask a specific question, with section numbers and exact words"
+        placeholder: What does the report say about staff numbers? Quote the exact words, with page numbers.
+        rows: 2
+      - part: compare
+        label: "Compare: what should the table of differences cover?"
+        placeholder: Compare the two reports. Make a table of changes to income, spending, staff numbers and targets, with page numbers. Say if anything is unclear.
+        rows: 3
+    result_label: Your prompts
+    copy_label: Copy prompts
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I asked for the structure first.
+        - My answers have section numbers and quotes.
+        - I checked the quotes against the document.
+        - I took anything important to the right person.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your long documents card.
+    questions:
+      - question: What's a good first question for a 60-page contract?
+        options:
+          a: "\"Is this a good contract?\""
+          b: "\"List the sections, with one line on what each covers.\""
+          c: "\"Summarise it in one sentence.\""
+        answer: b
+        feedback: The map shows you where to look, and what to ask next.
+
+      - question: Why ask for the exact words and section number?
+        options:
+          a: It makes the answer longer
+          b: So you can check the answer against the document
+          c: Claude needs it to answer
+        answer: b
+        feedback: A quote with a section number takes seconds to check (F5).
+
+      - type: match
+        question: Match each request to its part.
+        choice_word: part
+        choices: [Map, Quote, Compare]
+        lines:
+          - { text: "\"List the sections and what each covers.\"", answer: Map }
+          - { text: "\"What does clause 9.2 say? Quote it.\"", answer: Quote }
+          - { text: "\"Make a table of every change between the two versions.\"", answer: Compare }
+        feedback: Get the map, ask for quotes, then compare side by side.
+
+      - question: Claude's comparison says the liability clause hasn't changed. It matters a lot to you. What do you do?
+        options:
+          a: Trust it, because it compared them
+          b: Read that clause in both versions yourself
+          c: Ask Claude again
+        answer: b
+        feedback: Check the parts that matter most yourself, even when Claude says nothing changed.
+
+      - question: You find a worrying clause in a supplier contract. What next?
+        options:
+          a: Ask Claude for legal advice and act on it
+          b: Take the exact wording to your legal team or adviser
+          c: Sign it, because Claude found it
+        answer: b
+        feedback: Claude helps you find and understand it. Decisions with legal effect need the right expert.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your long documents card
+    menu_title: Take away
+    intro: You can now work through long documents with Claude, and check what matters. Download the card and keep it beside you.
+    table:
+      caption: "Long documents card: Map, Quote and Compare"
+      columns: [Part, Ask, Example]
+      rows:
+        - part: map
+          cells: ["For the structure first", "\"List the sections, with one line on what each covers.\""]
+        - part: quote
+          cells: ["For exact words and section numbers", "\"What does Section 9 say about renewal? Quote it.\""]
+        - part: compare
+          cells: ["For a table of differences", "\"Make a table of every change to price, term and renewal.\""]
+    job_aid:
+      title: Long documents card
+      intro: To work through a long document with Claude, use three parts.
+      footer: "**Check the quotes that matter against the document,** and take legal questions to an expert."
+    next: "**Next module:** A7 Building a prompt library, where you'll make prompts colleagues can reuse."
