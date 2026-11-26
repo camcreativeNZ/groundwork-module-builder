@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 200">
+  <path d="M70 20 V160 H420" class="ill-axis"/>
+  <text x="60" y="164" text-anchor="end" class="ill-label">0</text>
+  <text x="60" y="34" text-anchor="end" class="ill-label">32</text>
+  <rect x="110" y="30" width="90" height="130" rx="3" class="ill-p1"/>
+  <rect x="270" y="111" width="90" height="49" rx="3" class="ill-p3"/>
+  <text x="155" y="22" text-anchor="middle" class="ill-label">32 hours</text>
+  <text x="315" y="103" text-anchor="middle" class="ill-label">12 hours</text>
+  <text x="155" y="182" text-anchor="middle" class="ill-label">Before</text>
+  <text x="315" y="182" text-anchor="middle" class="ill-label">Pilot</text>
+</svg>

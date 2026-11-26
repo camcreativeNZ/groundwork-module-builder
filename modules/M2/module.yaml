@@ -1,0 +1,198 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team, tasks and hours in this module are fictional.
+# No product features to recheck.
+
+id: M2
+title: Redesigning team work
+level: Manager
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: list, label: List }
+  - { id: score, label: Score }
+  - { id: pilot, label: Pilot }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Ibrahim
+    story: |
+      Ibrahim manages a finance team of twelve. His team uses Claude, but mostly for one-off emails.
+
+      Meanwhile, they spend two days at the end of every month writing the same variance commentary by hand. Nobody has stepped back to ask where Claude could help most.
+    image:
+      file: assets/ibrahim-whiteboard.svg
+      alt: A person at a whiteboard with a list of tasks, one of them circled
+    reflection:
+      question: How could Ibrahim find the best place to start?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **The biggest gains usually come from redesigning a recurring task, not from scattered one-off use.** *List* the team's recurring work, *score* each task, and *pilot* the best one before changing everything.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of redesigning work
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: list, back: "write down the team's recurring tasks, and roughly how many hours each takes a month." }
+      - { part: score, back: "rate each task on time, how repetitive it is, and the risk if something goes wrong." }
+      - { part: pilot, back: "try Claude on the best candidate for a few weeks. Measure before and after, then decide." }
+    tip: "**Tip:** the best first task is big, repetitive and low risk. Save the high-risk work for later."
+
+  # ---------- 3 to 5. Ibrahim finds the best start ----------
+  - template: step-builder
+    prompt_label: Ibrahim's requests so far
+    reply_label: The result
+    steps:
+      - part: list
+        menu_title: List
+        title: "List: what does the team do every month?"
+        content:
+          - In a team meeting, everyone lists their recurring tasks and rough hours. Ibrahim pastes the list into Claude.
+          - tip: "**Tip:** ask the team. They know where the time goes."
+        adds: Group these tasks, and total the hours for each a month.
+        reply: |
+          1. Variance commentary: 32 hours
+          2. Month-end reconciliations: 24 hours
+          3. Supplier queries: 20 hours
+          4. Board pack formatting: 10 hours
+        note: Four tasks take 86 hours a month between them.
+
+      - part: score
+        menu_title: Score
+        title: "Score: big, repetitive and low risk"
+        content:
+          - Ibrahim asks Claude to score each task.
+          - tip: "**Tip:** risk means what it costs if something goes wrong, after a person has checked it."
+        adds: Score each task from 1 to 3 on time, repetition and risk if it goes wrong.
+        reply: |
+          - **Variance commentary:** time 3, repetition 3, risk 2 (a person reviews it)
+          - **Reconciliations:** time 3, repetition 3, risk 3
+          - **Supplier queries:** time 2, repetition 2, risk 1
+          - **Board pack formatting:** time 1, repetition 3, risk 1
+        note: Variance commentary is the best first pilot. Reconciliations are too risky to start with, so they stay as they are for now.
+
+      - part: pilot
+        menu_title: Pilot
+        title: "Pilot: try it, and measure it"
+        content:
+          - Ibrahim runs a four-week pilot. Claude drafts the commentary from the figures, and an analyst checks and edits every line.
+          - tip: "**Tip:** measure quality as well as time, such as the number of corrections in review."
+        adds: "Pilot for four weeks. Measure hours spent and review corrections, before and after."
+        image:
+          file: assets/ibrahim-pilot.svg
+          alt: "Bar chart. Hours spent on variance commentary: 32 before the pilot, 12 during it. Review corrections stayed the same."
+        reply: |
+          **Before:** 32 hours a month, 9 review corrections.
+
+          **During the pilot:** 12 hours a month, 9 review corrections.
+        note: Faster, with no drop in quality.
+        success: Ibrahim has evidence, and the team agrees to keep the new way and pick the next task.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Find your best start
+    menu_title: Try it
+    intro: Use your own team's work, or ours.
+    task: "**Our team:** a customer support team of eight."
+    fields:
+      - part: list
+        label: "List: what are your team's recurring tasks, with rough hours?"
+        placeholder: "Here are our recurring tasks and rough hours a month: answering common questions (60), weekly reports (12), updating help articles (16), escalation summaries (10)."
+        rows: 3
+      - part: score
+        label: "Score: what should Claude score each task on?"
+        placeholder: Score each task from 1 to 3 on time, repetition and risk if it goes wrong. Show the best first pilot.
+        rows: 2
+      - part: pilot
+        label: "Pilot: which task, for how long, and how will you measure it? (Not part of the prompt.)"
+        placeholder: Help articles, for four weeks. Hours spent and corrections in review, before and after.
+        rows: 2
+        in_prompt: false
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I listed recurring tasks with hours.
+        - I scored time, repetition and risk.
+        - My pilot has a before-and-after measure.
+        - A person still checks the work.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your team redesign card.
+    questions:
+      - question: Where do the biggest time savings usually come from?
+        options:
+          a: Scattered one-off use
+          b: Redesigning a big, recurring task
+          c: Using Claude for everything at once
+        answer: b
+        feedback: Recurring work multiplies the savings.
+
+      - question: Which task is the best first pilot?
+        options:
+          a: Approving payments, which is rare and high risk
+          b: Drafting a monthly report, which is big, repetitive and checked by a person
+          c: A one-off strategy paper
+        answer: b
+        feedback: Start big, repetitive and low risk.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [List, Score, Pilot]
+        lines:
+          - { text: "Write down every recurring task and its hours.", answer: List }
+          - { text: "Rate each task on time, repetition and risk.", answer: Score }
+          - { text: "Try it for four weeks, and compare the hours.", answer: Pilot }
+        feedback: List the work, score it, then pilot the best candidate.
+
+      - question: Why measure before you start a pilot?
+        options:
+          a: It's a legal requirement
+          b: Without a before, you can't show what changed
+          c: To slow the pilot down
+        answer: b
+        feedback: "A baseline turns \"it feels faster\" into evidence (M4)."
+
+      - question: The pilot saves time, but review corrections double. What next?
+        options:
+          a: Roll it out anyway
+          b: Fix the instructions or checks, and pilot again
+          c: Stop using Claude
+        answer: b
+        feedback: Time saved doesn't count if quality drops. Fix it first.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your team redesign card
+    menu_title: Take away
+    intro: You can now find where Claude saves your team the most time, and test it properly. Download the card and keep it beside you.
+    table:
+      caption: "Team redesign card: List, Score and Pilot"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: list
+          cells: ["What does the team do every month, and how long does it take?", "Variance commentary: 32 hours a month."]
+        - part: score
+          cells: ["Is it big, repetitive and low risk?", "High on time and repetition, medium risk with a review."]
+        - part: pilot
+          cells: ["What changed, before and after?", "32 hours down to 12, same number of corrections."]
+    job_aid:
+      title: Team redesign card
+      intro: To find where Claude saves your team the most time, use three parts.
+      footer: "**Start with one task.** Measure before and after, and keep a person checking."
+    next: "**Next module:** M3 Coaching and reviewing, where you'll help your team use Claude well."

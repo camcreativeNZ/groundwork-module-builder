@@ -1,0 +1,193 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team and figures in this module are fictional.
+# No product features to recheck.
+
+id: M4
+title: Measuring the impact
+level: Manager
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: baseline, label: Baseline }
+  - { id: track, label: Track }
+  - { id: report, label: Report }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Carlos
+    story: |
+      Carlos manages a sales operations team of ten. After three months with Claude, his director asks: "Is it worth it?"
+
+      Carlos says: "Everyone loves it. It saves loads of time." The director asks how much time, and whether quality has changed. Carlos doesn't know.
+    image:
+      file: assets/carlos-chart.svg
+      alt: A before-and-after bar chart on a screen, with the after bar lower
+    reflection:
+      question: What would have helped Carlos answer?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **"Everyone loves it" isn't evidence.** Set a *baseline* before you start, *track* a few simple measures, and *report* what you found, good and bad.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three measures ----------
+  - template: flip-cards
+    title: Three things to measure
+    menu_title: Three measures
+    intro: Select each card to see what it tells you.
+    cards:
+      - { front: Time, back: "hours spent on a task, before and after. Use real timings where you can, not just estimates." }
+      - { front: Quality, back: "errors found in review, rework, or customer feedback. Time saved doesn't count if quality drops." }
+      - { front: Uptake, back: "how many people use it, and for which tasks. Low uptake often points to a training or trust gap." }
+    tip: "**Tip:** three simple measures you actually collect beat ten you don't."
+
+  # ---------- 3 to 5. Carlos measures properly ----------
+  - template: step-builder
+    prompt_label: Carlos's plan so far
+    reply_label: What he finds
+    steps:
+      - part: baseline
+        menu_title: Baseline
+        title: "Baseline: measure before"
+        content:
+          - Carlos picks two tasks his team now does with Claude, and measures them the old way first.
+          - tip: "**Tip:** two weeks of real timings is enough for a baseline."
+        adds: "For two weeks, time the weekly pipeline report and customer quote letters the old way. Count the corrections each needs in review."
+        reply: |
+          - **Pipeline report:** 6 hours a week, 4 corrections
+          - **Quote letters:** 5 hours a week, 3 corrections
+        note: Now Carlos has a before.
+
+      - part: track
+        menu_title: Track
+        title: "Track: time, quality and uptake"
+        content:
+          - For the next six weeks, the team logs the same measures with Claude.
+          - tip: "**Tip:** keep the log simple, or people stop filling it in."
+        adds: "Log time and review corrections for the same tasks with Claude. Each month, ask: \"Which tasks did you use Claude for this month?\""
+        reply: |
+          - **Pipeline report:** 2 hours a week, 4 corrections
+          - **Quote letters:** 3 hours a week, 6 corrections
+          - **Uptake:** 7 of 10 people use Claude every week
+        note: One task is clearly better. The other is faster, but needs more fixing.
+
+      - part: report
+        menu_title: Report
+        title: "Report: the good and the bad"
+        content:
+          - Carlos asks Claude to draft a one-page report from his log, then checks every number.
+          - tip: "**Tip:** \"Don't overstate anything\" keeps the report honest."
+        adds: "Summarise these results for my director in one page: what changed, what didn't, and what we'll do next. Don't overstate anything."
+        reply: |
+          - **Pipeline report:** 6 hours down to 2 a week, with the same number of corrections.
+          - **Quote letters:** faster, but corrections went up. We're fixing the template, then measuring again.
+          - **Uptake:** three of ten people rarely use Claude. We're pairing them with confident users (M3).
+        note: Carlos checks every number against his log before he sends it.
+        success: The director gets a clear, honest answer, and approves the next step.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your measures
+    menu_title: Try it
+    intro: Plan how you'll measure your own team's use, or use ours.
+    task: "**Our team:** an events team of six that uses Claude for supplier emails and run sheets."
+    fields:
+      - part: baseline
+        label: "Baseline: which tasks, and how will you measure them before? (Not part of the prompt.)"
+        placeholder: Supplier emails and run sheets. Two weeks of timings and corrections, the old way.
+        rows: 2
+        in_prompt: false
+      - part: track
+        label: "Track: which measures for time, quality and uptake? (Not part of the prompt.)"
+        placeholder: Hours a week, corrections in review, and who used Claude each month.
+        rows: 2
+        in_prompt: false
+      - part: report
+        label: "Report: what should Claude include when it drafts your report?"
+        placeholder: "Summarise these results for my manager in one page: what changed, what didn't, and what we'll do next. Don't overstate anything."
+        rows: 3
+    result_label: Your report prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I set a baseline first.
+        - I track time, quality and uptake.
+        - I'll report what didn't work too.
+        - I'll check every number before I send it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your measuring card.
+    questions:
+      - question: Your director asks if Claude is worth it. Which answer is most useful?
+        options:
+          a: "\"Everyone loves it.\""
+          b: "\"Pipeline reports went from 6 hours to 2 a week, with the same number of corrections.\""
+          c: "\"It's the future.\""
+        answer: b
+        feedback: Specific, measured results answer the question.
+
+      - question: Why set a baseline before you start?
+        options:
+          a: It's a legal requirement
+          b: So you can show what changed
+          c: To slow things down
+        answer: b
+        feedback: Without a before, there's no after.
+
+      - type: match
+        question: Match each figure to the measure it shows.
+        choice_word: measure
+        choices: [Time, Quality, Uptake]
+        lines:
+          - { text: "Hours spent on the weekly report", answer: Time }
+          - { text: "Corrections needed in review", answer: Quality }
+          - { text: "How many people used Claude this month", answer: Uptake }
+        feedback: Measure time, quality and uptake together, so one doesn't hide the others.
+
+      - question: Time on a task has halved, but review corrections have doubled. What do you report?
+        options:
+          a: Only the time saved
+          b: Both, and what you're doing to fix quality
+          c: Nothing until it's fixed
+        answer: b
+        feedback: An honest report includes what didn't work. It builds trust.
+
+      - question: Three of ten people rarely use Claude. What's a sensible next step?
+        options:
+          a: Report them to HR
+          b: Find out why, and offer coaching or pairing
+          c: Ignore it
+        answer: b
+        feedback: Low uptake usually points to a training or trust gap (M3).
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your measuring card
+    menu_title: Take away
+    intro: You can now measure what Claude is doing for your team, and report it honestly. Download the card and keep it beside you.
+    table:
+      caption: "Measuring card: Baseline, Track and Report"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: baseline
+          cells: ["How long does it take now, and how good is it?", "Two weeks of timings and review corrections."]
+        - part: track
+          cells: ["What's changed in time, quality and uptake?", "Hours, corrections, and who's using it."]
+        - part: report
+          cells: ["What worked, what didn't, and what's next?", "One honest page, every number checked."]
+    job_aid:
+      title: Measuring card
+      intro: To show what Claude is doing for your team, use three parts.
+      footer: "**\"Everyone loves it\" isn't evidence.** Measure time, quality and uptake, and report the bad with the good."
+    next: "**You've finished the manager strand.** The leader strand starts with L1 AI strategy."
