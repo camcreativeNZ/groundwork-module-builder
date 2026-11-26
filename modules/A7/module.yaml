@@ -1,0 +1,195 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The organisation and prompts in this module are fictional.
+# No product features to recheck: the module doesn't depend on where the library is kept.
+
+id: A7
+title: Building a prompt library
+level: Advanced
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: collect, label: Collect }
+  - { id: shape, label: Shape }
+  - { id: share, label: Share }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Yuki
+    story: |
+      Yuki is a learning and development adviser. Colleagues keep asking for "that prompt you used".
+
+      She has dozens, spread across old chats, notes and emails. Some work well. Some she's never tested since she first wrote them. One still has a client's name in it.
+    image:
+      file: assets/yuki-library.svg
+      alt: A person placing labelled cards on a bookshelf
+    reflection:
+      question: What would make Yuki's prompts useful to everyone?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **A prompt library is a small, shared collection of tested prompts.** *Collect* the ones that work, *shape* each one so anyone can use it, and *share* it where people will find it.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a prompt library
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: collect, back: "gather prompts that worked more than once. Test each one on two or three real cases before it goes in." }
+      - { part: shape, back: "give each prompt a clear name, what it's for, [placeholders] for what changes, an example result, and the date it was last tested." }
+      - { part: share, back: "put the library somewhere your team already looks. Name an owner, and remove prompts that stop working." }
+    tip: "**Tip:** ten tested prompts are worth more than a hundred untested ones."
+
+  # ---------- 3 to 5. Yuki builds a library ----------
+  - template: step-builder
+    prompt_label: Yuki's library so far
+    reply_label: The result
+    steps:
+      - part: collect
+        menu_title: Collect
+        title: "Collect: only what's tested"
+        content:
+          - Yuki picks the eight prompts colleagues ask for most, and tests each on three real cases.
+          - tip: "**Tip:** take out names and confidential details before anything is shared (F6)."
+        adds: "Tested: 8 prompts, 3 real cases each. In: 6. Left out for now: 2 that gave uneven results. Removed: one client's name."
+        reply: |
+          Six prompts that work every time, and nothing in them that shouldn't be shared.
+        note: The two uneven prompts can come back once they're fixed.
+
+      - part: shape
+        menu_title: Shape
+        title: "Shape: easy for a colleague to use"
+        content:
+          - Yuki asks Claude to turn each prompt into a library entry.
+          - tip: "**Tip:** \"When not to use it\" saves colleagues from the wrong prompt."
+        adds: "Rewrite this prompt for a shared library. Add a one-line purpose, [placeholders] for what changes, and a short note on when not to use it."
+        reply: |
+          **Workshop outline**
+
+          **For:** planning a half-day workshop.
+
+          **Prompt:** "Draft an outline for a [length] workshop on [topic] for [audience]. Include timings, one activity per hour, and a closing check for learning."
+
+          **Not for:** online courses or conferences.
+
+          **Last tested:** November 2026
+        note: Yuki adds an example result under each entry.
+
+      - part: share
+        menu_title: Share
+        title: "Share: where people look"
+        content:
+          - Yuki puts the library where her team already keeps its templates.
+          - tip: "**Tip:** name an owner, so colleagues know who to tell about a better version."
+        adds: "At the top of the library: \"Found a better version? Tell Yuki.\" Every three months: retest each prompt, and fix or remove any that no longer work."
+        reply: |
+          In the first month, two colleagues suggest better versions. Yuki tests them and updates the library.
+        note: The library gets better because people use it.
+        success: Colleagues stop asking for prompts, and they all start from versions that work.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Write a library entry
+    menu_title: Try it
+    intro: Turn one of your own prompts into a library entry, or use ours.
+    task: "**Our prompt:** one that turns meeting notes into a summary for people who weren't there."
+    fields:
+      - part: collect
+        label: "Collect: which prompt, and which real cases did you test it on? (Not part of the entry.)"
+        placeholder: My meeting summary prompt. Tested on three team meetings last month.
+        rows: 2
+        in_prompt: false
+      - part: shape
+        label: "Shape: name, purpose and the prompt, with [placeholders]"
+        placeholder: "Meeting summary. For: people who missed a meeting. Prompt: \"Summarise these notes for [audience]. Decisions first, then actions with owners. Use only what's in my notes: [notes]\""
+        rows: 3
+      - part: share
+        label: "Share: when not to use it, the owner, and when it was last tested"
+        placeholder: "Not for: board minutes. Owner: Yuki. Last tested: November 2026."
+        rows: 2
+    result_label: Your library entry
+    copy_label: Copy entry
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your entry
+      items:
+        - I tested it on two or three real cases.
+        - It has a clear name and purpose.
+        - It has placeholders, and no personal details.
+        - I noted when I last tested it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your prompt library card.
+    questions:
+      - question: Which prompt belongs in a shared library?
+        options:
+          a: One you wrote yesterday and used once
+          b: One you've tested on several real cases
+          c: Every prompt you've ever written
+        answer: b
+        feedback: Only tested prompts go in. Untested ones waste everyone's time.
+
+      - question: What makes a library entry easy for a colleague to use?
+        options:
+          a: A long story about how you wrote it
+          b: A clear name, purpose, placeholders and an example result
+          c: Your initials
+        answer: b
+        feedback: A colleague should understand it in a few seconds.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [Collect, Shape, Share]
+        lines:
+          - { text: "Test it on three real cases before it goes in.", answer: Collect }
+          - { text: "Add a purpose, placeholders and an example.", answer: Shape }
+          - { text: "Put it where the team keeps its templates.", answer: Share }
+        feedback: Collect what works, shape it for others, and share it where people look.
+
+      - question: A prompt you're adding includes a client's name and phone number. What do you do?
+        options:
+          a: Leave it, because it's a good example
+          b: Replace them with placeholders before you share it
+          c: Make the library private
+        answer: b
+        feedback: A shared library shouldn't contain personal or confidential details (F6).
+
+      - question: A prompt in the library has started giving poor results. What should happen?
+        options:
+          a: Leave it; someone might still use it
+          b: The owner retests it, then fixes or removes it
+          c: Everyone makes their own fix
+        answer: b
+        feedback: A library is only as good as its weakest entry. Keep it current.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your prompt library card
+    menu_title: Take away
+    intro: You can now build a prompt library colleagues can trust. Download the card and keep it beside you.
+    table:
+      caption: "Prompt library card: Collect, Shape and Share"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: collect
+          cells: ["Has it worked on real cases?", "Tested on three workshops before it went in."]
+        - part: shape
+          cells: ["Could a colleague use it in a minute?", "Name, purpose, [placeholders], example, last tested date."]
+        - part: share
+          cells: ["Will people find it, and is it current?", "In the team's template space, retested every three months."]
+    job_aid:
+      title: Prompt library card
+      intro: To build a prompt library colleagues can trust, use three parts.
+      footer: "**Ten tested prompts beat a hundred untested ones.** No personal details in shared prompts."
+    next: "**Next module:** A8 Your personal AI system, where you'll bring projects, skills and tools together."

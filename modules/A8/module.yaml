@@ -1,0 +1,194 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The adviser and policy work in this module are fictional.
+# Before each release, recheck projects, skills, connectors and scheduled tasks, as for P2, P7, P8 and A3
+# (checked against Claude's help pages on 27 November 2026). The module doesn't name menus or plans.
+
+id: A8
+title: Your personal AI system
+level: Advanced
+version: 1
+minutes: 18
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: audit, label: Audit }
+  - { id: assemble, label: Assemble }
+  - { id: review, label: Review }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Amara
+    story: |
+      Amara is a senior policy adviser. She's done the training and set up a lot: seven projects, five skills, three connectors and two scheduled tasks.
+
+      But she can't remember what half of them do. One project has an old version of the policy in it, and a connector still reaches a folder from a project that ended in March.
+    image:
+      file: assets/amara-system.svg
+      alt: "A person at a desk with four connected tiles: a folder, a card, a plug and a calendar"
+    reflection:
+      question: What's missing from Amara's setup?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Tools work best as a system that fits your week.** *Audit* where Claude really helps, *assemble* the right tool for each need, and *review* it regularly so it stays useful and safe.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Four building blocks ----------
+  - template: flip-cards
+    title: Four building blocks
+    menu_title: Building blocks
+    intro: You've met all four in earlier modules. Select each card for a reminder.
+    cards:
+      - { front: Project, back: "background and files for ongoing work, used in every chat in that project (P2)." }
+      - { front: Skill, back: "steps for a task you repeat, which Claude uses whenever your request matches (P8)." }
+      - { front: Connector, back: "a link to your email, calendar or files, so Claude can look there (P7)." }
+      - { front: Scheduled task, back: "routine work that runs on a schedule, with the result waiting for you (A3)." }
+    tip: "**Tip:** you don't need all four. Use the smallest setup that does the job."
+
+  # ---------- 3 to 5. Amara rebuilds her setup ----------
+  - template: step-builder
+    prompt_label: Amara's work so far
+    reply_label: The result
+    steps:
+      - part: audit
+        menu_title: Audit
+        title: "Audit: start from your week"
+        content:
+          - Amara lists her regular work for one week, and marks where Claude helped.
+          - tip: "**Tip:** start from your week, not from the tools."
+        adds: "Here's my week. Which tasks would benefit most from a project, a skill, a connector or a scheduled task? Which should stay with me?"
+        reply: |
+          - **Project:** your main policy area, with the current policy and background
+          - **Skill:** briefing notes, which you write every week in the same format
+          - **Scheduled task:** a Monday scan of news in your policy area
+          - **Stays with you:** decisions on advice to ministers
+        note: Amara agrees, and keeps the decisions with her.
+
+      - part: assemble
+        menu_title: Assemble
+        title: "Assemble: the smallest setup that works"
+        content:
+          - Amara rebuilds her setup around what she found.
+          - tip: "**Tip:** remove access you no longer need. It's one less thing that can go wrong."
+        adds: "Seven projects merged into two, with the current policy. One skill: briefing notes. Two connectors: work calendar and email. The old folder removed. One scheduled task: the Monday news scan, which drafts but doesn't send."
+        reply: |
+          **Before:** 7 projects, 5 skills, 3 connectors, 2 scheduled tasks
+
+          **After:** 2 projects, 1 skill, 2 connectors, 1 scheduled task
+        note: Smaller, and Amara knows what every piece does.
+
+      - part: review
+        menu_title: Review
+        title: "Review: once a month"
+        content:
+          - Amara adds a 15-minute reminder for the first Monday of each month.
+          - tip: "**Tip:** a short review often is easier than a big clean-up once a year."
+        adds: "Is each piece still used? Are its files current? Does it reach anything it doesn't need?"
+        reply: |
+          At her first review, Amara updates one project file and removes a skill she hasn't used.
+        note: The setup stays small, current and safe.
+        success: A smaller setup that Amara understands, uses every week, and trusts.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your setup
+    menu_title: Try it
+    intro: Plan your own setup. Only connect what your AI policy allows (F6).
+    fields:
+      - part: audit
+        label: "Audit: what regular tasks take your time, and which should stay with you?"
+        placeholder: "Here's my week: weekly team update, client reports, inbox triage, Monday planning. Which tasks would benefit most from a project, a skill, a connector or a scheduled task? Which should stay with me?"
+        rows: 3
+      - part: assemble
+        label: "Assemble: which building block fits each task? (Not part of the prompt.)"
+        placeholder: A skill for the weekly update. A project for client reports. Calendar connector for Monday planning.
+        rows: 2
+        in_prompt: false
+      - part: review
+        label: "Review: when will you review it, and what will you check? (Not part of the prompt.)"
+        placeholder: First Monday of each month. Is it used, current, and does it reach only what it needs?
+        rows: 2
+        in_prompt: false
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I listed my regular tasks.
+        - I kept key decisions with me.
+        - I chose the smallest setup that works.
+        - I set a regular review.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your personal AI system card.
+    questions:
+      - question: You write a briefing note every week, in the same format. Which building block fits best?
+        options:
+          a: A connector
+          b: A skill
+          c: A new chat each time
+        answer: b
+        feedback: A skill holds the steps for a task you repeat (P8).
+
+      - type: match
+        question: Match each need to its building block.
+        choice_word: building block
+        choices: [Project, Scheduled task, Connector]
+        lines:
+          - { text: "Background for all my chats on one policy area", answer: Project }
+          - { text: "A news scan every Monday at 7 am", answer: Scheduled task }
+          - { text: "Let Claude check my calendar", answer: Connector }
+        feedback: Projects hold background, scheduled tasks run routines, and connectors reach your tools.
+
+      - question: What's the first step in building your setup?
+        options:
+          a: Turn on every tool
+          b: List your regular work, and where Claude really helps
+          c: Copy a colleague's setup
+        answer: b
+        feedback: Start from your week, not from the tools.
+
+      - question: A connector still reaches a folder from a project that ended months ago. What do you do?
+        options:
+          a: Leave it, just in case
+          b: Remove that access
+          c: Delete the folder
+        answer: b
+        feedback: Connect only what you need, for as long as you need it (P7).
+
+      - question: How often should you review your setup?
+        options:
+          a: Never, once it's working
+          b: Regularly, such as once a month
+          c: Only when something breaks
+        answer: b
+        feedback: Files go out of date and needs change. A short, regular review keeps it useful and safe.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your personal AI system card
+    menu_title: Take away
+    intro: You can now bring Claude's tools together into a system that fits your week. Download the card and keep it beside you.
+    table:
+      caption: "Personal AI system card: Audit, Assemble and Review"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: audit
+          cells: ["Where does Claude really help, and what stays with me?", "Briefing notes yes; advice to ministers stays with me."]
+        - part: assemble
+          cells: ["What's the smallest setup that works?", "Two projects, one skill, two connectors, one scheduled task."]
+        - part: review
+          cells: ["Is each piece used, current and safe?", "15 minutes on the first Monday of each month."]
+    job_aid:
+      title: Personal AI system card
+      intro: To build a personal AI system that fits your week, use three parts.
+      footer: "**Start from your week, not the tools.** Review it monthly."
+    next: "**You've finished the Advanced level.** The manager strand starts with M1 Leading a team that uses Claude."

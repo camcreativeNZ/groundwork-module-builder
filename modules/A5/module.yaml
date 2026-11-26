@@ -1,0 +1,198 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The company, emails and refund policy in this module are fictional.
+# No product features to recheck: the module is about checking habits, not settings.
+
+id: A5
+title: Quality and risk at scale
+level: Advanced
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: sort, label: Sort }
+  - { id: sample, label: Sample }
+  - { id: fix, label: Fix }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Tomás
+    story: |
+      Tomás is a customer service team lead. Claude drafts replies to 600 customer emails a week.
+
+      In the first week, Tomás read the first ten replies. They were great, so he stopped checking. Three weeks later, a customer forwards this:
+    image:
+      file: assets/tomas-trays.svg
+      alt: A person sorting a tall stack of papers into three trays
+    reply:
+      label: A reply that went out (shortened)
+      text: |
+        Thanks for getting in touch. ==You can return it for a full refund within 90 days.==
+      note: The real policy is 30 days. The same mistake had gone out 14 times.
+    reflection:
+      question: Why didn't Tomás catch it?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **The first ten replies weren't a fair test, and nobody was watching the risky ones.** When there's too much to read, *sort* the work by risk, *sample* the rest fairly, and *fix* the instructions when the same error comes back.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of checking at scale
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: sort, back: "decide which items a person always checks: money, legal, health, safety, complaints and anything public." }
+      - { part: sample, back: "check a fair mix of the rest, picked at random from across the batch, not just the first few." }
+      - { part: fix, back: "log each error. When the same one shows up twice, fix the instructions, then check more closely for a while." }
+    tip: "**Tip:** the first few items aren't a fair test. Problems often hide in the unusual cases."
+
+  # ---------- 3 to 5. Tomás sets up checks ----------
+  - template: step-builder
+    prompt_label: Tomás's instructions so far
+    reply_label: The result
+    steps:
+      - part: sort
+        menu_title: Sort
+        title: "Sort: people check the risky ones"
+        content:
+          - Tomás adds a rule to his instructions.
+          - tip: "**Tip:** sort by what it costs if it goes wrong, not by how hard it looks."
+        adds: "If an email mentions a refund, a complaint, legal action or a safety issue, don't draft a reply. Put it on the For a person list."
+        reply: |
+          **This week's batch**
+
+          - 540 drafts ready to check
+          - 60 emails on the For a person list
+        note: The risky emails now always reach a person.
+
+      - part: sample
+        menu_title: Sample
+        title: "Sample: a fair mix, not the first few"
+        content:
+          - Each day, Tomás checks a random sample, plus everything on the For a person list.
+          - tip: "**Tip:** pick your sample from across the whole batch, so the unusual cases have a chance to show up."
+        adds: Each day, pick 20 drafts at random from across the whole batch for me to check.
+        reply: |
+          **Today's sample:** 19 of 20 drafts are fine.
+
+          **One error:** a reply gives the wrong delivery date for rural addresses.
+        note: Tomás logs the error, and corrects that reply.
+
+      - part: fix
+        menu_title: Fix
+        title: "Fix: when an error comes back"
+        content:
+          - Two days later, the same delivery mistake appears again.
+          - tip: "**Tip:** a repeated error is a problem with the instructions. Fix the cause, not just the result."
+        adds: "Use the delivery timetable in the project files for every delivery date. If an address isn't on it, say so."
+        reply: |
+          Tomás adds the timetable to the project files, and checks 40 drafts a day for a week. The delivery error doesn't come back.
+        note: Then he goes back to 20 a day.
+        success: Errors drop, the risky emails always reach a person, and Tomás spends 30 minutes a day checking instead of four hours.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan your checks
+    menu_title: Try it
+    intro: Pick a high-volume task from your work, or use ours.
+    task: "**Our task:** Claude sorts 300 staff survey comments into themes each quarter."
+    fields:
+      - part: sort
+        label: "Sort: which items must a person always check? (Not part of the prompt.)"
+        placeholder: Any comment about safety, harassment or a named person.
+        rows: 2
+        in_prompt: false
+      - part: sample
+        label: "Sample: what should Claude flag, and how will you pick a fair sample?"
+        placeholder: "Sort these comments into themes. Put any comment about safety, harassment or a named person on a separate list for me. Then pick 30 comments at random and show me the theme you chose for each."
+        rows: 3
+      - part: fix
+        label: "Fix: what will you log, and when will you change the instructions? (Not part of the prompt.)"
+        placeholder: I'll log any comment in the wrong theme. If the same mistake happens twice, I'll add a definition of that theme.
+        rows: 2
+        in_prompt: false
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Check your plan
+      items:
+        - I named the items a person always checks.
+        - My sample is random, not the first few.
+        - I keep an error log.
+        - I fix the instructions when an error repeats.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your quality card.
+    questions:
+      - question: Claude drafts 500 replies a week. Which ones should a person always check?
+        options:
+          a: The first ten
+          b: Any that involve money, legal issues, complaints or safety
+          c: The longest ones
+        answer: b
+        feedback: Sort by what it costs if it goes wrong.
+
+      - question: What's the fairest way to sample the rest?
+        options:
+          a: Check the first 20
+          b: Pick 20 at random from across the whole batch
+          c: Ask Claude which ones it's least sure about
+        answer: b
+        feedback: A random sample from across the batch catches problems the first few miss.
+
+      - type: match
+        question: Match each step to its part.
+        choice_word: part
+        choices: [Sort, Sample, Fix]
+        lines:
+          - { text: "Put any email about refunds on the For a person list.", answer: Sort }
+          - { text: "Pick 20 drafts at random each day.", answer: Sample }
+          - { text: "The same error appeared twice, so add the timetable to the instructions.", answer: Fix }
+        feedback: Sort by risk, sample the rest fairly, and fix the cause of repeated errors.
+
+      - question: The same mistake shows up in your sample twice in one week. What do you do?
+        options:
+          a: Correct those two and move on
+          b: Fix the instructions, then check more closely for a while
+          c: Stop using Claude for the task
+        answer: b
+        feedback: A repeated error is a problem with the instructions. Fix the cause, not just the result.
+
+      - question: After a month with no errors in your samples, what next?
+        options:
+          a: Stop checking
+          b: Keep checking a smaller sample, and always check the high-risk items
+          c: Check everything again
+        answer: b
+        feedback: Things change. Keep a light check running, and keep people on the risky items.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your quality card
+    menu_title: Take away
+    intro: You can now check AI work when there's too much to read it all. Download the card and keep it beside you.
+    table:
+      caption: "Quality at scale card: Sort, Sample and Fix"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: sort
+          cells: ["Which items must a person always check?", "Refunds, complaints, legal and safety go to a person."]
+        - part: sample
+          cells: ["Is my sample fair?", "20 drafts a day, picked at random."]
+        - part: fix
+          cells: ["Is the same error coming back?", "Log it, fix the instructions, then check more for a week."]
+    job_aid:
+      title: Quality at scale card
+      intro: When there's too much AI work to read it all, use three parts.
+      footer: "**The first few aren't a fair test.** Keep people on the risky items."
+    next: "**Next module:** A6 Long and complex documents, where you'll work through contracts and reports with Claude."
