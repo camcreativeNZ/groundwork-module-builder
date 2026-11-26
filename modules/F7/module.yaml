@@ -1,0 +1,191 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The customer reply and the complaints report in this module are fictional.
+
+id: F7
+title: Everyday writing
+level: Foundations
+version: 1
+minutes: 15
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: draft, label: Draft }
+  - { id: rewrite, label: Rewrite }
+  - { id: summarise, label: Summarise }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Hemi
+    story: |
+      Hemi is a customer service team leader. It's 10 am. He's spent 40 minutes on a reply to an upset customer, and it still sounds defensive.
+
+      By noon, he also needs to summarise a 12-page complaints report for his manager, and he hasn't started.
+    image:
+      file: assets/hemi-desk.svg
+      alt: A person at a desk with a clock and a tall stack of papers
+    reflection:
+      question: Which parts of Hemi's morning could Claude help with?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Both.** Most everyday writing is one of three jobs: drafting something new, rewriting something that isn't working, or summarising something long. Claude is good at all three, as long as you say what you need.
+
+        In this module you'll practise each one.
+
+  # ---------- 2. Three writing jobs ----------
+  - template: flip-cards
+    title: Three writing jobs
+    menu_title: Three jobs
+    intro: Select each card to see what to tell Claude.
+    cards:
+      - { part: draft, back: "start from a blank page. Give the goal, the context and the format, as you learned in F3." }
+      - { part: rewrite, back: "paste your text and say what to change: shorter, clearer, kinder, more formal. Say what to keep." }
+      - { part: summarise, back: "paste the text and say who it's for, how long it should be, and what matters most to them." }
+    tip: "**Tip:** for a rewrite, say \"keep the facts exactly as they are\", so the meaning doesn't drift."
+
+  # ---------- 3. Rewrite ----------
+  - template: before-and-after
+    title: "Rewrite: Hemi's reply"
+    menu_title: Rewrite
+    intro: Hemi pastes his draft into Claude and asks for a rewrite.
+    prompt:
+      label: Hemi's prompt
+      text: Rewrite this to sound calm and kind. Keep the facts exactly as they are. It's for a customer who's upset that their order arrived late.
+    before:
+      label: Before (Hemi's draft)
+      text: |
+        As per our terms and conditions, delivery timeframes are estimates only and we cannot be held responsible for courier delays. Your order was dispatched within our standard processing window.
+    after:
+      label: After (Claude's rewrite)
+      text: |
+        I'm sorry your order arrived late. I know you were counting on it. It left us on time, but the courier was delayed, and that's not the experience we want for you. ==As a thank-you for your patience, here's free delivery on your next order.==
+    changes:
+      items:
+        - It starts with an apology, not the rules.
+        - Plain words replace "as per" and "processing window".
+        - "The facts are the same: dispatched on time, courier delayed."
+        - "**Check this:** the free delivery offer is new. Only keep it if Hemi can offer it."
+
+  # ---------- 4. Summarise ----------
+  - template: before-and-after
+    title: "Summarise: the complaints report"
+    menu_title: Summarise
+    intro: Next, Hemi pastes the complaints report and asks for a summary. Here's part of the report, and what Claude gave him.
+    prompt:
+      label: Hemi's prompt
+      text: Summarise this report in five bullet points for my manager, who wants to know the main problems and what we should do first.
+    before:
+      label: Before (part of the 12-page report)
+      text: |
+        Over the reporting period, the service team received 412 complaints, an increase of 18% on the previous six months. Analysis of complaint categories indicates that delivery delays remain the most frequently cited issue (164 complaints, 40%), followed by difficulties contacting the team by phone (103, 25%) and billing errors (62, 15%). The remaining 83 complaints related to a range of lower-volume issues.
+
+        It should be noted that phone-related complaints rose most sharply, coinciding with the reduction in call centre hours introduced in March. Respondents frequently referred to wait times exceeding 20 minutes…
+    after:
+      label: After (Claude's summary)
+      text: |
+        - Complaints rose 18% to 412 over six months.
+        - Delivery delays are the biggest problem: 164 complaints (40%).
+        - Phone contact is next: 103 complaints (25%), many about waits of over 20 minutes.
+        - Billing errors make up 62 complaints (15%).
+        - First step: phone complaints rose fastest after call centre hours were cut in March, so review those hours first.
+    changes:
+      items:
+        - "Written for the reader: problems first, then the action."
+        - Five points, as asked.
+        - "**Check this:** the numbers must match the report (see F5)."
+
+  # ---------- 5. Practice ----------
+  - template: try-it
+    title: Your turn
+    menu_title: Try it
+    intro: Pick one writing job from your week, or use ours.
+    task: "**Our task:** rewrite this sentence for a staff newsletter, so it's friendly and clear: \"Personnel are reminded that the utilisation of the kitchen facilities is contingent upon adherence to cleaning protocols.\""
+    fields:
+      - label: Paste your text, or describe what to draft
+        placeholder: "Personnel are reminded that the utilisation of the kitchen facilities…"
+        rows: 3
+      - label: Which job, who it's for, and how long
+        placeholder: Rewrite this for our staff newsletter so it's friendly and clear. One or two sentences. Keep the meaning the same.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I said which job I wanted.
+        - I said who it's for.
+        - For a rewrite, the facts stayed the same.
+        - For a summary, I checked it against the original.
+
+  # ---------- 6. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your writing card.
+    questions:
+      - question: A long policy email is hard to follow. Which job do you ask Claude to do?
+        options:
+          a: Draft
+          b: Rewrite
+          c: Summarise
+        answer: b
+        feedback: The content is there; it needs to be clearer. That's a rewrite.
+
+      - question: What's most important to include when you ask for a summary?
+        options:
+          a: "\"Please\""
+          b: Who it's for and how long it should be
+          c: The word "summary" in capitals
+        answer: b
+        feedback: A summary for a manager is different from one for customers. Say who it's for and how long.
+
+      - type: match
+        question: Match each request to its job.
+        choice_word: job
+        choices: [Draft, Rewrite, Summarise]
+        lines:
+          - { text: "\"Turn these notes into a first draft of a newsletter.\"", answer: Draft }
+          - { text: "\"Make this paragraph sound friendlier.\"", answer: Rewrite }
+          - { text: "\"Give me the five key points of this report.\"", answer: Summarise }
+        feedback: New writing is a draft, changing your own text is a rewrite, and shortening something long is a summary.
+
+      - question: Claude summarises a report that's full of figures. What should you do before you share it?
+        options:
+          a: Nothing, because summaries are always accurate
+          b: Check the figures against the report
+          c: Ask Claude to make it longer
+        answer: b
+        feedback: Summaries can drop or mix up numbers. Check them against the original.
+
+      - question: Claude's rewrite changed what a sentence means. What's the best next step?
+        options:
+          a: Start again in a new chat
+          b: Point it out and ask it to keep the original meaning
+          c: Accept it, because Claude knows best
+        answer: b
+        feedback: "Give feedback, as in F4: \"Keep the facts exactly as they were in sentence two.\""
+
+  # ---------- 7. Take away ----------
+  - template: take-away
+    title: Your writing card
+    menu_title: Take away
+    intro: You can now draft, rewrite and summarise with Claude. Download the card and keep it beside you.
+    table:
+      caption: "Writing card: Draft, Rewrite and Summarise"
+      columns: [Part, Say, Example prompt]
+      rows:
+        - part: draft
+          cells: ["Goal, context and format", "\"Draft a 100-word welcome for new volunteers, so they know where to go on day one.\""]
+        - part: rewrite
+          cells: ["What to change, and what to keep", "\"Make this friendlier and shorter. Keep the facts exactly as they are.\""]
+        - part: summarise
+          cells: ["Who it's for, how long, and what matters", "\"Summarise this in five bullets for my manager: main problems first.\""]
+    job_aid:
+      title: Writing card
+      intro: Most everyday writing is one of three jobs. Tell Claude which one, and what it needs.
+      footer: "**Whichever job, read it through and check the facts before you send.**"
+    next: "**Next module:** F8 Files and images, where you'll ask Claude useful questions about documents and pictures."

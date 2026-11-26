@@ -1,0 +1,191 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# Every organisation's rules differ: this module teaches learners to follow THEIR AI policy.
+# All names, contact details and invoice numbers are fictional.
+
+id: F6
+title: Safe and responsible use
+level: Foundations
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: ok, label: OK to share }
+  - { id: policy, label: Check your policy }
+  - { id: dont, label: "Don't share" }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Lena
+    story: |
+      Lena is an HR adviser. She needs to write a return-to-work letter for a staff member after sick leave.
+
+      To save time, she pastes the person's full medical certificate, home address and performance notes into Claude, and asks for a letter.
+    image:
+      file: assets/lena-padlock.svg
+      alt: A person at a laptop next to a document with a padlock on it
+    reflection:
+      question: What's the concern here?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Some information should never go into an AI tool, and some only into one your organisation has approved for it.** Health, personal and confidential details need extra care. And Lena didn't need most of it to get a good letter.
+
+        In this module you'll learn what to share, what to check first, and what to leave out.
+
+  # ---------- 2. What can I share? ----------
+  - template: flip-cards
+    title: What can I share?
+    intro: Select each card to see what belongs where.
+    cards:
+      - { part: ok, back: "public information, your own writing, general questions, and made-up examples." }
+      - { part: policy, back: "internal documents, client or customer names, unpublished plans, and anything marked confidential." }
+      - { part: dont, back: "passwords and access codes, other people's health or financial details, and personal details you don't need." }
+    tip: "**Tip:** find your organisation's AI policy now and save the link. If you're not sure, ask before you paste."
+
+  # ---------- 3 to 5. Lena tries again ----------
+  - template: step-builder
+    prompt_label: Lena's prompt so far
+    reply_label: Claude's letter
+    steps:
+      - label: No names
+        menu_title: Leave out names
+        title: Leave out names and private details
+        content:
+          - Lena starts again, without the certificate, the address or the performance notes.
+          - tip: "**Tip:** Claude doesn't need to know who someone is to help you write to them."
+        adds: Draft a letter to a staff member about a return-to-work plan after sick leave.
+        reply: |
+          Dear [Name],
+
+          Welcome back. We're glad you're returning to work, and we'd like to agree a plan that supports you as you settle back in…
+        note: Friendly, but vague. Claude doesn't know what the plan is yet.
+
+      - label: Only what's needed
+        menu_title: Only what's needed
+        title: Give only what's needed
+        content:
+          - "Lena adds: **\"They'll work mornings only for four weeks, then we'll review.\"**"
+          - tip: "**Tip:** Claude needs the plan, not the diagnosis."
+        adds: They'll work mornings only for four weeks, then we'll review.
+        reply: |
+          Dear [Name],
+
+          Welcome back. For your first four weeks, you'll work mornings only. At the end of that time, we'll meet to review how things are going and agree the next step…
+        note: Specific and useful, and still nothing private.
+
+      - label: Placeholders
+        menu_title: Use placeholders
+        title: Use placeholders
+        content:
+          - "Lena adds: **\"Use [Name] and [Date] as placeholders, and I'll fill them in.\"**"
+        adds: Use [Name] and [Date] as placeholders, and I'll fill them in.
+        reply: |
+          Dear [Name],
+
+          Welcome back. From [Date], you'll work mornings only for four weeks. We'll then meet to review how things are going and agree the next step together.
+
+          If anything changes, or you need more support, please talk to me at any time.
+        note: Complete and ready for Lena to personalise in her own system.
+        success: A useful letter, and nothing private left Lena's hands.
+
+  # ---------- 6. Responsible use ----------
+  - template: flip-cards
+    title: Using Claude responsibly
+    menu_title: Responsible use
+    intro: Privacy is one part of using Claude well. Select each card for the others.
+    cards:
+      - { front: "You're responsible", back: "whoever drafted it, what you send is yours. Check it first." }
+      - { front: Be open, back: "if your organisation expects you to say when AI helped, say so." }
+      - { front: Be fair, back: "when the content is about people, read it for bias or unfair assumptions." }
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Make a prompt safe to share
+    menu_title: Try it
+    intro: "This prompt has too much in it. Rewrite it so it's safe to share, and still gives Claude what it needs."
+    task: "\"Write a reminder to Sarah Ngata (sarah.ngata@email.example, phone 555 0192) that her overdue invoice #4471 for $3,250 must be paid by Friday or we'll pass it to debt collection.\""
+    fields:
+      - label: Your safer prompt
+        placeholder: Write a polite reminder to a customer, [Name], that…
+        rows: 4
+    result_label: Your safer prompt
+    privacy: Nothing you type on this screen is saved or sent anywhere. Even so, don't type real private details here.
+    checklist:
+      title: Check your rewrite
+      items:
+        - I removed the name, email and phone number.
+        - I used placeholders like [Name] and [Amount].
+        - I kept what Claude needs to write a good reminder.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your sharing card.
+    questions:
+      - question: Which can you paste into Claude without checking your policy first?
+        options:
+          a: A client contract
+          b: A public news article you want summarised
+          c: A colleague's payslip
+        answer: b
+        feedback: Public information is fine. Contracts and pay details need your policy, or shouldn't be shared at all.
+
+      - question: Your organisation gives you a work Claude account. You want to summarise an internal report marked confidential. What should you do?
+        options:
+          a: Paste it, because the account is approved
+          b: Check what your organisation's AI policy says about confidential documents first
+          c: Use your personal account instead
+        answer: b
+        feedback: An approved account doesn't automatically cover everything. Your policy says what's allowed.
+
+      - type: match
+        question: Match each item to where it belongs.
+        choice_word: label
+        choices: [OK to share, Check your policy, "Don't share"]
+        lines:
+          - { text: Our published price list, answer: OK to share }
+          - { text: "Next year's draft budget", answer: Check your policy }
+          - { text: "A customer's credit card number", answer: "Don't share" }
+        feedback: Published information is fine, internal plans need your policy, and payment details stay out.
+
+      - question: Kenji uses Claude to draft a performance review. Who's responsible for what it says?
+        options:
+          a: Claude
+          b: Kenji
+          c: Whoever set up the account
+        answer: b
+        feedback: Claude drafts; Kenji decides and signs. He checks it for accuracy and fairness.
+
+      - question: Which prompt protects privacy best?
+        options:
+          a: "\"Reply to Jo Smith at 14 King St about her late order.\""
+          b: "\"Draft a polite reply to a customer who's upset about a late delivery. Use [Name] for their name.\""
+          c: "\"Reply to order #5521, customer phone 555 0144, about the delay.\""
+        answer: b
+        feedback: Placeholders keep personal details out, and Claude can still write a good reply.
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your sharing card
+    menu_title: Take away
+    intro: You now know what to share, what to check, and what to leave out. Download the card and keep it beside you.
+    table:
+      caption: "Sharing card: OK to share, Check your policy, Don't share"
+      columns: [Part, Examples, Before you paste]
+      rows:
+        - part: ok
+          cells: ["Public information, your own writing, made-up examples", "Go ahead."]
+        - part: policy
+          cells: ["Internal documents, client names, unpublished plans, anything confidential", "Check your organisation's AI policy, and use your work account."]
+        - part: dont
+          cells: ["Passwords, other people's health or financial details, personal details you don't need", "Leave it out, or use placeholders like [Name]."]
+    job_aid:
+      title: Sharing card
+      intro: Before you paste anything into Claude, ask which group it belongs to.
+      footer: "**Your organisation's AI policy comes first.** If you're not sure, ask before you paste."
+    next: "**Next module:** F7 Everyday writing, where you'll draft, rewrite and summarise with Claude."

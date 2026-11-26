@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <rect x="20" y="176" width="280" height="10" rx="3" class="ill-desk"/>
+  <g class="ill-lines"><rect x="200" y="152" width="80" height="24" rx="3"/><rect x="204" y="128" width="76" height="24" rx="3"/><rect x="198" y="104" width="80" height="24" rx="3"/><rect x="202" y="80" width="78" height="24" rx="3"/></g>
+  <circle cx="240" cy="40" r="26" class="ill-screen"/>
+  <path d="M240 40 V24 M240 40 L252 46" class="ill-stroke"/>
+  <rect x="130" y="130" width="56" height="46" rx="4" class="ill-screen"/>
+  <circle cx="80" cy="84" r="24" fill="#7a4a2c"/>
+  <path d="M56 78 Q58 58 80 58 Q102 58 104 78 Q96 68 80 68 Q64 68 56 78 Z" class="ill-ink"/>
+  <path d="M40 176 Q45 120 80 116 Q115 120 120 176 Z" class="ill-shirt"/>
+  <circle cx="72" cy="84" r="2.5" class="ill-ink"/><circle cx="88" cy="84" r="2.5" class="ill-ink"/>
+  <path d="M74 97 Q80 94 86 97" class="ill-stroke"/>
+</svg>

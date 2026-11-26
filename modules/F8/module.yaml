@@ -1,0 +1,194 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The contract, supplier and clauses in this module are fictional.
+# Before each release, recheck the file types Claude accepts. No size limits are stated, so the module doesn't date.
+
+id: F8
+title: Files and images
+level: Foundations
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: where, label: Where }
+  - { id: whatfor, label: What for }
+  - { id: showme, label: Show me }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Jonah
+    story: |
+      Jonah is a facilities manager. A supplier has sent a 60-page contract for cleaning services. Jonah uploads it to Claude and asks:
+    prompt:
+      label: Jonah's prompt
+      text: Is this okay?
+    image:
+      file: assets/jonah-contract.svg
+      alt: A person holding a thick document next to a laptop
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        This appears to be a standard services agreement. It covers the scope of the cleaning services, pricing and payment terms, and how either party can end the agreement. ==You may wish to seek legal advice== before signing…
+      note: A polite, general overview. Nothing Jonah can act on.
+    reflection:
+      question: Why wasn't this useful?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude read the whole contract, but "Is this okay?" doesn't say what Jonah needs.** Point Claude to the right part, say what the answer is for, and ask it to show where it found the answer.
+
+        In this module you'll learn those three steps.
+
+  # ---------- 2. What you can give Claude ----------
+  - template: flip-cards
+    title: What you can give Claude
+    menu_title: What you can give
+    intro: You can upload files and images to a chat. Select each card.
+    cards:
+      - { front: Documents, back: "PDFs, Word documents and text files: reports, contracts, policies and manuals." }
+      - { front: Spreadsheets and data, back: "CSV and Excel files. Claude can find patterns, totals and trends." }
+      - { front: Images, back: "photos, screenshots, charts, and even handwritten notes or a whiteboard." }
+    tip: "**Tip:** before you upload anything for work, check your organisation's AI policy (F6)."
+
+  # ---------- 3 to 5. Jonah asks again ----------
+  - template: step-builder
+    prompt_label: Jonah's question so far
+    reply_label: Claude's answer
+    steps:
+      - part: where
+        menu_title: Where
+        title: "Where: point to the right part"
+        content:
+          - Jonah starts again, and tells Claude which parts of the contract matter.
+          - tip: "**Tip:** a long file has a lot in it. Say where to look."
+        adds: Look at the sections on price changes and ending the contract.
+        reply: |
+          The contract covers price changes in section 9 and ending the contract in section 14. Prices may be reviewed during the term, and either party can end the agreement by giving notice…
+        note: The right sections, but still general. Claude doesn't know what Jonah needs to find out.
+
+      - part: whatfor
+        menu_title: What for
+        title: "What for: say what you need"
+        content:
+          - "Jonah adds: **\"I need to know what notice we must give to end it, and whether prices can rise during the term. It's for a budget meeting.\"**"
+          - tip: "**Tip:** ask the actual question you need answered."
+        adds: I need to know what notice we must give to end it, and whether prices can rise during the term. It's for a budget meeting.
+        reply: |
+          - **Ending the contract:** you must give 90 days' written notice.
+          - **Price changes:** yes. Prices can rise once a year, by inflation plus 2%.
+        note: Direct answers Jonah can use. But how does he know they're right?
+
+      - part: showme
+        menu_title: Show me
+        title: "Show me: ask where it found it"
+        content:
+          - "Jonah adds: **\"Give the clause numbers and quote the exact wording.\"**"
+          - tip: "**Tip:** clause numbers and quotes make your own check quick."
+        adds: Give the clause numbers and quote the exact wording.
+        reply: |
+          - **Ending the contract (clause 14.2):** "Either party may terminate this Agreement by giving not less than ninety (90) days' written notice to the other party."
+          - **Price changes (clause 9.1):** "The Supplier may adjust the Fees once in each 12-month period by no more than the annual change in the Consumers Price Index plus two percent (2%)."
+        note: Jonah checks both clauses in the contract in under a minute.
+        success: Three short lines, and Jonah has what he needs for the budget meeting.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Ask a question about a file
+    menu_title: Try it
+    intro: Use a document you work with, if your policy allows, or a public one such as an annual report or a product manual.
+    fields:
+      - part: where
+        label: "Where: which part should Claude look at?"
+        placeholder: Look at the section on warranty and returns.
+        rows: 2
+      - part: whatfor
+        label: "What for: what do you need to know, and who is it for?"
+        placeholder: I need to know how long the warranty lasts, to answer a customer's question.
+        rows: 2
+      - part: showme
+        label: "Show me: how should Claude show where it found the answer?"
+        placeholder: Give the page number and quote the exact wording.
+        rows: 2
+    result_label: Your question
+    copy_label: Copy question
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Upload the file, paste your question, then check
+      items:
+        - I said where to look.
+        - I said what I need it for.
+        - I asked for page numbers or quotes.
+        - I checked at least one quote against the file.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your file questions card.
+    questions:
+      - question: You take a photo of whiteboard notes after a meeting. What can Claude do with it?
+        options:
+          a: Nothing, because it only reads typed text
+          b: Turn it into typed notes, though you should check for misread words
+          c: Only describe the colours
+        answer: b
+        feedback: Claude can read handwriting in photos, but messy writing can be misread. Check names and numbers.
+
+      - question: Which question about a 40-page report will get the most useful answer?
+        options:
+          a: "\"What do you think?\""
+          b: "\"Summarise this.\""
+          c: "\"Using section 3, list the three biggest risks for our team, with page numbers.\""
+        answer: c
+        feedback: It says where to look, what it's for, and how to show the answer.
+
+      - type: match
+        question: Match each line to its part.
+        choice_word: part
+        choices: [Where, What for, Show me]
+        lines:
+          - { text: "\"Look at the pricing table on page 8.\"", answer: Where }
+          - { text: "\"I need to compare it with our current supplier's prices.\"", answer: What for }
+          - { text: "\"Quote the exact figures and give the page.\"", answer: Show me }
+        feedback: Where points Claude to the right part, what for says what you need, and show me makes the answer easy to check.
+
+      - question: Claude says the contract has a 30-day notice period and quotes clause 12. What next?
+        options:
+          a: Put it in your report
+          b: Check clause 12 in the contract yourself
+          c: Ask Claude if it's sure
+        answer: b
+        feedback: The quote makes checking quick. Always look at the file itself before you rely on it.
+
+      - question: You want Claude to analyse a spreadsheet of customer names, emails and purchases. What should you do first?
+        options:
+          a: Upload it, because spreadsheets are fine
+          b: Check your organisation's AI policy, and remove personal details you don't need
+          c: Email it to Claude
+        answer: b
+        feedback: Personal details need care (F6). Often you can remove names and emails and still get the analysis.
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your file questions card
+    menu_title: Take away
+    intro: You can now ask Claude useful questions about files and images. Download the card and keep it beside you.
+    table:
+      caption: "File questions card: Where, What for and Show me"
+      columns: [Part, Ask yourself, Example]
+      rows:
+        - part: where
+          cells: ["Which part should Claude look at?", "\"Look at the sections on price changes and ending the contract.\""]
+        - part: whatfor
+          cells: ["What do I need, and who is it for?", "\"I need the notice period for a budget meeting.\""]
+        - part: showme
+          cells: ["How will I check it?", "\"Give the clause numbers and quote the exact wording.\""]
+    job_aid:
+      title: File questions card
+      intro: When you give Claude a file or image, ask a question in three parts.
+      all_together: "Look at the sections on price changes and ending the contract. I need to know what notice we must give to end it, and whether prices can rise during the term. It's for a budget meeting. Give the clause numbers and quote the exact wording."
+      footer: "**Check your organisation's AI policy before you upload anything for work.**"
+    next: "**You've finished Foundations.** The Practitioner level starts with P1 Prompting with structure."
