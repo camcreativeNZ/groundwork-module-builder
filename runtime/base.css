@@ -151,3 +151,18 @@ input[type="checkbox"], input[type="radio"] { width: 1.25rem; height: 1.25rem; a
 /* Optional customer logo from the theme */
 .brand { display: block; height: 28px; width: auto; margin-bottom: .35rem; }
 .illustration img { width: 100%; height: auto; max-width: 320px; display: block; margin: 0 auto; border-radius: var(--radius); }
+
+/* Before and after */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ba > * { min-width: 0; }
+@media (max-width: 700px) { .ba { grid-template-columns: 1fr; } }
+.ba-panel { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+.ba-panel.before { border-left: 8px solid var(--wrong); }
+.ba-panel.after { border-left: 8px solid var(--right); }
+.ba-panel p:last-child, .ba-panel ul:last-child, .ba-panel ol:last-child { margin-bottom: 0; }
+.ba-panel ul, .ba-panel ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+.changes-wrap { display: grid; gap: .75rem; justify-items: start; }
+.changes { margin-top: 0; justify-self: stretch; }
+.changes h3 { font-family: var(--font-head); font-size: 1.1rem; margin: 0 0 .5rem; }
+.changes ol { margin: 0; padding-left: 1.4rem; }
+.changes li { margin-bottom: .35rem; }

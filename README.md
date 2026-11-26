@@ -68,6 +68,7 @@ one template:
 | `scenario-hook` | Opens with a character, their situation, what went wrong, and a reflection with a reveal |
 | `flip-cards` | Two to four key ideas on cards the learner turns over |
 | `step-builder` | Builds something up one step per screen, with the prompt so far and Claude's reply |
+| `before-and-after` | A weak and a strong result side by side, with a "What changed" list to reveal |
 | `try-it` | Guided practice: write a prompt in parts, copy it, open Claude, self-check |
 | `knowledge-check` | Scored multiple-choice and matching questions with feedback and retries |
 | `take-away` | Job aid table, PDF downloads, the completion message and what's next |

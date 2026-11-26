@@ -4,6 +4,7 @@ const list = [
   require('./scenario-hook'),
   require('./flip-cards'),
   require('./step-builder'),
+  require('./before-and-after'),
   require('./try-it'),
   require('./knowledge-check'),
   require('./take-away')

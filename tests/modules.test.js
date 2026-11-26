@@ -9,11 +9,16 @@ const { build } = require('../src');
 const { runQa } = require('../src/qa');
 
 const ROOT = path.resolve(__dirname, '..');
-const modules = fs.readdirSync(path.join(ROOT, 'modules')).filter(function (d) { return fs.existsSync(path.join(ROOT, 'modules', d, 'module.yaml')); });
+function list(dir) {
+  return fs.readdirSync(path.join(ROOT, dir)).filter(function (d) { return fs.existsSync(path.join(ROOT, dir, d, 'module.yaml')); })
+    .map(function (d) { return { id: d, file: path.join(ROOT, dir, d, 'module.yaml') }; });
+}
+// Every real module, plus a sampler that uses every template.
+const modules = list('modules').concat(list('tests/fixtures'));
 
-for (const id of modules) {
+for (const { id, file } of modules) {
   test(id + ' builds and passes QA', async function () {
-    const report = await build({ module: path.join(ROOT, 'modules', id, 'module.yaml'), out: path.join(ROOT, 'tests', 'output', id) });
+    const report = await build({ module: file, out: path.join(ROOT, 'tests', 'output', id) });
     assert.ok(report.ok, JSON.stringify(report.problems, null, 2));
     assert.deepStrictEqual(report.problems.filter(function (p) { return p.level === 'warning'; }), []);
     const qa = await runQa(report);

@@ -1,0 +1,52 @@
+# Small test module that uses every template, so each one is covered by the automatic QA.
+id: T1
+title: Template sampler
+level: Test
+version: 1
+pass_mark: 2
+parts:
+  - { id: a, label: Alpha }
+  - { id: b, label: Beta }
+screens:
+  - template: scenario-hook
+    title: A short hook
+    story: Someone tries something and it doesn't quite work.
+    reflection: { question: Why not?, answer: Because of a reason. }
+  - template: before-and-after
+    title: Before and after
+    intro: Compare the two.
+    prompt: { text: Make this friendlier. }
+    before: { text: "Per policy, requests are processed in due course." }
+    after: { text: "Thanks for asking! We'll get back to you within two days." }
+    changes:
+      items: [Friendlier opening., A clear timeframe instead of "in due course".]
+    tip: "**Tip:** say what to keep."
+  - template: flip-cards
+    title: Two ideas
+    cards:
+      - { part: a, back: the first idea. }
+      - { part: b, back: the second idea. }
+  - template: step-builder
+    steps:
+      - { part: a, title: Step one, adds: First line., reply: First reply. }
+      - { part: b, title: Step two, adds: Second line., reply: Second reply. }
+  - template: try-it
+    title: Try it
+    fields:
+      - { part: a, label: First box }
+      - { part: b, label: Not copied, in_prompt: false }
+  - template: knowledge-check
+    title: Check
+    questions:
+      - { question: Pick b., options: { a: A, b: B }, answer: b, feedback: B is right. }
+      - type: match
+        question: Match them.
+        choices: [Alpha, Beta]
+        lines: [{ text: First, answer: Alpha }, { text: Second, answer: Beta }]
+        feedback: Alpha then Beta.
+  - template: take-away
+    title: Take away
+    table:
+      columns: [Part, Meaning]
+      rows: [{ part: a, cells: [First] }, { part: b, cells: [Second] }]
+    job_aid: { title: Sample card }

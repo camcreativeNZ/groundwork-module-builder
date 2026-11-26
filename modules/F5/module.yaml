@@ -1,0 +1,215 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The report, survey and figures in this module are fictional.
+
+id: F5
+title: Checking Claude's work
+level: Foundations
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: facts, label: Facts }
+  - { id: sources, label: Sources }
+  - { id: fit, label: Fit }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Mateo
+    story: |
+      Mateo is a sales coordinator. His manager needs slides for a meeting, so Mateo asks Claude to summarise a market report.
+
+      He types:
+    prompt:
+      label: Mateo's prompt
+      text: Summarise this market report for my manager's slides, and add a couple of strong statistics.
+    image:
+      file: assets/mateo-slide.svg
+      alt: A person presenting a slide with a large statistic, looking unsure
+    reply:
+      label: Claude's summary (shortened)
+      text: |
+        Demand for our services continues to grow. ==A 2024 industry survey found that 68% of buyers now research online before calling a supplier.==…
+      note: Mateo puts it straight into the slides. In the meeting, his manager asks where the figure came from. Mateo can't find the survey anywhere.
+    reflection:
+      question: How could Mateo have caught this?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude can produce facts, figures and even sources that look real but aren't.** It isn't lying: when it doesn't have the facts, it writes what's likely. Two minutes of checking would have saved Mateo's meeting.
+
+        In this module you'll learn three quick checks.
+
+  # ---------- 2. Three checks ----------
+  - template: flip-cards
+    title: Three quick checks
+    menu_title: Three checks
+    intro: Errors happen because Claude fills gaps, can mix up similar names, dates and numbers, and sounds just as sure either way. Three quick checks catch most problems. Select each card.
+    cards:
+      - { part: facts, back: "check every name, number, date and quote that matters." }
+      - { part: sources, back: "check that each source exists, and says what Claude claims it says." }
+      - { part: fit, back: "check it does the job: nothing added that you didn't ask for, nothing important missing, and right for your audience." }
+    tip: "**Tip:** the higher the stakes, the more you check. Anything public, legal, financial or about people gets the full check."
+
+  # ---------- 3. Before and after ----------
+  - template: before-and-after
+    title: Mateo's slide, checked
+    menu_title: Before and after
+    intro: Here's Mateo's slide text as Claude wrote it, and after Mateo checked it against the real report.
+    before:
+      label: Before (unchecked)
+      text: |
+        **Market update**
+
+        Our 2023 market report shows steady growth in online enquiries. ==A 2024 industry survey found that 68% of buyers now research online before calling a supplier.== Moving more of our marketing online will deliver ==guaranteed 20% savings== on advertising costs.
+    after:
+      label: After (checked)
+      text: |
+        **Market update**
+
+        Our 2025 market report shows steady growth in online enquiries. Online enquiries rose from 31% to 42% of all enquiries over two years (page 12). Moving more of our marketing online could reduce advertising costs, and the report suggests testing this first.
+    changes:
+      items:
+        - "**Facts:** the report is from 2025, not 2023."
+        - "**Sources:** the made-up survey is gone. The new figure comes from page 12 of the real report."
+        - "**Fit:** the \"guaranteed savings\" promise is removed, because the business never made it."
+
+  # ---------- 4 to 6. Ask Claude to help you check ----------
+  - template: step-builder
+    prompt_label: Mateo's follow-up so far
+    reply_label: Claude's reply
+    steps:
+      - label: Sources
+        menu_title: Ask for the sources
+        title: Ask for the sources
+        content:
+          - Before he fixes anything, Mateo asks Claude where its figures came from.
+          - tip: "**Tip:** Claude's answer is a useful first check, but it still needs checking too."
+        adds: List the source for each figure in your summary.
+        reply: |
+          - Growth in online enquiries: the market report you shared.
+          - 68% of buyers research online: I can't point to a source for this figure. I may have generated it, so please don't use it without checking.
+        note: Useful. Claude admits it can't support one of its own figures.
+
+      - label: Unsure
+        menu_title: Ask what it's unsure of
+        title: Ask what it's unsure of
+        content:
+          - "Mateo adds: **\"Which parts of your summary are you least sure about?\"**"
+        adds: Which parts of your summary are you least sure about?
+        reply: |
+          The parts I'm least sure about are:
+
+          1. The 68% statistic, which isn't from your report.
+          2. The claim about "guaranteed 20% savings", which I added. Your report doesn't promise savings.
+        note: Now Mateo knows exactly what to check.
+
+      - label: Real source
+        menu_title: Give it the real source
+        title: Give it the real source
+        content:
+          - "Mateo adds: **\"Here's the actual report. Correct anything that doesn't match it, and give page numbers.\"**"
+          - tip: "**Tip:** page numbers make your own check quick."
+        adds: "Here's the actual report: [report attached]. Correct anything in your summary that doesn't match it, and give page numbers."
+        reply: |
+          Corrected summary:
+
+          - The report is from 2025 (cover page).
+          - Online enquiries rose from 31% to 42% over two years (page 12).
+          - The report suggests testing more online marketing before committing (page 18).
+        note: Mateo checks two page numbers himself. Both match.
+        success: Three short questions, one real source, and the slides are ready.
+
+  # ---------- 7. Practice ----------
+  - template: try-it
+    title: Check something Claude wrote
+    menu_title: Try it
+    intro: Take something Claude wrote for you recently, or use our example.
+    task: "**Our example:** \"Our customer satisfaction score rose to 87% last quarter, the highest since 2019, according to the national service benchmark.\""
+    fields:
+      - label: Paste the text you want to check
+        placeholder: Paste Claude's answer here…
+        rows: 4
+      - label: Ask Claude for a checklist
+        placeholder: List every fact, figure, date and name in this, and tell me how sure you are of each.
+        rows: 2
+    result_label: Your prompt
+    checklist:
+      title: Use Claude's list as your checklist
+      items:
+        - I checked each figure against a real source.
+        - Every source exists and says what Claude claimed.
+        - Nothing was added that I didn't ask for.
+        - It fits my audience.
+
+  # ---------- 8. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your checking card.
+    questions:
+      - question: "Claude's summary says \"a 2023 survey of 2,000 workers found…\". What should you do first?"
+        options:
+          a: Trust it, because it's specific
+          b: Find the survey yourself. If you can't, take the figure out.
+          c: Ask Claude if it's sure, and keep it if it says yes
+        answer: b
+        feedback: Claude saying it's sure isn't proof. Find the real source.
+
+      - question: Claude drafts a reply to a customer. Which detail most needs checking before you send it?
+        options:
+          a: The greeting
+          b: The refund amount and the deadline
+          c: The choice of words in the sign-off
+        answer: b
+        feedback: Numbers and dates that someone will act on are the highest-stakes details.
+
+      - type: match
+        question: Match each question to the check it belongs to.
+        choice_word: check
+        choices: [Facts, Sources, Fit]
+        lines:
+          - { text: "\"Is the date in the summary right?\"", answer: Facts }
+          - { text: "\"Does that report really exist?\"", answer: Sources }
+          - { text: "\"Did Claude add a promise we never made?\"", answer: Fit }
+        feedback: Facts are the details, sources are where they came from, and fit is whether it does the job.
+
+      - question: You ask Claude for three quotes from a well-known book. What's the risk?
+        options:
+          a: None, because the book is famous
+          b: The quotes may be reworded or made up, so check them against the book
+          c: Claude will refuse
+        answer: b
+        feedback: Claude often remembers the gist, not the exact words. Check before you quote.
+
+      - question: How much should you check Claude's work?
+        options:
+          a: Every word, every time
+          b: "More when the stakes are higher: anything public, legal, financial or about people"
+          c: Not at all for internal work
+        answer: b
+        feedback: Match your checking to the stakes. A brainstorm needs a glance; a contract summary needs the full check.
+
+  # ---------- 9. Take away ----------
+  - template: take-away
+    title: Your checking card
+    menu_title: Take away
+    intro: You can now check Claude's work quickly. Download the card and keep it beside you.
+    table:
+      caption: "Checking card: Facts, Sources and Fit"
+      columns: [Part, Check, Ask Claude]
+      rows:
+        - part: facts
+          cells: ["Names, numbers, dates and quotes that matter", "\"List every fact and figure, and how sure you are of each.\""]
+        - part: sources
+          cells: ["Each source exists and says what's claimed", "\"Give the source and page for each figure.\""]
+        - part: fit
+          cells: ["Nothing added, nothing missing, right for the audience", "\"Did you add anything I didn't ask for?\""]
+    job_aid:
+      title: Checking card
+      intro: Before you share Claude's work, run three quick checks.
+      footer: "**The higher the stakes, the more you check.** Anything public, legal, financial or about people gets the full check."
+    next: "**Next module:** F6 Safe and responsible use, where you'll learn what you can share with Claude."
