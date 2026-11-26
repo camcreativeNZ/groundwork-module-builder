@@ -1,0 +1,203 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The team and project in this module are fictional.
+
+id: P10
+title: Thinking partner
+level: Practitioner
+version: 1
+minutes: 17
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: widen, label: Widen }
+  - { id: challenge, label: Challenge }
+  - { id: decide, label: Decide }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Ravi
+    story: |
+      Ravi is a team manager. One of his five team members starts parental leave in a month, in the middle of a big project.
+
+      Ravi has already decided to share the work across the team. He asks Claude:
+    prompt:
+      label: Ravi's prompt
+      text: Is sharing the work across the team a good idea?
+    image:
+      file: assets/ravi-options.svg
+      alt: A person next to a whiteboard with several arrows branching from a question mark
+    reply:
+      label: Claude's reply (shortened)
+      text: |
+        ==Yes, sharing the work can be a great approach.== It keeps knowledge in the team, builds everyone's skills, and avoids the cost of hiring…
+      note: Ravi feels reassured. But he's only heard one side.
+    reflection:
+      question: What could Ravi have asked instead?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Claude tends to go along with how you frame a question.** To think well with it, widen the options first, ask it to challenge your thinking, then decide against your own criteria. The decision stays yours.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of thinking it through
+    menu_title: The three parts
+    intro: Select each card to see what it means.
+    cards:
+      - { part: widen, back: "ask for many different options before you choose, including some you wouldn't think of." }
+      - { part: challenge, back: "ask Claude to argue against your favourite option, and to name what could go wrong." }
+      - { part: decide, back: "say what matters to you, ask for a side-by-side comparison, then make the call yourself." }
+    tip: "**Tip:** ask a neutral question. \"What are my options?\" gets a better answer than \"Is my idea good?\""
+
+  # ---------- 3 to 5. Ravi thinks it through ----------
+  - template: step-builder
+    prompt_label: Ravi's prompt so far
+    reply_label: Claude's reply
+    steps:
+      - part: widen
+        menu_title: Widen
+        title: "Widen: options before answers"
+        content:
+          - Ravi starts again, with a neutral question.
+          - tip: "**Tip:** ask for a number of options. It pushes Claude past the obvious ones."
+        adds: A team member is on leave for six months during a big project. Give me six different ways to cover their work, including some I might not have thought of.
+        reply: |
+          1. Share the work across the team
+          2. Hire a temporary replacement
+          3. Bring in a contractor for one part of the project
+          4. Move the project deadline
+          5. Borrow someone from another team
+          6. Cut the project's scope
+        note: Six options, and three Ravi hadn't considered.
+
+      - part: challenge
+        menu_title: Challenge
+        title: "Challenge: argue the other side"
+        content:
+          - "Ravi says which option he likes, and asks Claude to push back."
+          - tip: "**Tip:** naming your favourite and asking for the case against it is the quickest way to find blind spots."
+        adds: "I'm leaning towards sharing the work across the team. Argue against that option, and tell me what could go wrong."
+        reply: |
+          - Your team is already at capacity, so the extra work won't spread evenly.
+          - Two people with the right skills would carry most of it.
+          - Burnout could put the deadline at more risk, not less.
+          - The project's hardest part needs specialist skills nobody else on the team has.
+        note: Real risks Ravi hadn't weighed.
+
+      - part: decide
+        menu_title: Decide
+        title: "Decide: compare, then choose"
+        content:
+          - "Ravi asks for a comparison against what matters to him, but keeps the decision."
+          - tip: "**Tip:** \"Don't choose for me\" keeps the decision, and the reasons, yours."
+        adds: "Compare sharing the work, a contractor, and cutting scope against three things: cost, team workload, and risk to the deadline. Don't choose for me."
+        reply: |
+          - **Share the work:** low cost, high workload, medium risk to the deadline.
+          - **Contractor for one part:** medium cost, low workload, low risk.
+          - **Cut scope:** no cost, low workload, but the project delivers less.
+        note: Ravi chooses a contractor for the specialist part, with the team sharing the rest.
+        success: A better plan than his first idea, and Ravi can explain why he chose it.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Think a decision through
+    menu_title: Try it
+    intro: Pick a decision you're facing, or use ours. Leave out personal details about the people involved (F6).
+    task: "**Our task:** your team wants to cut down on internal meetings."
+    fields:
+      - part: widen
+        label: "Widen: what's the decision, and how many options do you want?"
+        placeholder: Our team spends too long in internal meetings. Give me eight different ways to cut them down, including some unusual ones.
+        rows: 3
+      - part: challenge
+        label: "Challenge: which option do you favour, and what should Claude argue against?"
+        placeholder: I'm leaning towards meeting-free afternoons. Argue against that, and tell me what could go wrong.
+        rows: 2
+      - part: decide
+        label: "Decide: what matters most to you?"
+        placeholder: Compare my top three against team connection, time saved and how easy they are to start. Don't choose for me.
+        rows: 2
+    result_label: Your prompt
+    copy_label: Copy prompt
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - I asked for options before choosing.
+        - I asked Claude to argue against my favourite.
+        - I listed what matters to me.
+        - I made the final decision myself.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your thinking partner card.
+    questions:
+      - question: Which question will get the most balanced help?
+        options:
+          a: "\"Isn't my plan great?\""
+          b: "\"What are my options for covering this work?\""
+          c: "\"Tell me I'm right.\""
+        answer: b
+        feedback: A neutral question gets a wider answer.
+
+      - question: Claude agrees with everything you suggest. What should you do?
+        options:
+          a: Take that as proof you're right
+          b: Ask it to argue the other side, and name the risks
+          c: Start a new chat and ask again
+        answer: b
+        feedback: Claude tends to go along with how you frame things. Asking it to push back gives you the other side.
+
+      - type: match
+        question: Match each request to its part.
+        choice_word: part
+        choices: [Widen, Challenge, Decide]
+        lines:
+          - { text: "\"Give me eight different ways to cut our costs.\"", answer: Widen }
+          - { text: "\"What's the strongest case against my favourite option?\"", answer: Challenge }
+          - { text: "\"Compare these three against cost, time and risk.\"", answer: Decide }
+        feedback: Widen the options, challenge your favourite, then compare and decide.
+
+      - question: Claude's comparison suggests one option is best. Who makes the decision?
+        options:
+          a: Claude, because it compared them
+          b: You, using Claude's comparison as one input
+          c: Whoever reads the comparison
+        answer: b
+        feedback: Claude helps you think; you decide, and you're accountable (F6).
+
+      - question: You're weighing a decision about a staff member's performance. What should you leave out of your prompt?
+        options:
+          a: The criteria that matter to you
+          b: Their name and personal details
+          c: The options you're considering
+        answer: b
+        feedback: You can think it through without naming anyone (F6).
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your thinking partner card
+    menu_title: Take away
+    intro: You can now use Claude to think a decision through. Download the card and keep it beside you.
+    table:
+      caption: "Thinking partner card: Widen, Challenge and Decide"
+      columns: [Part, Ask, Example]
+      rows:
+        - part: widen
+          cells: ["For many options first", "\"Give me six different ways to cover this work, including some I might not have thought of.\""]
+        - part: challenge
+          cells: ["For the case against your favourite", "\"Argue against sharing the work. What could go wrong?\""]
+        - part: decide
+          cells: ["For a comparison, not a choice", "\"Compare these against cost, workload and risk. Don't choose for me.\""]
+    job_aid:
+      title: Thinking partner card
+      intro: To think a decision through with Claude, use three parts.
+      footer: "**Claude helps you think.** The decision, and the reasons for it, are yours."
+    next: "**You've finished the Practitioner level.** The Advanced level starts with A1 Delegating multi-step tasks."

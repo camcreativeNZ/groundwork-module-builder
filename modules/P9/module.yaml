@@ -1,0 +1,199 @@
+# Groundwork AI Training module file
+# Text formatting you can use anywhere: **bold**, *italic*, ==highlight==
+# Leave a blank line between paragraphs. Start lines with "1. " or "- " for lists.
+# The project, people and meeting in this module are fictional.
+# This module doesn't cover meeting recording or transcription features, which vary by tool and plan.
+
+id: P9
+title: Meetings and planning
+level: Practitioner
+version: 1
+minutes: 16
+language: en-NZ
+pass_mark: 4
+
+parts:
+  - { id: agenda, label: Agenda }
+  - { id: summary, label: Summary }
+  - { id: actions, label: Actions }
+
+screens:
+
+  # ---------- 1. Hook ----------
+  - template: scenario-hook
+    title: Meet Mele
+    story: |
+      Mele is a project lead. Her weekly project meeting ran 20 minutes over. Two decisions were talked about, but not made.
+
+      By Friday, nobody is sure who agreed to do what. All Mele has is a page of scribbled notes.
+    image:
+      file: assets/mele-meeting.svg
+      alt: A person at a meeting table with a clock and a page of messy notes
+    reflection:
+      question: Where could Claude have helped Mele?
+      hint: Write a quick thought. This isn't marked or saved.
+      answer: |
+        **Before, after and in between.** A focused agenda before the meeting, a clear summary after it, and actions with an owner and a date, so nothing falls through the gaps.
+
+        In this module you'll practise all three.
+
+  # ---------- 2. Three parts ----------
+  - template: flip-cards
+    title: Three parts of a good meeting
+    menu_title: The three parts
+    intro: Select each card to see how Claude can help.
+    cards:
+      - { part: agenda, back: "say what the meeting must decide, who's coming and how long you have. Put decisions first." }
+      - { part: summary, back: "paste your notes and say who it's for. Ask for decisions and open questions, only from your notes." }
+      - { part: actions, back: "ask for every action with an owner and a due date, and for any gaps to be flagged." }
+    tip: "**Tip:** meeting notes often name people. Check your AI policy before you paste them, and leave out personal details nobody needs (F6)."
+
+  # ---------- 3 to 5. Mele's next meeting ----------
+  - template: step-builder
+    prompt_label: Mele's requests so far
+    reply_label: Claude's reply
+    steps:
+      - part: agenda
+        menu_title: Agenda
+        title: "Agenda: decisions first"
+        content:
+          - Before next week's meeting, Mele asks for an agenda.
+          - tip: "**Tip:** a time for each item keeps the meeting on track."
+        adds: "Draft a 45-minute agenda for our weekly project meeting. We must decide the launch date and the budget for testing. Six people attend. Put decisions first, with a time for each item."
+        reply: |
+          1. **Decide: launch date** (15 min)
+          2. **Decide: testing budget** (15 min)
+          3. Updates from each workstream (10 min)
+          4. Any other business (5 min)
+        note: The two decisions come first, while everyone is fresh.
+
+      - part: summary
+        menu_title: Summary
+        title: "Summary: for people who weren't there"
+        content:
+          - After the meeting, Mele pastes her notes.
+          - tip: "**Tip:** \"Use only what's in my notes\" stops Claude filling gaps with things nobody said."
+        adds: "Summarise these notes for the two people who missed the meeting. List the decisions, then the open questions. Use only what's in my notes: [notes]"
+        reply: |
+          **Decisions**
+
+          - Launch date: Monday 2 March.
+
+          **Open questions**
+
+          - Testing budget: still open. Waiting on a quote from the testing company.
+        note: Short and clear, and nothing added that wasn't said.
+
+      - part: actions
+        menu_title: Actions
+        title: "Actions: who, what and when"
+        content:
+          - "Mele adds one more request."
+          - tip: "**Tip:** an action with no owner usually doesn't happen."
+        adds: "List every action with an owner and a due date. If either is missing, write \"Owner?\" or \"Date?\"."
+        reply: |
+          1. Get the testing quote: Jo, by Wednesday
+          2. Update the launch plan: Mele, by Friday
+          3. Book the launch venue: Sam, **Date?**
+          4. Tell the support team the launch date: **Owner?**, by Friday
+          5. Draft the launch email: Priya, by next Monday
+        note: Two gaps flagged. Mele fills them in before she sends the summary.
+        success: The meeting finished on time, and everyone knows what they're doing, and by when.
+
+  # ---------- 6. Practice ----------
+  - template: try-it
+    title: Plan a meeting
+    menu_title: Try it
+    intro: Use a meeting from your week, or ours.
+    task: "**Our task:** a 30-minute meeting to choose a date for your team's end-of-year event."
+    fields:
+      - part: agenda
+        label: "Agenda: what must the meeting decide, who's coming, and how long?"
+        placeholder: Draft a 30-minute agenda. We must choose a date and a venue for our end-of-year event. Eight people. Decisions first, with times.
+        rows: 3
+      - part: summary
+        label: "Summary: who is the summary for?"
+        placeholder: Afterwards, summarise my notes for people who couldn't come. Decisions first. Use only what's in my notes.
+        rows: 2
+      - part: actions
+        label: "Actions: how should Claude show owners, dates and gaps?"
+        placeholder: List every action with an owner and a due date. Flag any that are missing.
+        rows: 2
+    result_label: Your requests
+    copy_label: Copy requests
+    open_link: { label: Open Claude in a new tab, url: "https://claude.ai/new" }
+    checklist:
+      title: Try it in Claude, then check
+      items:
+        - My agenda puts decisions first.
+        - I said who the summary is for.
+        - I asked for owners and dates.
+        - I checked the summary against my notes before sending it.
+
+  # ---------- 7. Knowledge check ----------
+  - template: knowledge-check
+    title: Check your learning
+    pass_message: Well done, you've passed. Select Next for your meeting card.
+    questions:
+      - question: What makes the most useful agenda request?
+        options:
+          a: "\"Write an agenda.\""
+          b: "\"Draft a 30-minute agenda. We must decide the venue. Put that first, with times.\""
+          c: "\"Make the meeting shorter.\""
+        answer: b
+        feedback: Say what must be decided, and how long you have.
+
+      - question: Why add "use only what's in my notes" to a summary request?
+        options:
+          a: To make it shorter
+          b: So Claude doesn't fill gaps with things nobody said
+          c: It's needed before Claude will summarise
+        answer: b
+        feedback: Claude can fill gaps with what's likely. Keep it to what was said (F5).
+
+      - type: match
+        question: Match each request to its part.
+        choice_word: part
+        choices: [Agenda, Summary, Actions]
+        lines:
+          - { text: "\"Put the budget decision first, with 15 minutes.\"", answer: Agenda }
+          - { text: "\"Write this up for people who missed it.\"", answer: Summary }
+          - { text: "\"List who's doing what, by when.\"", answer: Actions }
+        feedback: An agenda before, a summary after, and actions so things get done.
+
+      - question: Claude lists an action with no owner. What should you do?
+        options:
+          a: Assign it to yourself
+          b: Find out who agreed to it, and add their name before you send
+          c: Delete it
+        answer: b
+        feedback: An action without an owner usually doesn't happen.
+
+      - question: Your notes include a colleague's health update, shared in the meeting. What should you do before you paste them?
+        options:
+          a: Nothing, because they're your notes
+          b: Remove it. It's personal, and isn't needed for the summary.
+          c: Ask Claude to keep it private
+        answer: b
+        feedback: Leave out personal details nobody needs (F6).
+
+  # ---------- 8. Take away ----------
+  - template: take-away
+    title: Your meeting card
+    menu_title: Take away
+    intro: You can now use Claude before and after meetings. Download the card and keep it beside you.
+    table:
+      caption: "Meeting card: Agenda, Summary and Actions"
+      columns: [Part, When, Example]
+      rows:
+        - part: agenda
+          cells: ["Before", "\"Draft a 45-minute agenda. We must decide the launch date. Decisions first, with times.\""]
+        - part: summary
+          cells: ["After", "\"Summarise these notes for people who missed it. Use only what's in my notes.\""]
+        - part: actions
+          cells: ["After", "\"List every action with an owner and a due date. Flag any that are missing.\""]
+    job_aid:
+      title: Meeting card
+      intro: Use Claude before and after your meetings.
+      footer: "**Check the summary against your notes before you send it,** and leave out personal details nobody needs."
+    next: "**Next module:** P10 Thinking partner, where you'll use Claude to brainstorm and weigh decisions."
