@@ -22,8 +22,8 @@
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_AzxVjKeQcGVJv9eDK-Gcdg_yFpjz4cC",
     "CONTACT_TO": "camcreative@icloud.com",
     // Stripe price ids (test mode first). Filled in once the Stripe products are made.
-    "STRIPE_PRICE_FOUNDATIONS": "price_TODO_foundations",
-    "STRIPE_PRICE_FULL": "price_TODO_full",
+    "STRIPE_PRICE_FOUNDATIONS": "price_1UgERzBDYmQDUXOFJvX0MPkA",
+    "STRIPE_PRICE_FULL": "price_1UgESiBDYmQDUXOFmhlyKdMG",
     // Until the domain is set up in Resend, emails come from Resend's test address.
     "EMAIL_FROM": "Groundwork AI Training <onboarding@resend.dev>"
   }
