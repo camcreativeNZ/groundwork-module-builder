@@ -17,7 +17,7 @@
   "observability": { "enabled": true },
   "vars": {
     // Change SITE_URL to https://groundworkaitraining.com once the domain is bought and connected.
-    "SITE_URL": "https://groundwork-website.workers.dev",
+    "SITE_URL": "https://groundwork-website.camcreative.workers.dev",
     "SUPABASE_URL": "https://esyosmfaficxhxfwpkfx.supabase.co",
     "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_AzxVjKeQcGVJv9eDK-Gcdg_yFpjz4cC",
     "CONTACT_TO": "camcreative@icloud.com",
