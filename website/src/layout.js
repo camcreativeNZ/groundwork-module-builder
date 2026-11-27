@@ -27,7 +27,7 @@ function header(pre, current) {
       ${link('courses.html', 'Courses', 'hide-sm')}
       ${link('pricing.html', 'Pricing', 'hide-sm')}
       ${link('how-it-works.html', 'How it works', 'hide-sm')}
-      ${link('login.html', 'Log in')}
+      <a id="nav-account" href="${pre}login.html"${current === 'login.html' || current === 'my-learning.html' ? ' aria-current="page"' : ''}>Log in</a>
       <a class="btn btn-primary" href="${pre}try-f3.html">Try a module</a>
     </nav>
   </div>
@@ -59,7 +59,7 @@ ${o.body}
 </main>
 ${footer(o.pre)}
 <script src="${o.pre}site.js"></script>
-`;
+${o.account ? '<script src="' + o.pre + 'vendor/supabase.js"></script>\n<script src="' + o.pre + 'config.js"></script>\n<script src="' + o.pre + 'account.js"></script>\n' : ''}`;
   if (o.fragment) return head + body;
   return '<!doctype html>\n<html lang="en-NZ">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
     head + '</head>\n<body>\n' + body + '</body>\n</html>\n';

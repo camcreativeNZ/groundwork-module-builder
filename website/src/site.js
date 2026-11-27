@@ -28,7 +28,8 @@
   var total = document.getElementById('total');
   function update() {
     var n = Math.max(0, Math.floor(Number(seats.value) || 0));
-    total.textContent = 'US$' + (n * Number(plan.value)).toLocaleString('en-NZ');
+    var price = Number(plan.options[plan.selectedIndex].getAttribute('data-price'));
+    total.textContent = 'US$' + (n * price).toLocaleString('en-NZ');
   }
   if (plan && seats && total) {
     plan.addEventListener('change', update);
@@ -56,16 +57,40 @@
         return;
       }
       err.hidden = true;
-      // The real site sends this to the server, which emails Groundwork and sends the sender a copy.
-      document.getElementById('c-sent-email').textContent = email;
-      form.hidden = true;
-      var sent = document.getElementById('c-sent');
-      sent.hidden = false;
-      sent.setAttribute('tabindex', '-1');
-      sent.focus();
+      var button = form.querySelector('button[type=submit]');
+      button.disabled = true;
+      var body = {};
+      ['name', 'email', 'organisation', 'topic', 'learners', 'message', 'website'].forEach(function (k) {
+        if (form.elements[k]) body[k] = form.elements[k].value.trim();
+      });
+      // Our server emails Groundwork and sends the sender a copy.
+      fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json().then(function (out) { if (!r.ok) throw new Error(out.error || ''); }); })
+        .then(function () {
+          document.getElementById('c-sent-email').textContent = email;
+          form.hidden = true;
+          var sent = document.getElementById('c-sent');
+          sent.hidden = false;
+          sent.setAttribute('tabindex', '-1');
+          sent.focus();
+        })
+        .catch(function (x) {
+          button.disabled = false;
+          err.textContent = x && x.message && !/fetch|JSON/i.test(x.message) ? x.message : 'We couldn\'t send your message just now. Please try again in a few minutes.';
+          err.hidden = false;
+        });
     });
   }
 
-  var login = document.getElementById('login-form');
-  if (login) login.addEventListener('submit', function (e) { e.preventDefault(); });
+  // Header: show "My learning" instead of "Log in" when someone is logged in on this device.
+  var acct = document.getElementById('nav-account');
+  try {
+    for (var i = 0; acct && i < localStorage.length; i++) {
+      if (/^sb-.+-auth-token$/.test(localStorage.key(i))) {
+        acct.textContent = 'My learning';
+        acct.href = acct.getAttribute('href').replace('login.html', 'my-learning.html');
+        break;
+      }
+    }
+  } catch (e) { /* storage blocked: keep "Log in" */ }
 })();

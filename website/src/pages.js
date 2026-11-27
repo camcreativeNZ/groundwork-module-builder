@@ -166,14 +166,16 @@ function pricing(modules) {
     <h2 id="checkout-h" class="h3">Buy seats</h2>
     <div class="fields">
       <label for="plan">Plan
-        <select id="plan" name="plan"><option value="25">Foundations (US$25)</option><option value="60" selected>Full suite (US$60)</option></select>
+        <select id="plan" name="plan"><option value="foundations" data-price="25">Foundations (US$25)</option><option value="full" data-price="60" selected>Full suite (US$60)</option></select>
       </label>
       <label for="seats">How many learners?
         <input id="seats" name="seats" type="number" min="1" max="499" value="10" inputmode="numeric">
       </label>
       <p class="total" aria-live="polite">Total per year: <strong id="total">US$600</strong></p>
     </div>
-    <button class="btn btn-primary" type="submit" data-soon="Checkout opens in the next step of the build.">Continue to payment</button>
+    <p class="form-error" id="checkout-error" role="alert" hidden></p>
+    <button class="btn btn-primary" type="submit">Continue to payment</button>
+    <p class="small-note" id="checkout-note">You'll create an account (or log in), then pay securely by card. In this test version no real payment is taken.</p>
     <p class="small-note">Buying for 500 or more learners? <a href="contact.html">Ask for a quote</a>.</p>
   </form>
 </div></section>
@@ -256,6 +258,7 @@ function contact() {
     </label>
     <label for="c-count">Number of learners <span class="opt">(optional)</span><input id="c-count" name="learners" type="number" min="1" inputmode="numeric"></label>
     <label for="c-msg">Message<textarea id="c-msg" name="message" rows="5" required></textarea></label>
+    <div class="hp" aria-hidden="true"><label for="c-web">Leave this empty<input id="c-web" name="website" tabindex="-1" autocomplete="off"></label></div>
     <p class="form-error" id="c-error" role="alert" hidden></p>
     <button class="btn btn-primary" type="submit">Send message</button>
   </form>
@@ -266,17 +269,9 @@ function contact() {
 </div></section>`;
 }
 
-// ---------- Log in (form only in this stage) ----------
-function login() {
-  return pageHead('', 'Log in to Groundwork', '') + `
-<section class="band" style="padding-top:1rem"><div class="wrap narrow">
-  <form class="form" id="login-form" novalidate>
-    <label for="l-email">Email<input id="l-email" type="email" autocomplete="email"></label>
-    <label for="l-pass">Password<input id="l-pass" type="password" autocomplete="current-password"></label>
-    <button class="btn btn-primary" type="submit" data-soon="Logging in is added in the next step of the build.">Log in</button>
-    <p class="small-note"><a href="#" data-soon="Password resets are added in the next step of the build.">Forgot your password?</a></p>
-  </form>
-</div></section>`;
+// ---------- Page not found ----------
+function notFound() {
+  return pageHead('', 'We couldn\'t find that page', 'It may have moved. Try the <a href="/">homepage</a> or <a href="/courses.html">all courses</a>.');
 }
 
 // ---------- Legal placeholders ----------
@@ -287,4 +282,4 @@ function legal(title) {
 </div></section>`;
 }
 
-module.exports = { courses, pathway, modulePage, tryF3, pricing, howItWorks, about, contact, login, legal, OUTCOMES };
+module.exports = { courses, pathway, modulePage, tryF3, pricing, howItWorks, about, contact, legal, notFound, pageHead, OUTCOMES };

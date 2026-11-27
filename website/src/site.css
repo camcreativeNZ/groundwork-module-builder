@@ -228,3 +228,35 @@ textarea { resize: vertical; }
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); z-index: 30; max-width: calc(100% - 32px); background: var(--ink); color: var(--bg); padding: .75rem 1.1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
 
 .nav a[aria-current="page"] { color: var(--accent); }
+
+/* Account pages */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.form-ok { color: var(--right); font-weight: 600; }
+.notice { background: var(--accent-soft); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+.notice.warn { background: var(--warn-soft); }
+.notice a { font-weight: 600; }
+.link-btn { font: inherit; color: var(--accent); background: none; border: 0; padding: .5rem 0; text-decoration: underline; cursor: pointer; min-height: 2.75rem; }
+.btn-sm { min-height: 2.75rem; padding: .5rem .9rem; font-size: .95rem; }
+.page-head.tight { padding-block: 2rem 1rem; }
+.page-head.tight h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+.ml { display: grid; gap: 2.25rem; }
+.ml-group-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .75rem; }
+.ml-count { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ml-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.ml-item { display: grid; grid-template-columns: 2.5rem 1fr auto auto; align-items: center; gap: .5rem 1rem; padding: .7rem 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.ml-title { font-weight: 600; }
+.ml-title small { display: block; font-weight: 400; color: var(--ink-soft); }
+.ml-status { color: var(--ink-soft); font-size: .95rem; white-space: nowrap; }
+.ml-status.done { color: var(--right); font-weight: 600; }
+.ml-status.started { color: var(--ink); }
+.ml-actions { display: flex; align-items: center; gap: .9rem; justify-content: end; }
+.ml-aid { font-size: .95rem; }
+.ml-locked { color: var(--ink-soft); font-size: .95rem; }
+@media (max-width: 640px) {
+  .ml-item { grid-template-columns: 2.25rem 1fr; }
+  .ml-status, .ml-actions { grid-column: 2; justify-content: start; }
+}
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+[hidden] { display: none !important; }
+/* The player in My learning: the whole module, with its Next button, fits on screen under the title. */
+#play-frame iframe { height: calc(100vh - 12rem); height: calc(100svh - 12rem); min-height: 520px; }

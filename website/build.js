@@ -4,6 +4,7 @@
 //   node website/build.js            the whole public site
 //   node website/build.js --preview  also preview-home.html, the homepage without its document skeleton,
 //                                    for publishing the site as a private preview page
+//   node website/build.js --quick    builds only F3 of the modules (faster, for checking pages)
 const fs = require('fs');
 const path = require('path');
 const YAML = require('yaml');
@@ -12,6 +13,7 @@ const api = require('../src');
 const { page } = require('./src/layout');
 const { home, pathwayStats } = require('./src/home');
 const P = require('./src/pages');
+const A = require('./src/account-pages');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'build', 'website');
@@ -30,13 +32,26 @@ function loadModules() {
   });
 }
 
+// The public settings in wrangler.jsonc (the same ones the server uses). Comment lines start with //.
+function siteSettings() {
+  const text = fs.readFileSync(path.join(__dirname, 'wrangler.jsonc'), 'utf8').split('\n').filter(function (l) { return !/^\s*\/\//.test(l); }).join('\n');
+  return JSON.parse(text).vars;
+}
+
+// The job aid PDF (A4) inside a built module, if it has one.
+function jobAidFile(dir) {
+  const a = path.join(dir, 'assets');
+  if (!fs.existsSync(a)) return null;
+  return fs.readdirSync(a).find(function (f) { return /-A4\.pdf$/.test(f); }) || null;
+}
+
 function write(rel, html) {
   const file = path.join(OUT, rel);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
 }
 
-async function build(preview) {
+async function build(preview, skipModules) {
   const theme = loadTheme(THEME_DIR);
   const errors = (theme.problems || []).filter(function (p) { return p.level === 'error'; });
   if (errors.length) { console.error(errors); process.exit(1); }
@@ -64,11 +79,23 @@ async function build(preview) {
   if (preview) write('preview-home.html', page({ pre: '', title: 'Groundwork AI Training', description: D, body: home(modules), fragment: true }));
   top('courses.html', 'Courses · Groundwork AI Training', P.courses(modules), 'courses.html');
   top('try-f3.html', 'Try a module free · Groundwork AI Training', P.tryF3(), 'try-f3.html');
-  top('pricing.html', 'Pricing · Groundwork AI Training', P.pricing(modules), 'pricing.html');
+  top('pricing.html', 'Pricing · Groundwork AI Training', P.pricing(modules), 'pricing.html', { account: true });
   top('how-it-works.html', 'How it works · Groundwork AI Training', P.howItWorks(), 'how-it-works.html');
   top('about.html', 'About · Groundwork AI Training', P.about(), 'about.html');
   top('contact.html', 'Contact · Groundwork AI Training', P.contact(), 'contact.html');
-  top('login.html', 'Log in · Groundwork AI Training', P.login(), 'login.html');
+  // Account pages, and the browser settings they use
+  const vars = siteSettings();
+  write('config.js', '// Public settings for the login service (safe to show).\nwindow.GW_CONFIG = ' + JSON.stringify({
+    siteUrl: vars.SITE_URL, supabaseUrl: vars.SUPABASE_URL, supabaseKey: vars.SUPABASE_PUBLISHABLE_KEY
+  }) + ';\n');
+  fs.mkdirSync(path.join(OUT, 'vendor'), { recursive: true });
+  fs.copyFileSync(path.join(ROOT, 'node_modules', '@supabase', 'supabase-js', 'dist', 'umd', 'supabase.js'), path.join(OUT, 'vendor', 'supabase.js'));
+  write('account.js', fs.readFileSync(path.join(__dirname, 'src', 'account.js'), 'utf8'));
+  const acct = { account: true };
+  top('login.html', 'Log in · Groundwork AI Training', A.login(), 'login.html', acct);
+  top('signup.html', 'Create your account · Groundwork AI Training', A.signup(), 'login.html', acct);
+  top('reset.html', 'Reset your password · Groundwork AI Training', A.reset(), 'login.html', acct);
+  top('404.html', 'Page not found · Groundwork AI Training', P.notFound(), undefined, { pre: '/' });
   top('privacy.html', 'Privacy · Groundwork AI Training', P.legal('Privacy policy'));
   top('terms.html', 'Terms · Groundwork AI Training', P.legal('Terms of use'));
 
@@ -80,15 +107,27 @@ async function build(preview) {
     write('modules/' + m.id.toLowerCase() + '.html', page({ pre: '../', title: m.id + ' ' + m.title + ' · Groundwork AI Training', description: listings[m.id].summary, body: P.modulePage(m, listings[m.id], next) }));
   });
 
-  // The free F3 demo: the real web module, built by the module builder
-  const tmp = path.join(ROOT, 'build', '.website-f3');
-  const report = await api.build({ module: path.join(ROOT, 'modules', 'F3', 'module.yaml'), out: tmp });
-  if (!report.ok) { console.error('F3 did not build', report.problems); process.exit(1); }
-  fs.cpSync(path.join(tmp, 'web'), path.join(OUT, 'try', 'f3'), { recursive: true });
-  fs.rmSync(path.join(OUT, 'try', 'f3', 'imsmanifest.xml'), { force: true });
+  // Every module's web version, kept behind the login at /learn/<ID>/. F3 is also the free demo at /try/f3/.
+  const tmp = path.join(ROOT, 'build', '.website-modules');
+  fs.rmSync(tmp, { recursive: true, force: true });
+  for (const m of modules) {
+    if (skipModules && m.id !== 'F3') continue;
+    const report = await api.build({ module: path.join(ROOT, 'modules', m.id, 'module.yaml'), out: path.join(tmp, m.id) });
+    if (!report.ok) { console.error(m.id + ' did not build', report.problems); process.exit(1); }
+    const web = path.join(tmp, m.id, 'web');
+    fs.rmSync(path.join(web, 'imsmanifest.xml'), { force: true });
+    m.jobAid = jobAidFile(web);
+    fs.cpSync(web, path.join(OUT, 'learn', m.id), { recursive: true });
+    if (m.id === 'F3') fs.cpSync(web, path.join(OUT, 'try', 'f3'), { recursive: true });
+  }
   fs.rmSync(tmp, { recursive: true, force: true });
 
-  console.log('Built ' + path.relative(ROOT, OUT) + ': ' + modules.length + ' module pages, 5 pathway pages, 9 other pages, F3 demo.');
+  top('my-learning.html', 'My learning · Groundwork AI Training', A.myLearning(modules), 'my-learning.html', acct);
+  const catalogue = {};
+  modules.forEach(function (m) { catalogue[m.id] = { title: m.title, level: m.level }; });
+  top('play.html', 'Module · Groundwork AI Training', A.play() + '\n<script type="application/json" id="catalogue">' + JSON.stringify(catalogue).replace(/</g, '\\u003c') + '</script>', 'my-learning.html', acct);
+
+  console.log('Built ' + path.relative(ROOT, OUT) + ': ' + modules.length + ' module pages, 5 pathway pages, account pages, ' + (skipModules ? 'F3 only' : modules.length + ' modules') + ' behind the login, F3 demo.');
 }
 
-build(process.argv.includes('--preview'));
+build(process.argv.includes('--preview'), process.argv.includes('--quick'));

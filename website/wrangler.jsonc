@@ -1,0 +1,30 @@
+// Settings for putting the website online with Cloudflare Workers.
+// Deploy from the repository folder:  npm run website:deploy
+// Secrets are never written here. Add each one once with:  npx wrangler secret put NAME -c website/wrangler.jsonc
+//   SUPABASE_SECRET_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, RESEND_API_KEY
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "groundwork-website",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "../build/website",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Our server checks these before anything is sent: modules need a login and a plan.
+    "run_worker_first": ["/learn/*", "/api/*"]
+  },
+  "observability": { "enabled": true },
+  "vars": {
+    // Change SITE_URL to https://groundworkaitraining.com once the domain is bought and connected.
+    "SITE_URL": "https://groundwork-website.workers.dev",
+    "SUPABASE_URL": "https://esyosmfaficxhxfwpkfx.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_AzxVjKeQcGVJv9eDK-Gcdg_yFpjz4cC",
+    "CONTACT_TO": "camcreative@icloud.com",
+    // Stripe price ids (test mode first). Filled in once the Stripe products are made.
+    "STRIPE_PRICE_FOUNDATIONS": "price_TODO_foundations",
+    "STRIPE_PRICE_FULL": "price_TODO_full",
+    // Until the domain is set up in Resend, emails come from Resend's test address.
+    "EMAIL_FROM": "Groundwork AI Training <onboarding@resend.dev>"
+  }
+}

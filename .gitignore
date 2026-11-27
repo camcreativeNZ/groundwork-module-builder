@@ -2,3 +2,5 @@ node_modules/
 build/
 tests/output/
 .DS_Store
+.wrangler/
+.dev.vars
