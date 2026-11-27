@@ -50,13 +50,19 @@ async function db(env, path, method, body, prefer) {
     method,
     headers: {
       apikey: env.SUPABASE_SECRET_KEY,
-      Authorization: 'Bearer ' + env.SUPABASE_SECRET_KEY,
+      // New-style secret keys (sb_secret_...) go on the apikey header only: Supabase
+      // rejects them as a Bearer token. Old JWT-style service keys still need both.
+      ...(/^eyJ/.test(env.SUPABASE_SECRET_KEY || '') ? { Authorization: 'Bearer ' + env.SUPABASE_SECRET_KEY } : {}),
       'Content-Type': 'application/json',
       Prefer: prefer || 'return=representation'
     },
     body: body ? JSON.stringify(body) : undefined
   });
-  if (!r.ok) throw new Error('Database ' + method + ' ' + path + ' failed: ' + r.status + ' ' + (await r.text()));
+  if (!r.ok) {
+    const detail = await r.text();
+    console.error('Database ' + method + ' ' + path.split('?')[0] + ' failed: ' + r.status + ' ' + detail.slice(0, 500));
+    throw new Error('Database ' + method + ' failed: ' + r.status);
+  }
   return r.status === 204 ? null : r.json();
 }
 
