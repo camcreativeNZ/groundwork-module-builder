@@ -8,13 +8,14 @@
     "check": "node bin/groundwork.js check",
     "build:f3": "node bin/groundwork.js build modules/F3/module.yaml",
     "test": "node --test tests/*.test.js",
-    "qa": "node bin/groundwork.js qa"
+    "qa": "node bin/groundwork.js qa",
+    "website": "node website/build.js --preview"
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "yaml": "^2.9.1",
     "axe-core": "^4.10.3",
-    "playwright": "1.63.0"
+    "playwright": "1.63.0",
+    "yaml": "^2.9.1"
   },
   "private": true,
   "bin": {
