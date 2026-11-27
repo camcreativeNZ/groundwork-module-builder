@@ -1,0 +1,105 @@
+# Short summaries for the website's module pages. One entry per module, keyed by module id.
+# summary: two sentences (the story, then what the learner gets). learn: three "You'll learn to" points.
+
+F1:
+  summary: Priya wants a quick answer about carer's leave and asks Claude. Learn what Claude is good at, what to check carefully, and what should stay with a person.
+  learn: [spot tasks Claude is a great fit for, recognise answers that need careful checking, keep people's judgement where it matters]
+F2:
+  summary: Tomás's manager wants the budget summary he drafted with Claude last week, and he can't find it. Set up three simple habits so your work with Claude is easy to find and reuse.
+  learn: [choose where to use Claude for different tasks, start new chats and name them clearly, find past work quickly]
+F3:
+  summary: Sam asks Claude for an email about an office move and gets a long, vague reply full of made-up details. Learn the three parts of a clear request, and watch Sam's email go from unusable to ready to send.
+  learn: [give Claude a clear goal and say what it's for, add the facts and audience Claude can't guess, "describe the finished result: length, tone and layout"]
+F4:
+  summary: Aroha's first draft of a newsletter piece is close, but not quite right. Learn how to give feedback that gets a better second draft instead of starting again.
+  learn: [say what to keep, say what to change, explain why so Claude gets it right next time]
+F5:
+  summary: Mateo's market summary looks polished, but some of the numbers are wrong. Learn three quick checks before you rely on Claude's work.
+  learn: [check facts and figures, check where information came from, check the result fits its purpose]
+F6:
+  summary: Lena needs help with a return-to-work letter, but it involves a staff member's health. Learn what's safe to share with Claude, what to check first, and what never to share.
+  learn: ["sort information into OK to share, check first, and don't share", check what your organisation's policy allows, use Claude responsibly with people's information]
+F7:
+  summary: Hemi has spent 40 minutes on a reply to an upset customer and it still sounds defensive. Learn to use Claude to draft, rewrite and summarise everyday writing in minutes.
+  learn: [draft a first version quickly, rewrite for tone and clarity, summarise long messages and documents]
+F8:
+  summary: Jonah uploads a 60-page cleaning contract and asks Claude a vague question about it. Learn how to work with files and images so Claude finds what you need.
+  learn: [give Claude the right files and images, say what you need from them, ask Claude to show where its answer came from]
+P1:
+  summary: Grace needs help-page answers for 20 customer questions, all in the same style. Learn four parts that give Claude structure for bigger tasks.
+  learn: [give Claude a role and an example, break work into clear steps, set limits so the results stay consistent]
+P2:
+  summary: Fatima explains the same newsletter details to Claude every month. Learn how Projects keep your instructions, files and chats together for ongoing work.
+  learn: [write project instructions once, add the files Claude should use, keep related chats in one place]
+P3:
+  summary: Wei's manager asks what other organisations are doing about four-day work weeks. Learn to research with Claude and trust what you bring back.
+  learn: [ask a focused research question, ask for and judge sources, check findings before you share them]
+P4:
+  summary: Rosa has a year of café sales and needs to know whether to cut winter hours. Learn to explore data and spreadsheets with Claude, even if you're not a numbers person.
+  learn: [explain your data and question clearly, ask follow-up questions of the results, get charts and tables that show the answer]
+P5:
+  summary: Kofi needs a two-page guide for 40 festival volunteers. Learn to create polished documents and pages with Claude, from first ask to finished file.
+  learn: [ask for a document with the right structure, revise it section by section, finish and format it ready to share]
+P6:
+  summary: Ana's charity has a warm, direct voice, but Claude's drafts sound like anyone. Learn to teach Claude your voice so drafts sound like you.
+  learn: [show Claude examples of your writing, describe your voice in plain words, keep the voice consistent across drafts]
+P7:
+  summary: Every Monday Leilani copies her calendar and emails into Claude to plan her week. Learn how connectors let Claude work with the tools you already use.
+  learn: [connect Claude to your everyday tools, ask questions across them, approve actions before Claude takes them]
+P8:
+  summary: Marcus writes three job ads a week, and starts each one from scratch. Learn to turn repeat tasks into reusable prompts and skills.
+  learn: [spot tasks worth reusing, write a prompt template, turn a template into a skill]
+P9:
+  summary: Mele's meeting ran 20 minutes over and two decisions weren't made. Learn to use Claude before, during and after meetings so they lead to action.
+  learn: [draft a focused agenda, summarise what was decided, turn notes into clear actions with owners]
+P10:
+  summary: Ravi has a team member going on parental leave in the middle of a big project. Learn to use Claude as a thinking partner on hard decisions.
+  learn: [widen your options, ask Claude to challenge your thinking, reach a decision you can explain]
+A1:
+  summary: Elif needs a recommendation memo on five supplier proposals by tomorrow. Learn to hand Claude a multi-step task and stay in control of the result.
+  learn: [write a clear brief for a bigger task, agree a plan before Claude starts, steer the work as it goes]
+A2:
+  summary: Sofia wants an agent to tidy 400 badly named files in a shared folder. Learn how agents work, and how to use them safely in everyday work.
+  learn: [set a clear scope for an agent, give only the permissions it needs, review what it did before you rely on it]
+A3:
+  summary: Hana spends 40 minutes every Monday writing the same briefing. Learn to automate routine work with Claude and keep an eye on it.
+  learn: [pick tasks worth automating, set up a scheduled task, watch results and fix problems early]
+A4:
+  summary: Diego's six staff all prepare for renewals with Claude, but each in a different way. Learn to build a shared workflow your whole team can use.
+  learn: [map how the work gets done, share one workflow across the team, give it an owner who keeps it up to date]
+A5:
+  summary: Claude drafts replies to 600 customer emails a week for Tomás's team. Learn to manage quality and risk when Claude does work at scale.
+  learn: [sort work by risk, sample and review the right amount, fix problems at the source]
+A6:
+  summary: Kofi needs to know what changed in a new 60-page contract. Learn to work through long and complex documents with Claude without missing what matters.
+  learn: [map a long document before you dig in, ask Claude to quote the exact text, compare versions reliably]
+A7:
+  summary: Yuki's colleagues keep asking for "that prompt you used". Learn to build a prompt library your organisation can share and trust.
+  learn: [collect prompts that work, shape them so anyone can use them, share and look after the library]
+A8:
+  summary: Amara has seven projects, five skills, three connectors and two scheduled tasks, and it's getting messy. Learn to bring it all together into a personal AI system that works for you.
+  learn: [audit what you've set up, assemble it around your real work, review and tidy it regularly]
+M1:
+  summary: Lena's marketing team of nine uses Claude, and a few things have gone wrong in one month. Learn to lead a team that uses Claude, with clear expectations and fewer surprises.
+  learn: [agree how the team uses Claude, protect people and information, check work without slowing the team down]
+M2:
+  summary: Ibrahim's finance team uses Claude, but mostly for one-off emails. Learn to redesign team work so Claude makes a real difference.
+  learn: [list the team's tasks, score where Claude could help most, pilot a change and learn from it]
+M3:
+  summary: In one week, Mei has a team member struggling with Claude and another relying on it too much. Learn to coach people and review AI-assisted work fairly.
+  learn: [show what good use looks like, ask questions that build judgement, support people at different levels]
+M4:
+  summary: After three months with Claude, Carlos's director asks whether it's worth it. Learn to measure the impact on your team and report it clearly.
+  learn: [set a baseline before you start, track a few useful measures, report results honestly]
+L1:
+  summary: Nadia's board asks the charity for its AI strategy. Learn to shape a strategy that's anchored in your organisation's goals.
+  learn: [anchor AI plans to your organisation's goals, choose where to focus first, commit to clear next steps]
+L2:
+  summary: An audit finds Henrik's staff using personal AI accounts with client contracts and staff records. Learn to set governance, policy and risk controls that people actually follow.
+  learn: ["write a clear, usable AI policy", identify and manage the main risks, set up oversight that works]
+L3:
+  summary: Olivia announced Claude to 150 staff in one email, and few people are using it. Learn to lead people through the change.
+  learn: [explain why the change matters, equip people with training and time, listen and adjust as you go]
+L4:
+  summary: Kenji's firm has just finished a 30-person pilot of Claude, and he has to decide what's next. Learn to judge the return on investment in AI.
+  learn: [count the real costs, measure the benefits fairly, make and explain a clear decision]
