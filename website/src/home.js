@@ -28,7 +28,7 @@ function pathwayStats(modules) {
   });
 }
 
-function home(modules, opts) {
+function home(modules) {
   const paths = pathwayStats(modules);
   const total = modules.length;
   const totalMin = modules.reduce(function (t, m) { return t + (m.minutes || 0); }, 0);
@@ -45,31 +45,7 @@ function home(modules, opts) {
       '</li>';
   }).join('\n');
 
-  return `<title>Groundwork AI Training</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Short, scenario-based modules that teach everyone at work to use Claude well, from first prompts to leading the change.">
-<style>
-${opts.css}
-</style>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Groundwork AI Training, home">
-      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="2" y="20" width="26" height="6" rx="2" fill="var(--accent)"/><rect x="6" y="12" width="18" height="6" rx="2" fill="var(--accent)" opacity=".7"/><rect x="10" y="4" width="10" height="6" rx="2" fill="var(--accent)" opacity=".45"/></svg>
-      <span>Groundwork<small>AI Training</small></span>
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a class="hide-sm" href="courses.html">Courses</a>
-      <a class="hide-sm" href="pricing.html">Pricing</a>
-      <a class="hide-sm" href="how-it-works.html">How it works</a>
-      <a href="login.html">Log in</a>
-      <a class="btn btn-primary" href="try-f3.html">Try a module</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main">
-  <section class="hero">
+  return `  <section class="hero">
     <div class="wrap">
       <div>
         <p class="eyebrow">Claude training for the whole workplace</p>
@@ -206,16 +182,6 @@ ${ladder}
       </div>
     </div>
   </section>
-</main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <nav class="foot-links" aria-label="Footer">
-      <a href="courses.html">Courses</a><a href="pricing.html">Pricing</a><a href="how-it-works.html">How it works</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
-    </nav>
-    <p class="independent">Groundwork AI Training is an independent training provider. We are not affiliated with, or endorsed by, Anthropic. Claude is a trademark of Anthropic.</p>
-  </div>
-</footer>
 `;
 }
 
