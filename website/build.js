@@ -40,7 +40,10 @@ function build(preview) {
     tcss = tcss.replace(/url\("fonts\/([^"]+)"\)/g, function (_, f) {
       return 'url("data:font/woff2;base64,' + fs.readFileSync(path.join(OUT, 'fonts', f)).toString('base64') + '")';
     });
-    fs.writeFileSync(path.join(OUT, 'preview.html'), home(modules, { css: tcss + siteCss }));
+    // In the preview, links to pages that don't exist yet show a note instead of opening a blank page.
+    const note = '<p id="preview-note" role="status" hidden style="position:fixed;left:50%;bottom:calc(1.5rem + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);z-index:30;max-width:calc(100% - 32px);background:var(--ink);color:var(--bg);padding:.75rem 1.1rem;border-radius:10px;box-shadow:var(--card-shadow)">Preview only: this page comes in the next step.</p>' +
+      '<script>(function(){var n=document.getElementById("preview-note"),t;document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href");if(h.charAt(0)==="#")return;e.preventDefault();n.hidden=false;clearTimeout(t);t=setTimeout(function(){n.hidden=true;},2500);});})();</script>';
+    fs.writeFileSync(path.join(OUT, 'preview.html'), home(modules, { css: tcss + siteCss }) + note);
   }
   console.log('Built ' + OUT + ' (' + modules.length + ' modules)');
 }
