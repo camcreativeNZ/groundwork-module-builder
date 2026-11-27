@@ -6,7 +6,7 @@ const http = require('http');
 
 function standIns() {
   const state = { users: [], teams: [], licences: [], members: [], progress: [], emails: [], checkouts: [] };
-  const SECRET = 'stand-in-secret-key';
+  const SECRET = 'sb_secret_stand_in';
   let n = 0;
   const id = function (p) { n++; return p + '-' + n; };
 
@@ -18,8 +18,9 @@ function standIns() {
     };
   }
   function who(req) {
+    if (req.headers.apikey === SECRET && !req.headers.authorization) return 'admin';
     const t = (req.headers.authorization || '').replace(/^Bearer /, '');
-    if (t === SECRET) return 'admin';
+    if (t === SECRET) return null;   // like Supabase: a non-JWT secret key is refused as a Bearer token
     return state.users.find(function (u) { return 'tok-' + u.id === t; }) || null;
   }
   function planOf(uid) {
