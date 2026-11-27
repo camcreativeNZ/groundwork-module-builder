@@ -92,6 +92,8 @@ async function build(preview, skipModules) {
   fs.copyFileSync(path.join(ROOT, 'node_modules', '@supabase', 'supabase-js', 'dist', 'umd', 'supabase.js'), path.join(OUT, 'vendor', 'supabase.js'));
   write('account.js', fs.readFileSync(path.join(__dirname, 'src', 'account.js'), 'utf8'));
   const acct = { account: true };
+  // Until the site is on its real domain, ask search engines not to list the test address.
+  if (!/groundworkaitraining\.com/.test(vars.SITE_URL)) write('_headers', '/*\n  X-Robots-Tag: noindex\n');
   top('login.html', 'Log in · Groundwork AI Training', A.login(), 'login.html', acct);
   top('signup.html', 'Create your account · Groundwork AI Training', A.signup(), 'login.html', acct);
   top('reset.html', 'Reset your password · Groundwork AI Training', A.reset(), 'login.html', acct);
