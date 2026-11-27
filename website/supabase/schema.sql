@@ -137,3 +137,11 @@ create policy "admins see team progress" on public.progress
   ));
 
 grant execute on function public.my_plan() to authenticated;
+
+-- ---------- Table access ----------
+-- Newer Supabase projects don't open tables to the website automatically, so say who may use what.
+-- The row rules above still decide which rows each person sees.
+grant usage on schema public to authenticated, service_role;
+grant select, insert, update, delete on public.teams, public.licences, public.members, public.progress to service_role;
+grant select on public.teams, public.licences, public.members to authenticated;
+grant select, insert, update on public.progress to authenticated;
